@@ -24,6 +24,16 @@ public class Graph {
 	public Set<Node> getAllNodes() {
 		return this.nodes;
 	}
+	
+	public Set<Node> getAllFireNodes() {
+		Set<Node> fireNodes = new HashSet<Node>();
+		for(Node n : this.nodes) {
+			if(n.getIntensity() > 0) {
+				fireNodes.add(n);
+			}
+		}
+		return fireNodes;
+	}
 
 	public int getNbNodes() {
 		return this.nodes.size();

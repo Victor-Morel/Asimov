@@ -3,11 +3,15 @@ package model.graph;
 /**
  * Created by victor on 20/05/15.
  */
-public abstract class Node {
+public class Node {
 	/**
 	 * etiquette du noeud
 	 */
     private Label label;
+    /**
+     * l'intensite du noeud en feu. 0 correspond a un noeud non-enflamme
+     */
+    private int intensity;
     /**
      * ID unique du noeud
      */
@@ -23,8 +27,27 @@ public abstract class Node {
      */
     public Node(Label _label){
     	this.label = _label;
+    	this.intensity = 0;
     	this.uniqueID = nodesNumber;
     	Node.nodesNumber ++;
+    }
+    
+    /**
+     * Construit un noeud avec une etiquette et une intensite
+     * @param _label etiquette du noeud
+     * @param _intensity chaleur du noeud
+     */
+    public Node(Label _label, int _intensity) {
+    	this(_label);
+    	this.intensity = _intensity;
+    }
+    
+    
+    /**
+     * Fonction de refroidissement d'un noeud
+     */
+    public void cooling(double capacity) {
+    	this.intensity = (int)(this.intensity * (1-capacity)); 
     }
     
     /**
@@ -43,6 +66,19 @@ public abstract class Node {
      */
     public Label getLabel() { return label; }
     
+    /**
+	 * @return the intensity
+	 */
+	public int getIntensity() {
+		return intensity;
+	}
+
+	/**
+	 * @param intensity the intensity to set
+	 */
+	public void setIntensity(int intensity) {
+		this.intensity = intensity;
+	}
     
 	@Override
 	public String toString() {

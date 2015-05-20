@@ -1,6 +1,5 @@
 package model.robot;
 
-import model.graph.FireNode;
 import model.graph.Graph;
 import model.graph.Node;
 
@@ -30,8 +29,5 @@ public abstract class Robot {
 
     }
 
-    public void extinguish (FireNode inFlames){
-
-    }
 
 }
