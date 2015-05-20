@@ -1,4 +1,4 @@
-package src.model.robot;
+package model.robot;
 
 /**
  * Created by victor on 20/05/15.

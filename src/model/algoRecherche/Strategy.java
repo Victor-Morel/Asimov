@@ -1,4 +1,4 @@
-package src.model.algoRecherche;
+package model.algoRecherche;
 
 /**
  * Created by victor on 20/05/15.

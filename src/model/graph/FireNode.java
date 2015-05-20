@@ -1,4 +1,4 @@
-package src.model.graph;
+package model.graph;
 
 /**
  * Created by victor on 20/05/15.
