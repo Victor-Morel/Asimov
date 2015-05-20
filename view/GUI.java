@@ -1,4 +1,4 @@
-package src.view;
+package view;
 
 /**
  * Created by victor on 20/05/15.
