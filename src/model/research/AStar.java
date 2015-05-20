@@ -1,9 +1,9 @@
-package model.algoRecherche;
+package model.research;
 
 /**
  * Created by victor on 20/05/15.
  */
-public class AEtoile {
+public class AStar {
 //ceci est un joli commentaire
 
 }
