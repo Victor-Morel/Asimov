@@ -3,7 +3,7 @@ package model.graph;
 /**
  * Created by victor on 20/05/15.
  */
-public class Node {
+public abstract class Node {
 	/**
 	 * etiquette du noeud
 	 */
@@ -11,7 +11,7 @@ public class Node {
     /**
      * ID unique du noeud
      */
-    private int uniqueID;
+    protected int uniqueID;
     /**
      * nombre total d'instances de Noeud
      */

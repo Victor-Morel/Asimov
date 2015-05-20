@@ -48,12 +48,10 @@ public class Graph {
 		return false;
 	}
 
-	@Override
 	public void addEdge(Edge _edge) {
 		this.edges.add(_edge);
 	}
 
-	@Override
 	public List<Edge> getEdge(Node _n) {
 		List<Edge> requiredEdges = new ArrayList<Edge>();
 		for(Edge e : this.edges) {
