@@ -1,6 +1,9 @@
 package controller;
 
-import controller.config;import view.GUI;import java.lang.String;import java.lang.System;
+import controller.config;
+import view.GUI;
+import java.lang.String;
+import java.lang.System;
 
 public class main {
 
