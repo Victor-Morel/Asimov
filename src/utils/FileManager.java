@@ -1,13 +1,12 @@
 package utils;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 
@@ -39,7 +38,7 @@ public class FileManager {
 
                     Element eElement = (Element) nNode;
 
-                    //create node
+                    //TODO create new node
                     System.out.println("id : " + eElement.getAttribute("id"));
                     System.out.println("x : " + eElement.getAttribute("x"));
                     System.out.println("y : " + eElement.getAttribute("y"));
@@ -58,7 +57,7 @@ public class FileManager {
 
                     Element eElement = (Element) nNode;
 
-                    //create edge
+                    //TODO create new edge
                     System.out.println("nd1 : " + eElement.getAttribute("nd1"));
                     System.out.println("nd2 : " + eElement.getAttribute("nd2"));
                     System.out.println("type : " + eElement.getAttribute("type"));
