@@ -6,15 +6,24 @@ import java.awt.event.MouseListener;
 public class ControllerMouse implements MouseListener {
 
     private int x, y;
+    private boolean stat;
 
-    public ControllerMouse() {
+    private ControllerAction controlAction;
+
+    public ControllerMouse(ControllerAction _controlAction) {
         super();
+
+        this.controlAction = _controlAction;
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.x = e.getX();
-        this.y = e.getY();
+        if (check()) {
+            controlAction.addElement(e.getX(), e.getY());
+            stat = false;
+
+        }
     }
 
     @Override
@@ -35,5 +44,11 @@ public class ControllerMouse implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+
+    public boolean check() {
+        return controlAction.escarpe || controlAction.inonder || controlAction.plat ||
+                controlAction.fire || controlAction.node;
     }
 }

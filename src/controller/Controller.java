@@ -12,7 +12,7 @@ public class Controller {
     public Controller(String _path) {
         this.path = _path;
         this.controlAction = new ControllerAction(path);
-        this.controlMouse = new ControllerMouse();
+        this.controlMouse = new ControllerMouse(controlAction);
 
 
         GUI newGui = new GUI(controlAction, controlMouse);
