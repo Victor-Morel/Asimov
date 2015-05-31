@@ -1,17 +1,21 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import view.GUI;
 
-/**
- * Created by victor on 20/05/15.
- */
-public class Controller implements ActionListener{
+public class Controller {
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+    private String path;
+    private ControllerAction controlAction;
+    private ControllerMouse controlMouse;
+
+
+    public Controller(String _path) {
+        this.path = _path;
+        this.controlAction = new ControllerAction(path);
+        this.controlMouse = new ControllerMouse();
+
+
+        GUI newGui = new GUI(controlAction, controlMouse);
+
 	}
-
 }
