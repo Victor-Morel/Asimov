@@ -6,10 +6,13 @@ package model.graph;
 public class Node {
 
 	/**
-	 * coordonnées x et y d'un noeud
+	 * coordonnée x d'un noeud
 	 */
-
 	private double x;
+
+	/**
+	 * coordonnée y d'un noeud
+	 */
 	private double y;
 
 	/**

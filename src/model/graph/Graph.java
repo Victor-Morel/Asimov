@@ -13,12 +13,12 @@ public class Graph {
 	private Set<Edge> edges;
 	
 	public Graph() {
-		this.nodes = new HashSet<Node>();
-		this.edges = new HashSet<Edge>();
+		this.setNodes(new HashSet<Node>());
+		this.setEdges(new HashSet<Edge>());
 	}
 	
 	public void addNode(Node _node) {
-		this.nodes.add(_node);		
+		this.nodes.add(_node);
 	}
 
 	public Set<Node> getAllNodes() {
@@ -41,7 +41,7 @@ public class Graph {
 
 	public List<Node> getNextNodes(Node _n) {
 		List<Node> destNodes = new ArrayList<Node>();
-		for(Edge e : this.edges) {
+		for(Edge e : this.getEdges()) {
 			if(e.getSource().equals(_n)) {
 				destNodes.add(e.getDestination());
 			}
@@ -49,8 +49,8 @@ public class Graph {
 		return destNodes;
 	}
 
-	public boolean hasArc(Node _n1, Node _n2) {
-		for(Edge e : this.edges) {
+	public boolean hasEdge(Node _n1, Node _n2) {
+		for(Edge e : this.getEdges()) {
 			if(e.getSource().equals(_n1) && e.getDestination().equals(_n2)) {
 				return true;
 			}
@@ -59,12 +59,12 @@ public class Graph {
 	}
 
 	public void addEdge(Edge _edge) {
-		this.edges.add(_edge);
+		this.getEdges().add(_edge);
 	}
 
 	public List<Edge> getEdge(Node _n) {
 		List<Edge> requiredEdges = new ArrayList<Edge>();
-		for(Edge e : this.edges) {
+		for(Edge e : this.getEdges()) {
 			if(e.getSource().equals(_n)) {
 				requiredEdges.add(e);
 			}
@@ -74,11 +74,23 @@ public class Graph {
 	
 	public String toString() {
 		String s = "";
-		for(Node n : this.nodes) {
+		for(Node n : this.getAllNodes()) {
 			s = s + "[ noeud=" + n.getLabel() + " : ";
 			s = s + this.getEdge(n).toString();
 			s = s + " ]\n";
 		}
 		return s;
+	}
+
+	public void setNodes(Set<Node> nodes) {
+		this.nodes = nodes;
+	}
+
+	public Set<Edge> getEdges() {
+		return edges;
+	}
+
+	public void setEdges(Set<Edge> edges) {
+		this.edges = edges;
 	}
 }

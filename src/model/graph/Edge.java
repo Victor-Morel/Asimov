@@ -5,7 +5,7 @@ package model.graph;
  */
 public class Edge {
 
-	private Label valuation;
+	private int valuation;
 	/**
 	 * Noeud source de l'arete : equivalent a destination car non-oriente
 	 */
@@ -38,7 +38,7 @@ public class Edge {
 	 * @param _valuation
 	 *            valeur de l'arrete
 	 */
-	public Edge(Node _v1, Node _v2, Label _valuation, PossibleStates ps) {
+	public Edge(Node _v1, Node _v2, int _valuation, PossibleStates ps) {
 		this.valuation = _valuation;
 		this.source = _v1;
 		this.destination = _v2;
@@ -49,7 +49,7 @@ public class Edge {
 	 * 
 	 * @return la valeur de l'arete
 	 */
-	public Label getValuation() {
+	public int getValuation() {
 		return valuation;
 	}
 
@@ -57,7 +57,7 @@ public class Edge {
 	 * 
 	 * @param valuation
 	 */
-	public void setValuation(Label valuation) {
+	public void setValuation(int valuation) {
 		this.valuation = valuation;
 	}
 

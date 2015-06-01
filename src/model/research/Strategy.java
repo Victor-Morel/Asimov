@@ -1,5 +1,6 @@
 package model.research;
 
+import model.graph.Graph;
 import model.graph.Node;
 
 /**
@@ -8,4 +9,5 @@ import model.graph.Node;
 public abstract class Strategy {
 	protected Node source;
 	protected Node destination;
+	protected Graph graph;
 }
