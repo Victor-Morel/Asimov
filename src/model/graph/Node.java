@@ -40,7 +40,8 @@ public class Node {
 		this.x = _x;
 		this.y = _y;
     	Node.nodesNumber ++;
-    }
+		System.out.println("test");
+	}
     
     /**
      * Construit un noeud avec une etiquette et une intensite
