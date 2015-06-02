@@ -60,15 +60,19 @@ public class ControllerAction implements ActionListener {
     }
 
     public void addElement(int x, int y) {
-        if (node) {
+        //TODO add node and edge to good graph
 
-            //TODO create new node
-            Node n = new Node(0, x, y, Type.NORMAL);
+        //TODO manage id
+
+        int id;
+        if (node) {
+            Node n = new Node(id, x, y, Type.NORMAL);
             graph.addNode(n);
             node = false;
         }
         if (fire) {
-
+            Node n = new Node(id, x, y, Type.INCENDIE);
+            graph.addNode(n);
             fire = false;
         }
         if (plat) {
