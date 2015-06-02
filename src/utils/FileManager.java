@@ -10,7 +10,6 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.awt.*;
 import java.io.File;
 
 
@@ -61,8 +60,6 @@ public class FileManager {
                     nd1 = graph.findNode(Integer.parseInt(eElement.getAttribute("nd1")));
                     nd2 = graph.findNode(Integer.parseInt(eElement.getAttribute("nd2")));
                     type = Type.fromString(eElement.getAttribute("type"));
-                    p1 = new Point(nd1.getX(), nd1.getY());
-                    p2 = new Point(nd2.getX(), nd2.getY());
                     double distance = EuclidianDistance.getDistance(nd1, nd2);
                     graph.addEdge(new Edge(nd1, nd2, distance, type));
                 }
