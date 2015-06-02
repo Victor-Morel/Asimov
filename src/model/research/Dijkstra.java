@@ -14,12 +14,12 @@ import java.util.Map;
  */
 public class Dijkstra extends Strategy {
 
-    public Map<Node,Integer> d;
+    public Map<Node,Double> d;
     public List<Node> viewed;
     public List<Edge> path;
 
     public Dijkstra(Graph g, Map weight, Node n_start, Node n_dest) {
-        this.d = new HashMap<Node,Integer>();
+        this.d = new HashMap<Node,Double>();
         this.viewed = new ArrayList<Node>();
         this.path = new ArrayList<Edge>();
         Node currentNode = n_start;
@@ -31,7 +31,7 @@ public class Dijkstra extends Strategy {
         }
 
         while(!currentNode.equals(n_dest)) {
-            int minDist = d.get(0);
+            Double minDist = d.get(0);
             Node bestNode = null;
             for (Node keyNode : d.keySet()) {
                 if(d.get(keyNode) <= minDist && !viewed.contains(keyNode)) {
@@ -54,7 +54,7 @@ public class Dijkstra extends Strategy {
 
         this.resultGraph = new Graph();
         while(!currentNode.equals(n_start)) {
-            int bestValue = Integer.MAX_VALUE;
+            Double bestValue = Double.MAX_VALUE;
             Edge bestEdge = null;
             for (Edge e : path) {
                 if (e.getDestination().equals(currentNode) && e.getValuation() < bestValue) {
@@ -71,9 +71,9 @@ public class Dijkstra extends Strategy {
     public void initialization(Graph g, Node n_start) {
 
         for(Node n : g.getAllNodes()) {
-            d.put(n, Integer.MAX_VALUE);
+            d.put(n, Double.MAX_VALUE);
         }
-        d.put(n_start, 0);
+        d.put(n_start, 0.0);
     }
 
     public void updateDistance(Graph g, Node n1, Node n2) {
