@@ -71,7 +71,7 @@ public class Graph {
 		this.getEdges().add(_edge);
 	}
 
-	public List<Edge> getEdge(Node _n) {
+	public List<Edge> getEdges(Node _n) {
 		List<Edge> requiredEdges = new ArrayList<Edge>();
 		for(Edge e : this.getEdges()) {
 			if(e.getSource().equals(_n)) {
@@ -80,12 +80,23 @@ public class Graph {
 		}
 		return requiredEdges;
 	}
+
+	public Edge getEdge(Node _n1, Node _n2) {
+		if(hasEdge(_n1,_n2)) {
+			for(Edge e : this.getEdges()) {
+				if (e.getSource().equals(_n1) && e.getDestination().equals(_n2)) {
+					return e;
+				}
+			}
+		}
+		return null;
+	}
 	
 	public String toString() {
 		String s = "";
 		for(Node n : this.getAllNodes()) {
 			s = s + "[ noeud=" + n.getLabel() + " : ";
-			s = s + this.getEdge(n).toString();
+			s = s + this.getEdges(n).toString();
 			s = s + " ]\n";
 		}
 		return s;
