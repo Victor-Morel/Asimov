@@ -16,10 +16,10 @@ public class ControllerAction implements ActionListener {
     Boolean node, fire, plat, inonder, escarpe;
     Graph graph;
 
-    public ControllerAction(String _path, Graph _graph) {
+    public ControllerAction(String _path) {
         super();
         this.path = _path;
-        this.graph = _graph;
+        this.graph = new Graph();
         initialization();
     }
 
@@ -60,9 +60,6 @@ public class ControllerAction implements ActionListener {
     }
 
     public void addElement(int x, int y) {
-        //TODO add node and edge to good graph
-
-        //TODO manage id
 
         int id = 0;
         if (node) {

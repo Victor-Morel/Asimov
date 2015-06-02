@@ -1,12 +1,5 @@
 package model.graph;
 
-/**
- * Created by victor on 01/06/15.
- */
-
-// C'est quoi la différence avec un String
-// a part d'utiliser une class ?
-// pour moi cette class est inutile .
 public class StringLabel implements Label{
 
     String label;
