@@ -113,4 +113,8 @@ public class Graph {
 	public void setEdges(Set<Edge> edges) {
 		this.edges = edges;
 	}
+
+	public Graph getSubGraph(int type) {
+		//retourne un sous graphe selon le type de robot
+	}
 }

@@ -27,7 +27,7 @@ public abstract class Robot {
     private Node node;
     private boolean busy;
     private double capacity;
-    private Graph g;
+    protected Graph g;
 
     public Robot (TypeRecherche _type, double _capacity){
         this.type = _type;
