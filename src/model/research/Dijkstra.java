@@ -1,9 +1,9 @@
 package model.research;
 
+import model.graph.Couple;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
-import model.graph.Couple;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class Dijkstra extends Strategy {
             updateDistance(n_start, n);
         }
         while(!p.isEmpty()) {
-            weight.put(new Couple())
+            //   weight.put(new Couple());
         }
     }
 
