@@ -64,7 +64,7 @@ public class ControllerAction implements ActionListener {
 
         //TODO manage id
 
-        int id;
+        int id = 0;
         if (node) {
             Node n = new Node(id, x, y, Type.NORMAL);
             graph.addNode(n);
