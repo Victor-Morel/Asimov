@@ -1,9 +1,32 @@
 package model.graph;
 
-/**
- * Created by TD on 6/2/2015.
- */
+
 public enum Type {
-    NORMAL, INCENDIE, ESCARPE, PLAT, INONDE
+    NORMAL("NORMAL"),
+    INCENDIE("INCENDIE"),
+    ESCARPE("ESCARPE"),
+    PLAT("PLAT"),
+    INONDE("INONDE");
+
+    private String text;
+
+    Type(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public static Type fromString(String text) {
+        if (text != null) {
+            for (Type t : Type.values()) {
+                if (text.equalsIgnoreCase(t.text)) {
+                    return t;
+                }
+            }
+        }
+        return null;
+    }
 
 }

@@ -1,5 +1,7 @@
 package utils;
 
+import model.graph.Edge;
+import model.graph.Type;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,6 +19,9 @@ public class FileManager {
         NodeList nListEdge;
         NodeList nListNode;
         File fXmlFile;
+        int id, nd1, nd2;
+        double x, y;
+        Type type;
 
 
         try {
@@ -38,11 +43,13 @@ public class FileManager {
 
                     Element eElement = (Element) nNode;
 
+                    id = Integer.parseInt(eElement.getAttribute("id"));
+                    x = Double.parseDouble(eElement.getAttribute("x"));
+                    y = Double.parseDouble(eElement.getAttribute("y"));
+                    type = Type.fromString(eElement.getAttribute("type"));
+                    model.graph.Node n = new model.graph.Node(id, x, y, type);
 
-                    System.out.println("id : " + eElement.getAttribute("id"));
-                    System.out.println("x : " + eElement.getAttribute("x"));
-                    System.out.println("y : " + eElement.getAttribute("y"));
-                    System.out.println("type : " + eElement.getAttribute("type"));
+                    // TODO add node to graph
 
                 }
             }
@@ -57,10 +64,12 @@ public class FileManager {
 
                     Element eElement = (Element) nNode;
 
-                    //TODO create new edge
-                    System.out.println("nd1 : " + eElement.getAttribute("nd1"));
-                    System.out.println("nd2 : " + eElement.getAttribute("nd2"));
-                    System.out.println("type : " + eElement.getAttribute("type"));
+                    nd1 = Integer.parseInt(eElement.getAttribute("nd1"));
+                    nd2 = Integer.parseInt(eElement.getAttribute("nd2"));
+                    type = Type.fromString(eElement.getAttribute("type"));
+                    Edge e = new Edge(nd1, nd2, type);
+
+                    // TODO add edge to graph
                 }
             }
         } catch (Exception e) {

@@ -1,8 +1,5 @@
 package model.graph;
 
-/**
- * Created by victor on 20/05/15.
- */
 public class Node {
 
 	/**
@@ -36,9 +33,8 @@ public class Node {
 
 	/**
      * Construit un noeud avec une etiquette
-     * @param _label etiquette du noeud
      */
-	public Node(int id, int _x, int _y, Type _type) {
+	public Node(int id, double _x, double _y, Type _type) {
 		this.intensity = 0;
 		this.uniqueID = id;
 		this.x = _x;

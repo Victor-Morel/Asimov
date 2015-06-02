@@ -1,8 +1,5 @@
 package model.graph;
 
-/**
- * Created by victor on 20/05/15.
- */
 public class Edge {
 
 	private int valuation;
@@ -18,26 +15,33 @@ public class Edge {
 	 * Type d'arete
 	 */
 	private PossibleStates state;
-	
+
+
+
+
+
+
 	/**
 	 * Liste des types d'aretes possibles
 	 */
-	private static enum PossibleStates {
+	private enum PossibleStates {
 		PLAT,
 		ESCARPE,
-		INONDE;
+		INONDE
 	}
 
-	/**
-	 * construit une arete valuee
-	 * 
-	 * @param _v1
-	 *            noeud source
-	 * @param _v2
-	 *            noeud destination
-	 * @param _valuation
-	 *            valeur de l'arrete
-	 */
+
+	int nd1, nd2;
+	Type type;
+
+
+	public Edge(int nd1, int nd2, Type type) {
+		this.nd1 = nd1;
+		this.nd2 = nd2;
+		this.type = type;
+	}
+
+
 	public Edge(Node _v1, Node _v2, int _valuation, PossibleStates ps) {
 		this.valuation = _valuation;
 		this.source = _v1;
@@ -54,7 +58,7 @@ public class Edge {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param valuation
 	 */
 	public void setValuation(int valuation) {
@@ -62,7 +66,7 @@ public class Edge {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return le noeud source de l'arete
 	 */
 	public Node getSource() {
@@ -70,8 +74,8 @@ public class Edge {
 	}
 
 	/**
-	 * 
-	 * @param v1
+	 *
+	 *
 	 *            noeud source
 	 */
 	public void setSource(Node _n) {
@@ -79,7 +83,7 @@ public class Edge {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return le noeud destination de l'arete
 	 */
 	public Node getDestination() {
@@ -87,8 +91,8 @@ public class Edge {
 	}
 
 	/**
-	 * 
-	 * @param v2
+	 *
+	 *
 	 *            noeud destination
 	 */
 	public void setDestination(Node _n) {
