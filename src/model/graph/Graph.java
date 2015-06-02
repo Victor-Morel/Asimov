@@ -21,6 +21,15 @@ public class Graph {
 		this.nodes.add(_node);
 	}
 
+	public Node findNode (int id){
+		for(Node n : nodes){
+			if (id==n.getID()){
+				return n;
+			}
+		}
+		return null;
+	}
+
 	public Set<Node> getAllNodes() {
 		return this.nodes;
 	}
