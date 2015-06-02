@@ -38,7 +38,7 @@ public class FileManager {
 
                     Element eElement = (Element) nNode;
 
-                    //TODO create new node
+
                     System.out.println("id : " + eElement.getAttribute("id"));
                     System.out.println("x : " + eElement.getAttribute("x"));
                     System.out.println("y : " + eElement.getAttribute("y"));

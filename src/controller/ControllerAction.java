@@ -1,5 +1,8 @@
 package controller;
 
+import model.graph.Graph;
+import model.graph.Node;
+import model.graph.Type;
 import utils.FileManager;
 import view.ChooseFile;
 
@@ -11,11 +14,12 @@ public class ControllerAction implements ActionListener {
 
     String path;
     Boolean node, fire, plat, inonder, escarpe;
+    Graph graph;
 
-    public ControllerAction(String _path) {
+    public ControllerAction(String _path, Graph _graph) {
         super();
         this.path = _path;
-
+        this.graph = _graph;
         initialization();
     }
 
@@ -59,7 +63,8 @@ public class ControllerAction implements ActionListener {
         if (node) {
 
             //TODO create new node
-            System.out.println("Create new Node");
+            Node n = new Node(0, x, y, Type.NORMAL);
+            graph.addNode(n);
             node = false;
         }
         if (fire) {

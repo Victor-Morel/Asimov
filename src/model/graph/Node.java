@@ -31,19 +31,19 @@ public class Node {
      * nombre total d'instances de Noeud
      */
     private static int nodesNumber = 0;
-    
-    /**
+
+	Type type;
+
+	/**
      * Construit un noeud avec une etiquette
      * @param _label etiquette du noeud
      */
-    public Node(Label _label, int _x, int _y){
-    	this.label = _label;
-    	this.intensity = 0;
-    	this.uniqueID = nodesNumber;
+	public Node(int id, int _x, int _y, Type _type) {
+		this.intensity = 0;
+		this.uniqueID = id;
 		this.x = _x;
 		this.y = _y;
-    	Node.nodesNumber ++;
-		System.out.println("test");
+		type = _type;
 	}
     
     /**
@@ -108,8 +108,6 @@ public class Node {
 		if (getClass() != obj.getClass())
 			return false;
 		Node other = (Node) obj;
-		if (uniqueID != other.uniqueID)
-			return false;
-		return true;
-	}	
+		return uniqueID == other.uniqueID;
+	}
 }
