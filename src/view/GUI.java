@@ -10,16 +10,17 @@ import javax.swing.plaf.DimensionUIResource;
 
 public class GUI extends JFrame {
 
-	private JPanel panel1;
+	private JPanel rootPanel;
 	private javax.swing.JToolBar jToolBar;
 	private JButton addNodeFire, addNode, addEdgeEscarpe, addEdgePlat, addEdgeInonde;
+	private SheetDisplay sheetDisplay;
 
 
 	public GUI(ControllerAction controlAction, ControllerMouse controlMouse) {
 
 		super("Asimov");
 
-		add(panel1);
+		setContentPane(rootPanel);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
@@ -39,6 +40,7 @@ public class GUI extends JFrame {
 		save.addActionListener(controlAction);
 		load.addActionListener(controlAction);
 
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new DimensionUIResource(600, 600));
 		setResizable(false);
@@ -46,4 +48,12 @@ public class GUI extends JFrame {
 		setVisible(true);
 	}
 
+	private void createUIComponents() {
+		sheetDisplay = new SheetDisplay();
+
+	}
+
+	public SheetDisplay getSheetDisplay() {
+		return sheetDisplay;
+	}
 }

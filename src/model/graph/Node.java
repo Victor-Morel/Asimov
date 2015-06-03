@@ -1,6 +1,8 @@
 package model.graph;
 
-public class Node {
+import java.util.Observable;
+
+public class Node extends Observable {
 
 	/**
 	 * coordonnée x d'un noeud
@@ -108,19 +110,16 @@ public class Node {
 	}
 
 
-	public double getX() {
-		return x;
+	public void reset() {
+		//TODO destroy instance
 	}
 
-	public void setX(double x) {
-		this.x = x;
+	public double getX() {
+		return x;
 	}
 
 	public double getY() {
 		return y;
 	}
 
-	public void setY(double y) {
-		this.y = y;
-	}
 }

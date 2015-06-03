@@ -22,7 +22,6 @@ public class ControllerMouse implements MouseListener {
         if (check()) {
             controlAction.addElement(e.getX(), e.getY());
             stat = false;
-
         }
     }
 
