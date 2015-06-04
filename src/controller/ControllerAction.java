@@ -1,6 +1,5 @@
 package controller;
 
-import model.graph.Graph;
 import model.graph.Node;
 import model.graph.Type;
 import utils.FileManager;
@@ -14,12 +13,12 @@ public class ControllerAction implements ActionListener {
 
     String path;
     Boolean node, fire, plat, inonder, escarpe;
-    Graph graph;
+    Controller control;
 
-    public ControllerAction(String _path) {
+    public ControllerAction(String _path, Controller control) {
         super();
         this.path = _path;
-        this.graph = new Graph();
+        this.control = control;
         initialization();
     }
 
@@ -54,7 +53,7 @@ public class ControllerAction implements ActionListener {
         }
         if (e.getActionCommand().matches("Load")) {
             ChooseFile chooseFile = new ChooseFile();
-            this.graph = FileManager.loadFileManager(chooseFile.selectFile(this.path));
+            control.setGraph(FileManager.loadFileManager(chooseFile.selectFile(this.path)));
         }
 
     }
@@ -63,13 +62,12 @@ public class ControllerAction implements ActionListener {
 
         int id = 0;
         if (node) {
-            Node n = new Node(id, x, y, Type.NORMAL);
-            graph.addNode(n);
+            control.addNode(new Node(id, x, y, Type.NORMAL));
             node = false;
         }
         if (fire) {
             Node n = new Node(id, x, y, Type.INCENDIE);
-            graph.addNode(n);
+            //graph.addNode(n);
             fire = false;
         }
         if (plat) {
