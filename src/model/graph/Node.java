@@ -31,7 +31,7 @@ public class Node extends Observable {
      */
     private static int nodesNumber = 0;
 
-	Type type;
+	private Type type;
 
 	/**
      * Construit un noeud avec une etiquette
@@ -41,7 +41,7 @@ public class Node extends Observable {
 		this.uniqueID = id;
 		this.x = _x;
 		this.y = _y;
-		type = _type;
+		setType(_type);
 	}
     
     /**
@@ -122,4 +122,11 @@ public class Node extends Observable {
 		return y;
 	}
 
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
 }

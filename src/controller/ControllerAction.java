@@ -7,6 +7,7 @@ import view.ChooseFile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 
 public class ControllerAction implements ActionListener {
@@ -49,7 +50,8 @@ public class ControllerAction implements ActionListener {
             escarpe = true;
         }
         if (e.getActionCommand().matches("Save")) {
-
+            ChooseFile chooseFile = new ChooseFile();
+            FileManager.saveFileManager(chooseFile.selectFile(this.path), control.getGraph());
         }
         if (e.getActionCommand().matches("Load")) {
             ChooseFile chooseFile = new ChooseFile();

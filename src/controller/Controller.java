@@ -21,7 +21,7 @@ public class Controller {
         this.controlAction = new ControllerAction(path, this);
         this.controlMouse = new ControllerMouse(controlAction);
 
-        this.graph = new Graph();
+        this.setGraph(new Graph());
 
         window = new GUI(controlAction, controlMouse);
     }
@@ -35,10 +35,10 @@ public class Controller {
 
     }
 
-    // ajouter tortue
+    // ajouter un noeud
     public void addNode(Node node) {
         //addNode to graph
-        graph.addNode(node);
+        getGraph().addNode(node);
 
         //addNode to sheet
         VNode viewNode = new VNode(window.getSheetDisplay(), node);
@@ -53,5 +53,9 @@ public class Controller {
 
     public void repaint() {
         window.getSheetDisplay().repaint();
+    }
+
+    public Graph getGraph() {
+        return graph;
     }
 }
