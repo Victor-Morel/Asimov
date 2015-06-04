@@ -12,15 +12,17 @@ public class Edge {
      */
     private Node destination;
 
-    Type type;
+    private Type type;
 
 
     public Edge(Node _v1, Node _v2, double _valuation, Type type) {
         this.valuation = _valuation;
         this.source = _v1;
         this.destination = _v2;
-        this.type = type;
+        this.setType(type);
     }
+
+
 
     /**
      * @return la valeur de l'arete
@@ -70,4 +72,11 @@ public class Edge {
                 + destination.getLabel().getLabel() + "(" + valuation + ")";
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 }
