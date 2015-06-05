@@ -15,7 +15,6 @@ public class GUI extends JFrame {
 	private JButton addNodeFire, addNode, addEdgeEscarpe, addEdgePlat, addEdgeInonde;
 	private SheetDisplay sheetDisplay;
 
-
 	public GUI(ControllerAction controlAction, ControllerMouse controlMouse) {
 
 		super("Asimov");

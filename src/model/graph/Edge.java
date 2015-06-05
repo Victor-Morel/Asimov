@@ -66,11 +66,12 @@ public class Edge {
         this.destination = _n;
     }
 
+    /*
     @Override
     public String toString() {
         return source.getLabel().toString() + " ==> "
                 + destination.getLabel().getLabel() + "(" + valuation + ")";
-    }
+    }*/
 
     public Type getType() {
         return type;
