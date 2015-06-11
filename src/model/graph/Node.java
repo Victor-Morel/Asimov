@@ -34,25 +34,28 @@ public class Node extends Observable {
 	private Type type;
 
 	/**
-     * Construit un noeud avec une etiquette
-     */
-	public Node(int id, double _x, double _y, Type _type) {
-		this.intensity = 0;
-		this.uniqueID = id;
+	 * Construit un noeud avec une etiquette et une intensite
+	 * @param _id identifiant du noeud
+	 * @param _x coordonnée x du noeud
+	 * @param _y coordonnée y du noeud
+	 * @param _intensity chaleur du noeud
+	 */
+	public Node(int _id, double _x, double _y, int _intensity) {
+		this.intensity = _intensity;
+		this.uniqueID = _id;
 		this.x = _x;
 		this.y = _y;
-		setType(_type);
 	}
-    
-    /**
-     * Construit un noeud avec une etiquette et une intensite
-     * @param _label etiquette du noeud
-     * @param _intensity chaleur du noeud
-     */
-    public Node(Label _label, int _intensity) {
-		this.label = _label;
-    	this.intensity = _intensity;
-    }
+
+	/**
+	 * Construit un noeud avec une etiquette et une intensite
+	 * @param _id identifiant du noeud
+	 * @param _x coordonnée x du noeud
+	 * @param _y coordonnée y du noeud
+	 */
+	public Node(int _id, double _x, double _y) {
+		this(_id, _x, _y, 0);
+	}
     
     
     /**

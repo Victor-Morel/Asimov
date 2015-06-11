@@ -64,11 +64,11 @@ public class ControllerAction implements ActionListener {
 
         int id = 0;
         if (node) {
-            control.addNode(new Node(id, x, y, Type.NORMAL));
+            control.addNode(new Node(id, x, y));
             node = false;
         }
         if (fire) {
-            Node n = new Node(id, x, y, Type.INCENDIE);
+            Node n = new Node(id, x, y, 100);
             //graph.addNode(n);
             fire = false;
         }

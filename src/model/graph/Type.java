@@ -3,7 +3,6 @@ package model.graph;
 
 public enum Type {
     NORMAL("NORMAL"),
-    INCENDIE("INCENDIE"),
     ESCARPE("ESCARPE"),
     PLAT("PLAT"),
     INONDE("INONDE");

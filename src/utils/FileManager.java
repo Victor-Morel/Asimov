@@ -46,9 +46,9 @@ public class FileManager {
                     id = Integer.parseInt(eElement.getAttribute("id"));
                     x = Double.parseDouble(eElement.getAttribute("x"));
                     y = Double.parseDouble(eElement.getAttribute("y"));
-                    type = Type.fromString(eElement.getAttribute("type"));
-                    model.graph.Node n = new model.graph.Node(id, x, y, type);
-                    graph.addNode(n);
+                    //type = Type.fromString(eElement.getAttribute("type"));
+                    //model.graph.Node n = new model.graph.Node(id, x, y, type);
+                    //graph.addNode(n);
                 }
             }
 
