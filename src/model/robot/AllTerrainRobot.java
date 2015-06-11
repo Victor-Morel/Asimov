@@ -10,5 +10,4 @@ public class AllTerrainRobot extends Robot {
 		this.g = g.getSubGraph(1);
 		// TODO Auto-generated constructor stub
 	}
-
 }

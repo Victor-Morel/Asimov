@@ -2,8 +2,9 @@ package model.robot;
 
 import model.graph.Graph;
 import model.graph.Node;
-
-import java.util.HashMap;
+import model.research.AStar;
+import model.research.Dijkstra;
+import model.research.Strategy;
 
 /**
  * Created by victor on 20/05/15.
@@ -14,8 +15,28 @@ public abstract class Robot {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public TypeRecherche getType() {
+        return type;
+    }
+
+    public void setType(TypeRecherche type) {
+        this.type = type;
+    }
+
+    public Strategy getStrat() {
+        return strat;
+    }
+
+    public void setStrat(Strategy strat) {
+        this.strat = strat;
+    }
+
+    public Node getNode() {
+        return node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
     }
 
     public enum TypeRecherche{
@@ -27,24 +48,35 @@ public abstract class Robot {
     private Node node;
     private boolean busy;
     private double capacity;
+    private Strategy strat;
     protected Graph g;
 
     public Robot (TypeRecherche _type, double _capacity){
-        this.type = _type;
+        this.setType(_type);
         this.busy = false;
         this.capacity = _capacity;
     }
 
-    public HashMap<Integer,Double> getNearFires (){ //doit retourner une liste avec pour chaque noeud en feu, une distance
-        HashMap<Integer,Double> fireList = new HashMap<>(null);
-        for (Node fn : g.getAllFireNodes()){
-            //appel de strategy entre le noeud du robot, le noeud en feu, avec comme paramètre le type de recherche
+    public int getDistance(Node inFlames) {
+        switch (this.getType()){
+            case dijkstra:
+                this.setStrat(new Dijkstra(g, this.getNode(), inFlames));
+                break;
+            case astar:
+                this.setStrat(new AStar(g, this.getNode(), inFlames));
+                break;
         }
-        return fireList;
+        return 0;
     }
 
     public void extinguish (Node inFlames){
         inFlames.cooling(capacity);
     }
+
+    public void goTo(Node inFlames){
+        //envoie un robot sur le noeud en question
+    }
+
+
 
 }
