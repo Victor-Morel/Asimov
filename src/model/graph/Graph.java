@@ -140,12 +140,12 @@ public class Graph {
             case 1:
                 return true;
             case 2:
-                if ((e.getType() == Type.PLAT) || (e.getType() == Type.INONDE)) {
+                if ((e.getType() == TypeEdge.PLAT) || (e.getType() == TypeEdge.INONDE)) {
                     return true;
                 }
                 break;
             case 3:
-                if ((e.getType() == Type.PLAT) || (e.getType() == Type.ESCARPE)) {
+                if ((e.getType() == TypeEdge.PLAT) || (e.getType() == TypeEdge.ESCARPE)) {
                     return true;
                 }
                 break;

@@ -31,21 +31,30 @@ public class Node extends Observable {
      */
     private static int nodesNumber = 0;
 
-	private Type type;
+	private TypeNode type;
 
 	/**
 	 * Construit un noeud avec une etiquette et une intensite
 	 * @param _id identifiant du noeud
 	 * @param _x coordonnée x du noeud
 	 * @param _y coordonnée y du noeud
-	 * @param _intensity chaleur du noeud
+	 * @param _type type du noeud
 	 */
-	public Node(int _id, double _x, double _y, int _intensity) {
-		this.intensity = _intensity;
+	public Node(int _id, double _x, double _y, TypeNode _type) {
 		this.uniqueID = _id;
 		this.x = _x;
 		this.y = _y;
+		if (_type.getText() == "NORMAL") this.intensity = 0;
+		if (_type.getText() == "INCENDIE") this.intensity = 100;
 	}
+
+	public Node(int _id, double _x, double _y, int intensity) {
+		this.uniqueID = _id;
+		this.x = _x;
+		this.y = _y;
+		this.intensity = intensity;
+	}
+
 
 	/**
 	 * Construit un noeud avec une etiquette et une intensite
@@ -54,7 +63,7 @@ public class Node extends Observable {
 	 * @param _y coordonnée y du noeud
 	 */
 	public Node(int _id, double _x, double _y) {
-		this(_id, _x, _y, 0);
+		this(_id, _x, _y, TypeNode.NORMAL);
 	}
     
     
@@ -125,11 +134,11 @@ public class Node extends Observable {
 		return y;
 	}
 
-	public Type getType() {
+	public TypeNode getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(TypeNode type) {
 		this.type = type;
 	}
 }

@@ -2,7 +2,8 @@ package utils;
 
 import model.graph.Edge;
 import model.graph.Graph;
-import model.graph.Type;
+import model.graph.TypeEdge;
+import model.graph.TypeNode;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,16 +19,22 @@ public class FileManager {
 
     public static Graph loadFileManager(File file) {
 
-        Graph graph = new Graph();
+        Graph graph;
         NodeList nListEdge;
         NodeList nListNode;
         File fXmlFile;
+        TypeEdge typeEdge;
+        TypeNode typeNode;
         int id;
+        double x, y, distance;
         model.graph.Node nd1, nd2;
-        double x, y;
-        Type type;
+        model.graph.Node node;
+
+
+        graph = new Graph();
 
         try {
+
 
             fXmlFile = file;
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -47,16 +54,12 @@ public class FileManager {
                     id = Integer.parseInt(eElement.getAttribute("id"));
                     x = Double.parseDouble(eElement.getAttribute("x"));
                     y = Double.parseDouble(eElement.getAttribute("y"));
-                    if (eElement.getAttribute("type") == "NORMAL") {
-                        model.graph.Node n = new model.graph.Node(id, x, y, 0);
-                        graph.addNode(n);
-                    }
-                    if (eElement.getAttribute("type") == 'INCENDIE') {
-                        model.graph.Node n = new model.graph.Node(id, x, y, 100);
-                        graph.addNode(n);
-                    }
+                    typeNode = TypeNode.fromString(eElement.getAttribute("type"));
+                    model.graph.Node n = new model.graph.Node(id, x, y, typeNode);
+                    graph.addNode(n);
                 }
             }
+
 
             nListEdge = doc.getElementsByTagName("edge");
             for (int temp = 0; temp < nListEdge.getLength(); temp++) {
@@ -65,14 +68,19 @@ public class FileManager {
                     Element eElement = (Element) nNode;
                     nd1 = graph.findNode(Integer.parseInt(eElement.getAttribute("nd1")));
                     nd2 = graph.findNode(Integer.parseInt(eElement.getAttribute("nd2")));
-                    type = Type.fromString(eElement.getAttribute("type"));
-                    double distance = EuclidianDistance.getDistance(nd1, nd2);
-                    graph.addEdge(new Edge(nd1, nd2, distance, type));
+                    typeEdge = TypeEdge.fromString(eElement.getAttribute("type"));
+                    distance = EuclidianDistance.getDistance(nd1, nd2);
+                    graph.addEdge(new Edge(nd1, nd2, distance, typeEdge));
                 }
             }
-        } catch (Exception e) {
+        } catch (
+                Exception e
+                )
+
+        {
             e.printStackTrace();
         }
+
         return graph;
     }
 
@@ -88,7 +96,7 @@ public class FileManager {
             Element rootElement = doc.createElement("osm");
             doc.appendChild(rootElement);
 
-            for (model.graph.Node n : g.getAllNodes()){
+            for (model.graph.Node n : g.getAllNodes()) {
                 // staff elements
                 Element staff = doc.createElement("node");
                 rootElement.appendChild(staff);
@@ -112,7 +120,7 @@ public class FileManager {
 
             }
 
-            for (Edge e : g.getAllEdges()){
+            for (Edge e : g.getAllEdges()) {
                 // staff elements
                 Element staff = doc.createElement("edge");
                 rootElement.appendChild(staff);

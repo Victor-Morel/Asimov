@@ -1,13 +1,12 @@
 package controller;
 
 import model.graph.Node;
-import model.graph.Type;
+import model.graph.TypeNode;
 import utils.FileManager;
 import view.ChooseFile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 
 public class ControllerAction implements ActionListener {
@@ -68,7 +67,7 @@ public class ControllerAction implements ActionListener {
             node = false;
         }
         if (fire) {
-            Node n = new Node(id, x, y, 100);
+            Node n = new Node(id, x, y, TypeNode.INCENDIE);
             //graph.addNode(n);
             fire = false;
         }

@@ -12,10 +12,10 @@ public class Edge {
      */
     private Node destination;
 
-    private Type type;
+    private TypeEdge type;
 
 
-    public Edge(Node _v1, Node _v2, double _valuation, Type type) {
+    public Edge(Node _v1, Node _v2, double _valuation, TypeEdge type) {
         this.valuation = _valuation;
         this.source = _v1;
         this.destination = _v2;
@@ -73,11 +73,11 @@ public class Edge {
                 + destination.getLabel().getLabel() + "(" + valuation + ")";
     }*/
 
-    public Type getType() {
+    public TypeEdge getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(TypeEdge type) {
         this.type = type;
     }
 }
