@@ -75,22 +75,19 @@ public class Controller {
     // ajouter un noeud
     public void addNode(Node node) {
 
+        AVNode viewNode = null;
+
         //addNode to graph
         getGraph().addNode(node);
 
         //addNode to sheet
-        VNode viewNode = new VNode(window.getSheetDisplay(), node);
+        if (node.getType().getText() == "NORMAL") viewNode = new VNode(window.getSheetDisplay(), node);
+        if (node.getType().getText() == "INCENDIE") viewNode = new VFire(window.getSheetDisplay(), node);
+
         window.getSheetDisplay().addNode(viewNode);
 
         this.repaint();
     }
 
-    public void addFire(Node n) {
-        //addNode to graph
-        getGraph().addNode(n);
 
-        //addNode to sheet
-        VFire viewFire = new VFire(window.getSheetDisplay(), n);
-        window.getSheetDisplay().addNode(viewFire);
-    }
 }
