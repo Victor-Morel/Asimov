@@ -1,6 +1,9 @@
-package model.graph;
+package test.modelTest;
 
 import junit.framework.Assert;
+import model.graph.Graph;
+import model.graph.Node;
+import model.graph.Type;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,12 +16,10 @@ import static org.junit.Assert.*;
  */
 public class GraphTest {
 
-    Graph g;
-
     @Test
     public void testAddNode() throws Exception {
-        g = new Graph();
-        Node n1 = new Node(5,2.0,6.3,Type.NORMAL);
+        Graph g = new Graph();
+        Node n1 = new Node(5,2.0,6.3, Type.NORMAL);
         Node n2 = new Node(0,0,0,Type.NORMAL);
         Node n3 = new Node(5,2.0,6.3,Type.NORMAL);
         Node n4 = new Node(-2,2.0,6.3,Type.NORMAL);
