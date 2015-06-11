@@ -1,4 +1,4 @@
-package view.VNode;
+package view.Node;
 
 import model.graph.Node;
 import view.SheetDisplay;
@@ -13,9 +13,9 @@ public abstract class AVNode implements Observer {
     protected final SheetDisplay sheetDisplay;
     protected Node node;
 
-    public AVNode(SheetDisplay sheetDisplay, Node Node) {
+    public AVNode(SheetDisplay sheetDisplay, Node node) {
         this.sheetDisplay = sheetDisplay;
-        setT(Node);
+        setT(node);
     }
 
     @Override

@@ -26,10 +26,6 @@ public class Node extends Observable {
      * ID unique du noeud
      */
     protected int uniqueID;
-    /**
-     * nombre total d'instances de Noeud
-     */
-    private static int nodesNumber = 0;
 
 	private TypeNode type;
 

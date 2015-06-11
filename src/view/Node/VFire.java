@@ -1,11 +1,14 @@
-package view.VNode;
+package view.Node;
 
 import model.graph.Node;
 import view.SheetDisplay;
 
 import java.awt.*;
 
-public class VNode extends AVNode {
+/**
+ * Created by TD on 6/11/2015.
+ */
+public class VFire extends AVNode {
 
 
     protected static final int rp = 10, rb = 5;
@@ -13,7 +16,7 @@ public class VNode extends AVNode {
     protected Polygon arrow;
     protected Point point;
 
-    public VNode(SheetDisplay sheetDisplay, Node n) {
+    public VFire(SheetDisplay sheetDisplay, Node n) {
         super(sheetDisplay, n);
     }
 
@@ -52,7 +55,7 @@ public class VNode extends AVNode {
         );
         arrow.addPoint(p2.x, p2.y);
 
-        graph.setColor(Color.WHITE);
+        graph.setColor(Color.RED);
         graph.fillPolygon(arrow);
 
     }

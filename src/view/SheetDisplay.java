@@ -1,6 +1,6 @@
 package view;
 
-import view.VNode.AVNode;
+import view.Node.AVNode;
 
 import javax.swing.*;
 import java.awt.*;

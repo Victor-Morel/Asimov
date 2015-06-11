@@ -4,8 +4,10 @@ import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import view.GUI;
+import view.Node.AVNode;
+import view.Node.VFire;
+import view.Node.VNode;
 import view.SheetDisplay;
-import view.VNode.VNode;
 
 public class Controller {
 
@@ -63,14 +65,15 @@ public class Controller {
 
 
     protected void displayGraphe() {
-
+        AVNode viewNode = null;
         for (Node node : graph.getAllNodes()) {
-            VNode viewNode = new VNode(window.getSheetDisplay(), node);
+            if (node.getType().getText() == "NORMAL") viewNode = new VNode(window.getSheetDisplay(), node);
+            if (node.getType().getText() == "INCENDIE") viewNode = new VFire(window.getSheetDisplay(), node);
             window.getSheetDisplay().addNode(viewNode);
         }
         for (Edge edge : graph.getAllEdges()) {
-            //    VNode viewNode = new VNode(window.getSheetDisplay(), edge);
-            //    window.getSheetDisplay().addNode(viewNode);
+            //         VNode viewEdge = new VEdge(window.getSheetDisplay(), graph.findNode(edge.getSource()), edge.getDestination() ,edge);
+            //         window.getSheetDisplay().addEdge(viewEdge);
         }
 
         this.repaint();
