@@ -55,8 +55,8 @@ public class FileManager {
                     x = Double.parseDouble(eElement.getAttribute("x"));
                     y = Double.parseDouble(eElement.getAttribute("y"));
                     typeNode = TypeNode.fromString(eElement.getAttribute("type"));
-                    model.graph.Node n = new model.graph.Node(id, x, y, typeNode);
-                    graph.addNode(n);
+                    node = new model.graph.Node(id, x, y, typeNode);
+                    graph.addNode(node);
                 }
             }
 
@@ -152,7 +152,6 @@ public class FileManager {
 
             transformer.transform(source, result);
 
-            System.out.println("File saved!");
 
         } catch (Exception pce) {
             pce.printStackTrace();

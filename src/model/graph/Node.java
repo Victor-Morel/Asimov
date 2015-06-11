@@ -44,6 +44,7 @@ public class Node extends Observable {
 		this.uniqueID = _id;
 		this.x = _x;
 		this.y = _y;
+		this.type = _type;
 		if (_type.getText() == "NORMAL") this.intensity = 0;
 		if (_type.getText() == "INCENDIE") this.intensity = 100;
 	}
