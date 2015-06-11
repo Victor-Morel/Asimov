@@ -4,7 +4,7 @@ import junit.framework.Assert;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
-import model.graph.Type;
+import model.graph.TypeEdge;
 import org.junit.Before;
 import org.junit.Test;
 import utils.EuclidianDistance;
@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Logan Paul on 11/06/2015.
@@ -45,10 +46,10 @@ public class GraphTest {
         n5 = new Node(1,9,15.2,0);
         n6 = new Node(2,7.6,7.6,1);
         n7 = new Node(2,1,1,Integer.MAX_VALUE);
-        e1 = new Edge(n1,n2, EuclidianDistance.getDistance(n1,n2),Type.PLAT);
-        e2 = new Edge(n1,n3, EuclidianDistance.getDistance(n1,n3),Type.ESCARPE);
-        e3 = new Edge(n2,n3, EuclidianDistance.getDistance(n2,n3),Type.PLAT);
-        e4 = new Edge(n5,n6, EuclidianDistance.getDistance(n5,n6),Type.INONDE);
+        e1 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
+        e2 = new Edge(n1, n3, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
+        e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);
+        e4 = new Edge(n5, n6, EuclidianDistance.getDistance(n5, n6), TypeEdge.INONDE);
         ln = new ArrayList<Node>();
         le = new ArrayList<Edge>();
         ln.add(n1);
@@ -173,16 +174,14 @@ public class GraphTest {
         subG3.setNodes(g.getAllNodes());
 
         for(Edge e : g.getAllEdges()) {
-            if(e.getType().equals(Type.PLAT)) {
+            if (e.getType().equals(TypeEdge.PLAT)) {
                 subG1.addEdge(e);
                 subG2.addEdge(e);
                 subG3.addEdge(e);
-            }
-            else if(e.getType().equals(Type.INONDE)) {
+            } else if (e.getType().equals(TypeEdge.INONDE)) {
                 subG1.addEdge(e);
                 subG2.addEdge(e);
-            }
-            else if(e.getType().equals(Type.ESCARPE)) {
+            } else if (e.getType().equals(TypeEdge.ESCARPE)) {
                 subG1.addEdge(e);
                 subG3.addEdge(e);
             }
@@ -203,17 +202,15 @@ public class GraphTest {
         }
 
         for(Edge e : g.getAllEdges()) {
-            if(e.getType().equals(Type.PLAT)) {
+            if (e.getType().equals(TypeEdge.PLAT)) {
                 assertTrue(g.edgeAuthorized(e,1));
                 assertTrue(g.edgeAuthorized(e,2));
                 assertTrue(g.edgeAuthorized(e,3));
-            }
-            else if(e.getType().equals(Type.INONDE)) {
+            } else if (e.getType().equals(TypeEdge.INONDE)) {
                 assertTrue(g.edgeAuthorized(e,1));
                 assertTrue(g.edgeAuthorized(e,2));
                 assertFalse(g.edgeAuthorized(e, 3));
-            }
-            else if(e.getType().equals(Type.ESCARPE)) {
+            } else if (e.getType().equals(TypeEdge.ESCARPE)) {
                 assertTrue(g.edgeAuthorized(e,1));
                 assertFalse(g.edgeAuthorized(e, 2));
                 assertTrue(g.edgeAuthorized(e,3));
