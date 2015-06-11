@@ -5,6 +5,7 @@ import model.graph.Edge;
 import view.SheetDisplay;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,12 +25,16 @@ public abstract class AVEdge implements Observer {
         sheetDisplay.repaint();
     }
 
-    public abstract void drawEdge(Graphics graph);
-
-    public abstract boolean contains(int x, int y);
-
-    public Edge getT() {
-        return edge;
+    public void drawEdge(Graphics graph) {
+        Graphics2D graph2 = (Graphics2D) graph;
+        graph2.draw(
+                new Line2D.Double(
+                        edge.getSource().getX(),
+                        edge.getSource().getY(),
+                        edge.getDestination().getX(),
+                        edge.getDestination().getY()
+                )
+        );
     }
 
     public void setT(Edge edge) {

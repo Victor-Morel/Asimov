@@ -4,11 +4,12 @@ import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import view.Edge.AVEdge;
-import view.Edge.VEdge;
+import view.Edge.VEdgeEscarpe;
+import view.Edge.VEdgePlat;
 import view.GUI;
 import view.Node.AVNode;
-import view.Node.VFire;
-import view.Node.VNode;
+import view.Node.VNodeFire;
+import view.Node.VNodeNormal;
 import view.SheetDisplay;
 
 public class Controller {
@@ -58,12 +59,18 @@ public class Controller {
     protected void displayGraphe() {
         AVNode viewNode = null;
         for (Node node : graph.getAllNodes()) {
-            if (node.getType().getText() == "NORMAL") viewNode = new VNode(window.getSheetDisplay(), node);
-            if (node.getType().getText() == "INCENDIE") viewNode = new VFire(window.getSheetDisplay(), node);
+            if (node.getType().getText() == "NORMAL")
+                viewNode = new VNodeNormal(window.getSheetDisplay(), node);
+            if (node.getType().getText() == "INCENDIE")
+                viewNode = new VNodeFire(window.getSheetDisplay(), node);
             window.getSheetDisplay().addNode(viewNode);
         }
+        AVEdge viewEdge = null;
         for (Edge edge : graph.getAllEdges()) {
-            AVEdge viewEdge = new VEdge(window.getSheetDisplay(), edge);
+            if (edge.getType().getText() == "PLAT")
+                viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+            if (edge.getType().getText() == "ESCARPE")
+                viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
             window.getSheetDisplay().addEdge(viewEdge);
         }
 
@@ -81,8 +88,8 @@ public class Controller {
         getGraph().addNode(node);
 
         //addNode to sheet
-        if (node.getType().getText() == "NORMAL") viewNode = new VNode(window.getSheetDisplay(), node);
-        if (node.getType().getText() == "INCENDIE") viewNode = new VFire(window.getSheetDisplay(), node);
+        if (node.getType().getText() == "NORMAL") viewNode = new VNodeNormal(window.getSheetDisplay(), node);
+        if (node.getType().getText() == "INCENDIE") viewNode = new VNodeFire(window.getSheetDisplay(), node);
 
         window.getSheetDisplay().addNode(viewNode);
 

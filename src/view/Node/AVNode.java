@@ -23,14 +23,17 @@ public abstract class AVNode implements Observer {
         sheetDisplay.repaint();
     }
 
-    public abstract void drawNode(Graphics graph);
-
-    public Node getT() {
-        return node;
+    public void drawNode(Graphics graph) {
+        int rayon;
+        Graphics2D g2d;
+        rayon = 5;
+        g2d = (Graphics2D) graph;
+        g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
     }
 
     public void setT(Node node) {
         this.node = node;
         this.node.addObserver(this);
     }
+
 }

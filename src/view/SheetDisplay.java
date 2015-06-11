@@ -17,18 +17,15 @@ public class SheetDisplay extends JPanel {
 
     public SheetDisplay(ControllerMouse controlMouse) {
         super();
-        nodes = new ArrayList<AVNode>();
-        edges = new ArrayList<AVEdge>();
+        nodes = new ArrayList<>();
+        edges = new ArrayList<>();
 
         addMouseListener(controlMouse);
     }
 
 
     public void reset() {
-        for (Iterator<AVNode> it = nodes.iterator(); it.hasNext(); ) {
-            AVNode vt = it.next();
-            vt.getT().reset();
-        }
+
     }
 
     public void paintComponent(Graphics g) {
