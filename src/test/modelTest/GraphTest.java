@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Logan Paul on 11/06/2015.
  */
