@@ -54,5 +54,6 @@ public class VNode extends AVNode {
 
         graph.setColor(Color.WHITE);
         graph.fillPolygon(arrow);
+
     }
 }
