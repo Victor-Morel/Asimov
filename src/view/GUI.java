@@ -15,9 +15,13 @@ public class GUI extends JFrame {
 	private JButton addNodeFire, addNode, addEdgeEscarpe, addEdgePlat, addEdgeInonde;
 	private SheetDisplay sheetDisplay;
 
+	private ControllerMouse controlMouse;
+
 	public GUI(ControllerAction controlAction, ControllerMouse controlMouse) {
 
 		super("Asimov");
+
+		this.controlMouse = controlMouse;
 
 		setContentPane(rootPanel);
 		JMenuBar menuBar = new JMenuBar();
@@ -30,7 +34,7 @@ public class GUI extends JFrame {
 		file.add(save);
 		file.add(load);
 
-		addMouseListener(controlMouse);
+
 		addNodeFire.addActionListener(controlAction);
 		addNode.addActionListener(controlAction);
 		addEdgeEscarpe.addActionListener(controlAction);
@@ -48,7 +52,7 @@ public class GUI extends JFrame {
 	}
 
 	private void createUIComponents() {
-		sheetDisplay = new SheetDisplay();
+		sheetDisplay = new SheetDisplay(controlMouse);
 
 	}
 

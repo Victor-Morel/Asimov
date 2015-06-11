@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="40" y="40" width="424" height="266"/>
+      <xy x="40" y="40" width="534" height="544"/>
     </constraints>
     <properties>
       <foreground color="-12828863"/>
@@ -75,13 +75,13 @@
       <component id="ea33b" class="view.SheetDisplay" binding="sheetDisplay" custom-create="true">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false">
-            <minimum-size width="500" height="500"/>
-            <preferred-size width="500" height="500"/>
-            <maximum-size width="500" height="500"/>
+            <minimum-size width="450" height="450"/>
+            <preferred-size width="450" height="450"/>
+            <maximum-size width="450" height="450"/>
           </grid>
         </constraints>
         <properties>
-          <background color="-14412991"/>
+          <background color="-4737097"/>
           <foreground color="-5098452"/>
         </properties>
       </component>

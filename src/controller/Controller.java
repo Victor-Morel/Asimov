@@ -22,9 +22,10 @@ public class Controller {
 
     public Controller(String _path) {
         this.path = _path;
-        this.sheetDisplay = new SheetDisplay();
         this.controlAction = new ControllerAction(path, this);
         this.controlMouse = new ControllerMouse(controlAction);
+
+        this.sheetDisplay = new SheetDisplay(controlMouse);
 
         this.setGraph(new Graph());
 
@@ -40,18 +41,6 @@ public class Controller {
 
     }
 
-    // ajouter un noeud
-    public void addNode(Node node) {
-
-        //addNode to graph
-        getGraph().addNode(node);
-
-        //addNode to sheet
-        VNode viewNode = new VNode(window.getSheetDisplay(), node);
-        window.getSheetDisplay().addNode(viewNode);
-
-        this.repaint();
-    }
 
     public void setGraph(Graph graph) {
         this.graph = graph;
@@ -80,5 +69,28 @@ public class Controller {
 
         this.repaint();
 
+    }
+
+
+    // ajouter un noeud
+    public void addNode(Node node) {
+
+        //addNode to graph
+        getGraph().addNode(node);
+
+        //addNode to sheet
+        VNode viewNode = new VNode(window.getSheetDisplay(), node);
+        window.getSheetDisplay().addNode(viewNode);
+
+        this.repaint();
+    }
+
+    public void addFire(Node n) {
+        //addNode to graph
+        getGraph().addNode(n);
+
+        //addNode to sheet
+        VFire viewFire = new VFire(window.getSheetDisplay(), n);
+        window.getSheetDisplay().addNode(viewFire);
     }
 }

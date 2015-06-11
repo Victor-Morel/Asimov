@@ -70,6 +70,7 @@ public class ControllerAction implements ActionListener {
         if (fire) {
             Node n = new Node(id, x, y, TypeNode.INCENDIE);
             //graph.addNode(n);
+            control.addFire(n);
             fire = false;
         }
         if (plat) {

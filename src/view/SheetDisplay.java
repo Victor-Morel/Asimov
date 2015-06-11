@@ -1,5 +1,6 @@
 package view;
 
+import controller.ControllerMouse;
 import view.Edge.AVEdge;
 import view.Node.AVNode;
 
@@ -14,10 +15,12 @@ public class SheetDisplay extends JPanel {
     private ArrayList<AVNode> nodes; // la liste des nodes enregistrees
     private ArrayList<AVEdge> edges; // la liste des nodes enregistrees
 
-    public SheetDisplay() {
+    public SheetDisplay(ControllerMouse controlMouse) {
         super();
         nodes = new ArrayList<AVNode>();
         edges = new ArrayList<AVEdge>();
+
+        addMouseListener(controlMouse);
     }
 
 
@@ -30,11 +33,6 @@ public class SheetDisplay extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Color c = g.getColor();
-        Dimension dim = getSize();
-        g.setColor(Color.gray);
-        g.fillRect(0, 0, dim.width, dim.height);
-        g.setColor(c);
         showNodes(g);
         showEdges(g);
     }
