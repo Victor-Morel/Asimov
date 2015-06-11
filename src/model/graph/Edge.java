@@ -1,6 +1,8 @@
 package model.graph;
 
-public class Edge {
+import java.util.Observable;
+
+public class Edge extends Observable {
 
     private double valuation;
     /**
@@ -20,6 +22,7 @@ public class Edge {
         this.source = _v1;
         this.destination = _v2;
         this.setType(type);
+
     }
 
 
