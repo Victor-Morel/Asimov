@@ -24,16 +24,16 @@ public class VEdge extends AVEdge {
     @Override
     public void drawEdge(Graphics graph) {
         Graphics2D graph2 = (Graphics2D) graph;
+        graph2.setColor(Color.BLACK);
         graph2.draw(
                 new Line2D.Double(
                         edge.getSource().getX(),
                         edge.getSource().getY(),
                         edge.getDestination().getX(),
-                        edge.getSource().getY()
+                        edge.getDestination().getY()
                 )
         );
 
-        graph.setColor(Color.BLACK);
     }
 
     @Override
