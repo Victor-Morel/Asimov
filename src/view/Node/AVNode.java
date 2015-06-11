@@ -25,8 +25,6 @@ public abstract class AVNode implements Observer {
 
     public abstract void drawNode(Graphics graph);
 
-    public abstract boolean contains(int x, int y);
-
     public Node getT() {
         return node;
     }
