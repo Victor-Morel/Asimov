@@ -97,7 +97,7 @@ public class Node extends Observable {
     
 	@Override
 	public String toString() {
-		return ""+label;
+		return ""+getID();
 	}
 
 	@Override

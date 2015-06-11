@@ -50,8 +50,10 @@ public class Graph {
 
     public List<Node> getNextNodes(Node _n) {
         List<Node> destNodes = new ArrayList<Node>();
-        for (Edge e : this.getEdges()) {
-            if (e.getSource().equals(_n)) {
+        for (Edge e : this.getEdges(_n)) {
+            if (e.getDestination().equals(_n)) {
+                destNodes.add(e.getSource());
+            } else {
                 destNodes.add(e.getDestination());
             }
         }
@@ -59,8 +61,9 @@ public class Graph {
     }
 
     public boolean hasEdge(Node _n1, Node _n2) {
-        for (Edge e : this.getEdges()) {
-            if (e.getSource().equals(_n1) && e.getDestination().equals(_n2)) {
+        for (Edge e : this.getAllEdges()) {
+            if ((e.getSource().equals(_n1) && e.getDestination().equals(_n2)) ||
+                    (e.getSource().equals(_n2) && e.getDestination().equals(_n1)) ) {
                 return true;
             }
         }
@@ -68,13 +71,14 @@ public class Graph {
     }
 
     public void addEdge(Edge _edge) {
-        this.getEdges().add(_edge);
+        this.getAllEdges().add(_edge);
     }
 
     public List<Edge> getEdges(Node _n) {
         List<Edge> requiredEdges = new ArrayList<Edge>();
-        for (Edge e : this.getEdges()) {
-            if (e.getSource().equals(_n)) {
+        for (Edge e : this.getAllEdges()) {
+            if (e.getSource().equals(_n) || e.getDestination().equals(_n)) {
+                //System.out.println(e.getSource().toString()+"   ____________    "+e.getDestination().toString());
                 requiredEdges.add(e);
             }
         }
@@ -83,8 +87,9 @@ public class Graph {
 
     public Edge getEdge(Node _n1, Node _n2) {
         if (hasEdge(_n1, _n2)) {
-            for (Edge e : this.getEdges()) {
-                if (e.getSource().equals(_n1) && e.getDestination().equals(_n2)) {
+            for (Edge e : this.getAllEdges()) {
+                if (e.getSource().equals(_n1) && e.getDestination().equals(_n2) ||
+                        e.getSource().equals(_n2) && e.getDestination().equals(_n1)) {
                     return e;
                 }
             }
@@ -106,7 +111,7 @@ public class Graph {
         this.nodes = nodes;
     }
 
-    public Set<Edge> getEdges() {
+    public Set<Edge> getAllEdges() {
         return edges;
     }
 
@@ -114,7 +119,7 @@ public class Graph {
         this.edges = edges;
     }
 
-    public Graph getSubGraph(int type) {
+    public Graph getSubGraph(int robotType) {
         /**
          * type 1 : allterrain
          * type 2 : caterpillar
@@ -123,24 +128,24 @@ public class Graph {
         Graph subgraph = new Graph();
         subgraph.setNodes(this.getAllNodes());
         for (Edge e : this.edges) {
-            if (edgeAuthorized(e, type)) {
+            if (edgeAuthorized(e, robotType)) {
                 subgraph.addEdge(e);
             }
         }
         return subgraph;
     }
 
-    public Boolean edgeAuthorized(Edge e, int type) {
-        switch (type) {
+    public Boolean edgeAuthorized(Edge e, int robotType) {
+        switch (robotType) {
             case 1:
                 return true;
             case 2:
-                if ((e.getType() == Type.NORMAL) || (e.getType() == Type.INONDE)) {
+                if ((e.getType() == Type.PLAT) || (e.getType() == Type.INONDE)) {
                     return true;
                 }
                 break;
             case 3:
-                if ((e.getType() == Type.NORMAL) || (e.getType() == Type.ESCARPE)) {
+                if ((e.getType() == Type.PLAT) || (e.getType() == Type.ESCARPE)) {
                     return true;
                 }
                 break;

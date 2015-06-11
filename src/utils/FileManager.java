@@ -106,7 +106,7 @@ public class FileManager {
 
             }
 
-            for (Edge e : g.getEdges()){
+            for (Edge e : g.getAllEdges()){
                 // staff elements
                 Element staff = doc.createElement("edge");
                 rootElement.appendChild(staff);
