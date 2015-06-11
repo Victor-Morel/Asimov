@@ -3,6 +3,8 @@ package controller;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
+import view.Edge.AVEdge;
+import view.Edge.VEdge;
 import view.GUI;
 import view.Node.AVNode;
 import view.Node.VFire;
@@ -72,8 +74,8 @@ public class Controller {
             window.getSheetDisplay().addNode(viewNode);
         }
         for (Edge edge : graph.getAllEdges()) {
-            //         VNode viewEdge = new VEdge(window.getSheetDisplay(), graph.findNode(edge.getSource()), edge.getDestination() ,edge);
-            //         window.getSheetDisplay().addEdge(viewEdge);
+            AVEdge viewEdge = new VEdge(window.getSheetDisplay(), edge);
+            window.getSheetDisplay().addEdge(viewEdge);
         }
 
         this.repaint();
