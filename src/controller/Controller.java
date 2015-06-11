@@ -1,5 +1,6 @@
 package controller;
 
+import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import view.GUI;
@@ -58,5 +59,21 @@ public class Controller {
 
     public Graph getGraph() {
         return graph;
+    }
+
+
+    protected void displayGraphe() {
+
+        for (Node node : graph.getAllNodes()) {
+            VNode viewNode = new VNode(window.getSheetDisplay(), node);
+            window.getSheetDisplay().addNode(viewNode);
+        }
+        for (Edge edge : graph.getAllEdges()) {
+            //    VNode viewNode = new VNode(window.getSheetDisplay(), edge);
+            //    window.getSheetDisplay().addNode(viewNode);
+        }
+
+        this.repaint();
+
     }
 }

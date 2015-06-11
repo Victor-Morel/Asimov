@@ -55,6 +55,7 @@ public class ControllerAction implements ActionListener {
         if (e.getActionCommand().matches("Load")) {
             ChooseFile chooseFile = new ChooseFile();
             control.setGraph(FileManager.loadFileManager(chooseFile.selectFile(this.path)));
+            control.displayGraphe();
         }
 
     }
