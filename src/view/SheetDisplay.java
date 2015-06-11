@@ -7,7 +7,6 @@ import view.Node.AVNode;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 public class SheetDisplay extends JPanel {
@@ -35,16 +34,14 @@ public class SheetDisplay extends JPanel {
     }
 
     public void showNodes(Graphics g) {
-        for (Iterator<AVNode> it = nodes.iterator(); it.hasNext(); ) {
-            AVNode vt = it.next();
-            vt.drawNode(g);
+        for (AVNode avNode : nodes) {
+            avNode.drawNode(g);
         }
     }
 
     public void showEdges(Graphics g) {
-        for (Iterator<AVEdge> it = edges.iterator(); it.hasNext(); ) {
-            AVEdge vt = it.next();
-            vt.drawEdge(g);
+        for (AVEdge avEdge : edges) {
+            avEdge.drawEdge(g);
         }
     }
 
