@@ -21,7 +21,7 @@ public class GraphTest {
         Graph g = new Graph();
         Node n1 = new Node(5,2.0,6.3, Type.NORMAL);
         Node n2 = new Node(0,0,0,Type.NORMAL);
-        Node n3 = new Node(5,2.0,6.3,Type.NORMAL);
+        Node n3 = new Node(5,1.0,6.3,Type.NORMAL);
         Node n4 = new Node(-2,2.0,6.3,Type.NORMAL);
         Node n5 = new Node(1,9,15.2,Type.NORMAL);
         Node n6 = new Node(2,7.6,7.6,Type.INCENDIE);
@@ -36,16 +36,28 @@ public class GraphTest {
         l.add(n7);
         for(Node n : l) {
             g.addNode(n);
-            System.out.println(n.toString());
-            System.out.println(g.findNode(n.getID()).toString());
             Assert.assertTrue(g.findNode(n.getID()).equals(n));
-            System.out.println("_____");
         }
     }
 
     @Test
     public void testFindNode() throws Exception {
-
+        Graph g = new Graph();
+        Node n1 = new Node(5,2.0,6.3, Type.NORMAL);
+        Node n2 = new Node(0,0,0,Type.NORMAL);
+        Node n3 = new Node(5,1.0,6.3,Type.NORMAL);
+        Node n4 = new Node(-2,2.0,6.3,Type.NORMAL);
+        List<Node> l = new ArrayList<Node>();
+        l.add(n1);
+        l.add(n2);
+        l.add(n3);
+        l.add(n4);
+        for(Node n : l) {
+            g.addNode(n);
+        }
+        Assert.assertTrue(g.findNode(0).equals(l.get(1)));
+        Assert.assertTrue(g.findNode(5).equals(l.get(0)));
+        Assert.assertTrue(g.findNode(-2).equals(l.get(3)));
     }
 
     @Test
