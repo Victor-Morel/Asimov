@@ -73,6 +73,7 @@ public class ControllerAction implements ActionListener {
         }
         if (plat) {
 
+            // control.addEdge();
             plat = false;
         }
         if (escarpe) {
