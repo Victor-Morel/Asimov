@@ -37,6 +37,7 @@ public class Controller {
 
     // ajouter un noeud
     public void addNode(Node node) {
+
         //addNode to graph
         getGraph().addNode(node);
 

@@ -1,8 +1,9 @@
 package utils;
 
-import model.graph.*;
+import model.graph.Edge;
+import model.graph.Graph;
+import model.graph.Type;
 import org.w3c.dom.*;
-import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -46,9 +47,14 @@ public class FileManager {
                     id = Integer.parseInt(eElement.getAttribute("id"));
                     x = Double.parseDouble(eElement.getAttribute("x"));
                     y = Double.parseDouble(eElement.getAttribute("y"));
-                    //type = Type.fromString(eElement.getAttribute("type"));
-                    //model.graph.Node n = new model.graph.Node(id, x, y, type);
-                    //graph.addNode(n);
+                    if (eElement.getAttribute("type") == "NORMAL") {
+                        model.graph.Node n = new model.graph.Node(id, x, y, 0);
+                        graph.addNode(n);
+                    }
+                    if (eElement.getAttribute("type") == 'INCENDIE') {
+                        model.graph.Node n = new model.graph.Node(id, x, y, 100);
+                        graph.addNode(n);
+                    }
                 }
             }
 
