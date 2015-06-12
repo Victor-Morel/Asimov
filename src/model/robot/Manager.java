@@ -3,18 +3,23 @@ package model.robot;
 import model.graph.Graph;
 import model.graph.Node;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by victor on 20/05/15.
  */
-public class Manager {
+public class Manager implements Runnable {
 
     private List<Robot> bots;
     private Graph g;
     public HashMap<Integer, HashMap<Integer, Double>> listDistance = new HashMap<>(null);
     public HashMap<Integer, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(null); //key idFireNode, value : idBot/distance
+
+    public Manager(){
+        this.bots = new ArrayList<>();
+        this.bestBotForFire = new HashMap<>();
+        this.g = new Graph();
+    }
 
     public void getBestDistance() {
         for (Node inFlames : g.getAllFireNodes()) {
@@ -50,6 +55,11 @@ public class Manager {
     public void decide() {
         getBestDistance();
         chooseRobot();
+    }
+
+    @Override
+    public void run() {
+        decide();
     }
 }
 
