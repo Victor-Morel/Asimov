@@ -19,11 +19,14 @@ public class Manager {
     public void getBestDistance() {
         for (Node inFlames : g.getAllFireNodes()) {
             for (Robot bot : bots) {
-                if ((bot.getDistance(inFlames) < bestBotForFire.get(inFlames.getID()).getSecond())
-                        || ((bestBotForFire.get(inFlames.getID()).getSecond()) == null)) {
-                    Pair<Robot, Integer> best = new Pair<>(bot, bot.getDistance(inFlames));
-                    bestBotForFire.put(inFlames.getID(), best);
+                if (!bot.isBusy()) {
+                    if ((bot.getDistance(inFlames) < bestBotForFire.get(inFlames.getID()).getSecond())
+                            || ((bestBotForFire.get(inFlames.getID()).getSecond()) == null)) {
+                        Pair<Robot, Integer> best = new Pair<>(bot, bot.getDistance(inFlames));
+                        bestBotForFire.put(inFlames.getID(), best);
+                    }
                 }
+
             }
         }
     }
@@ -37,11 +40,13 @@ public class Manager {
     }
 
     public void chooseRobot() {//décide quel robot fait quoi
-        for (Node inFlames : g.getAllFireNodes()){
+        for (Node inFlames : g.getAllFireNodes()) {
             setAction(bestBotForFire.get(inFlames.getID()).getFirst(), inFlames);
         }
     }
 
+
+    //à appeler pour que le manager gère les robots
     public void decide() {
         getBestDistance();
         chooseRobot();
