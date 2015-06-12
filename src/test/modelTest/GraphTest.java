@@ -44,8 +44,8 @@ public class GraphTest {
         n3 = new Node(9,1.0,6.3,0);
         n4 = new Node(-2,2.0,6.3,120);
         n5 = new Node(1,9,15.2,0);
-        n6 = new Node(2,7.6,7.6,1);
-        n7 = new Node(2,1,1,Integer.MAX_VALUE);
+        n6 = new Node(Integer.MAX_VALUE,7.6,7.6,1);
+        n7 = new Node(3,1,1,Integer.MAX_VALUE);
         e1 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n3, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
         e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);
@@ -144,8 +144,8 @@ public class GraphTest {
         assertTrue(g.hasEdge(n1,n2));
         assertTrue(g.hasEdge(n2,n1));
         assertTrue(g.hasEdge(n5,n6));
-        assertFalse(g.hasEdge(n1,n4));
-        assertFalse(g.hasEdge(n5,n7));
+        assertFalse(g.hasEdge(n1,n5));
+        assertFalse(g.hasEdge(n4,n7));
     }
 
     @Test
