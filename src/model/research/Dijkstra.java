@@ -19,6 +19,8 @@ public class Dijkstra extends Strategy {
     public List<Edge> path;
 
     public Dijkstra(Graph g, Node n_start, Node n_dest) {
+        this.destination = n_dest;
+        this.source = n_start;
         this.d = new HashMap<Node,Double>();
         this.viewed = new ArrayList<Node>();
         this.path = new ArrayList<Edge>();

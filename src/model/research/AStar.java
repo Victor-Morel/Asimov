@@ -16,6 +16,8 @@ public class AStar extends Strategy {
     private List<SearchNode> closedList;
 
     public AStar(Graph g, Node n_start, Node n_dest) {
+        this.destination = n_dest;
+        this.source = n_start;
         openedList = new ArrayList<SearchNode>();
         closedList = new ArrayList<SearchNode>();
 
