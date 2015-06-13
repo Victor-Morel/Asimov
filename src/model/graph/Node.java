@@ -4,6 +4,10 @@ import java.util.Observable;
 
 public class Node extends Observable {
 
+
+    // BEUG creations des nodes +
+    // loader files
+    // TODO probleme gestion id
     /**
      * coordonnée x d'un noeud
      */
@@ -30,6 +34,10 @@ public class Node extends Observable {
     protected int uniqueID;
 
     private TypeNode type;
+
+
+    public Node() {
+    }
 
     /**
      * Construit un noeud avec une etiquette et une intensite

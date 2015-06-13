@@ -12,7 +12,8 @@ import java.awt.event.ActionListener;
 public class ControllerAction implements ActionListener {
 
     String path;
-    Boolean node, fire, plat, inonder, escarpe;
+    Boolean node, fire, plat, inonder, escarpe,
+            terrain, pate, chenille;
     Controller control;
 
     public ControllerAction(String _path, Controller control) {
@@ -28,6 +29,9 @@ public class ControllerAction implements ActionListener {
         plat = false;
         inonder = false;
         escarpe = false;
+        terrain = false;
+        pate = false;
+        chenille = false;
     }
 
     @Override
@@ -94,19 +98,28 @@ public class ControllerAction implements ActionListener {
         }
     }
 
-    protected void clickOnNode(int x, int y) {
-        int currentNode = 0;
+    protected Node clickOnNode(int x, int y) {
         for (Node n : control.getGraph().getAllNodes()) {
             for (int i = -10; i < 10; i++) {
                 for (int j = -10; j < 10; j++) {
                     if ((x == (int) n.getX() + i) && (y == (int) n.getY() + j)) {
-                        n.setCurrentNode(true);
-                        currentNode = n.getID();
-                        break;
+                        return n;
                     }
                 }
             }
         }
+        return new Node();
+    }
+
+    protected void selectCurrentNode(int x, int y) {
+        Node currentNode;
+        currentNode = clickOnNode(x, y);
+        currentNode.setCurrentNode(true);
+        checkOnlyNode(currentNode.getID());
+    }
+
+
+    private void checkOnlyNode(int currentNode) {
         for (Node n : control.getGraph().getAllNodes()) {
             if (n.getID() != currentNode && n.isCurrentNode()) {
                 n.setCurrentNode(false);

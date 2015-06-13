@@ -3,7 +3,9 @@ package model.robot;
 import model.graph.Graph;
 import model.graph.Node;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by victor on 20/05/15.
@@ -12,8 +14,8 @@ public class Manager implements Runnable {
 
     private List<Robot> bots;
     private Graph g;
-    public HashMap<Integer, HashMap<Integer, Double>> listDistance = new HashMap<>(null);
-    public HashMap<Integer, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(null); //key idFireNode, value : idBot/distance
+    public HashMap<Integer, HashMap<Integer, Double>> listDistance = new HashMap<>();
+    public HashMap<Integer, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(); //key idFireNode, value : idBot/distance
 
     public Manager(){
         this.bots = new ArrayList<>();

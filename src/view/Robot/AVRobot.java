@@ -23,7 +23,7 @@ public class AVRobot implements Observer {
         sheetDisplay.repaint();
     }
 
-    public void drawRobotEdge(Graphics graph) {
+    public void drawRobot(Graphics graph) {
         Graphics2D graph2 = (Graphics2D) graph;
 
     }

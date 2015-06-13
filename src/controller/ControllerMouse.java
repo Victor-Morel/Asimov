@@ -23,7 +23,7 @@ public class ControllerMouse implements MouseListener {
             controlAction.addElement(e.getX(), e.getY());
             stat = false;
         }
-        controlAction.clickOnNode(e.getX(), e.getY());
+        controlAction.selectCurrentNode(e.getX(), e.getY());
     }
 
 
