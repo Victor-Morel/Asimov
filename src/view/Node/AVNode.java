@@ -14,7 +14,6 @@ public abstract class AVNode implements Observer {
     protected Node node;
     Graphics2D g2d;
 
-
     private final int rayon = 7;
 
     public AVNode(SheetDisplay sheetDisplay, Node node) {

@@ -17,14 +17,6 @@ public abstract class Robot extends Observable {
         return id;
     }
 
-    public TypeRecherche getType() {
-        return type;
-    }
-
-    public void setType(TypeRecherche type) {
-        this.type = type;
-    }
-
     public Strategy getStrat() {
         return strat;
     }
@@ -49,9 +41,7 @@ public abstract class Robot extends Observable {
         this.busy = busy;
     }
 
-    public enum TypeRecherche{
-        dijkstra, astar
-    }
+
 
     private TypeRecherche type;
     private int id;
@@ -62,17 +52,17 @@ public abstract class Robot extends Observable {
     protected Graph g;
 
     public Robot (TypeRecherche _type, double _capacity){
-        this.setType(_type);
+        this.type = _type;
         this.setBusy(false);
         this.capacity = _capacity;
     }
 
     public int getDistance(Node inFlames) {
-        switch (this.getType()){
-            case dijkstra:
+        switch (type) {
+            case DIJKSTRA:
                 this.setStrat(new Dijkstra(g, this.getNode(), inFlames));
                 break;
-            case astar:
+            case ASTAR:
                 this.setStrat(new AStar(g, this.getNode(), inFlames));
                 break;
         }
@@ -88,5 +78,7 @@ public abstract class Robot extends Observable {
     }
 
 
-
+    public TypeRecherche getType() {
+        return type;
+    }
 }

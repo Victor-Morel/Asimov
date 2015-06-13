@@ -1,5 +1,6 @@
 package view.Robot;
 
+import model.robot.Robot;
 import view.SheetDisplay;
 
 import java.awt.*;

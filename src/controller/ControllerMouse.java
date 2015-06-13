@@ -29,8 +29,12 @@ public class ControllerMouse implements MouseListener {
             n = controlAction.selectCurrentNode(e.getX(), e.getY());
             controlAction.addEdge(n);
         }
+
+        if (addRobot()) {
+        }
         controlAction.selectCurrentNode(e.getX(), e.getY());
     }
+
 
 
     @Override
@@ -61,5 +65,10 @@ public class ControllerMouse implements MouseListener {
     public boolean addEdge() {
         return controlAction.escarpe || controlAction.inonder || controlAction.plat;
     }
+
+    private boolean addRobot() {
+        return controlAction.pate || controlAction.chenille || controlAction.terrain;
+    }
+
 
 }

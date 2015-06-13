@@ -4,6 +4,10 @@ import model.graph.Edge;
 import model.graph.Node;
 import model.graph.TypeEdge;
 import model.graph.TypeNode;
+import model.robot.AllTerrainRobot;
+import model.robot.CaterpillarRobot;
+import model.robot.LeggedRobot;
+import model.robot.TypeRecherche;
 import utils.FileManager;
 import view.ChooseFile;
 
@@ -42,61 +46,24 @@ public class ControllerAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().matches("Noeud")) {
+            this.initialization();
             node = true;
-            fire = false;
-            plat = false;
-            inonder = false;
-            escarpe = false;
-            terrain = false;
-            pate = false;
-            chenille = false;
         }
         if (e.getActionCommand().matches("Feu")) {
-            node = false;
+            this.initialization();
             fire = true;
-            plat = false;
-            inonder = false;
-            escarpe = false;
-            terrain = false;
-            pate = false;
-            chenille = false;
         }
         if (e.getActionCommand().matches("Plat")) {
-            node1 = new Node();
-            node2 = new Node();
-            node = false;
-            fire = false;
+            this.initialization();
             plat = true;
-            inonder = false;
-            escarpe = false;
-            terrain = false;
-            pate = false;
-            chenille = false;
         }
         if (e.getActionCommand().matches("Escarpe")) {
-            node1 = new Node();
-            node2 = new Node();
-            node = false;
-            fire = false;
-            plat = false;
-            inonder = false;
+            this.initialization();
             escarpe = true;
-            terrain = false;
-            pate = false;
-            chenille = false;
-            inonder = false;
         }
         if (e.getActionCommand().matches("Inonde")) {
-            node1 = new Node();
-            node2 = new Node();
-            node = false;
-            fire = false;
-            plat = false;
+            this.initialization();
             inonder = true;
-            escarpe = false;
-            terrain = false;
-            pate = false;
-            chenille = false;
         }
         if (e.getActionCommand().matches("Save")) {
             ChooseFile chooseFile = new ChooseFile();
@@ -108,34 +75,16 @@ public class ControllerAction implements ActionListener {
             control.displayGraphe();
         }
         if (e.getActionCommand().matches("Tout Terrain")) {
-            node = false;
-            fire = false;
-            plat = false;
-            inonder = false;
-            escarpe = false;
+            this.initialization();
             terrain = true;
-            pate = false;
-            chenille = false;
         }
         if (e.getActionCommand().matches("Chenille")) {
-            node = false;
-            fire = false;
-            plat = false;
-            inonder = false;
-            escarpe = false;
-            terrain = false;
-            pate = false;
+            this.initialization();
             chenille = true;
         }
         if (e.getActionCommand().matches("Pates")) {
-            node = false;
-            fire = false;
-            plat = false;
-            inonder = false;
-            escarpe = false;
-            terrain = false;
+            this.initialization();
             pate = true;
-            chenille = false;
         }
 
     }
@@ -189,8 +138,28 @@ public class ControllerAction implements ActionListener {
             if (inonder) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
             }
+
             node1 = new Node();
             node2 = new Node();
+        }
+    }
+
+    public void addRobot(Node currentNode) {
+        int _capacity = 10;
+        TypeRecherche type = TypeRecherche.astar;
+
+        if (-1 == node1.getID()) {
+            node1 = currentNode;
+
+            if (terrain) {
+                control.addRobot(new AllTerrainRobot(type, _capacity));
+            }
+            if (chenille) {
+                control.addRobot(new CaterpillarRobot(type, _capacity));
+            }
+            if (pate) {
+                control.addRobot(new LeggedRobot(type, _capacity));
+            }
         }
     }
 

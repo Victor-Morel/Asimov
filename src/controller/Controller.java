@@ -5,6 +5,7 @@ import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
 import model.robot.Manager;
+import model.robot.Robot;
 import view.Edge.AVEdge;
 import view.Edge.VEdgeEscarpe;
 import view.Edge.VEdgeInonde;
@@ -13,6 +14,8 @@ import view.GUI;
 import view.Node.AVNode;
 import view.Node.VNodeFire;
 import view.Node.VNodeNormal;
+import view.Robot.AVRobot;
+import view.Robot.VRobotAllTerain;
 import view.SheetDisplay;
 
 public class Controller {
@@ -120,6 +123,22 @@ public class Controller {
             viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
 
         window.getSheetDisplay().addEdge(viewEdge);
+
+        this.repaint();
+    }
+
+    public void addRobot(Robot robot) {
+        AVRobot viewRobot = null;
+
+        //addNode to graph
+        getGraph().addRobot(robot);
+
+
+        viewRobot = new VRobotAllTerain(window.getSheetDisplay(), robot);
+        //viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
+        //viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+
+        window.getSheetDisplay().addEdge(viewRobot);
 
         this.repaint();
     }

@@ -4,9 +4,9 @@ package model.graph;
  * Created by logan on 20/05/15.
  */
 public interface Label {
-		public Object getLabel() ;
+	Object getLabel();
 
-		public void setLabel(Object label) ;
-		
-		public String toString();
+	void setLabel(Object label);
+
+	String toString();
 }
