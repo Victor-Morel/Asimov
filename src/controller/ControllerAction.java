@@ -145,11 +145,9 @@ public class ControllerAction implements ActionListener {
         int id = -1;
         if (node) {
             control.addNode(new Node(id, x, y));
-            node = false;
         }
         if (fire) {
             control.addNode(new Node(id, x, y, TypeNode.INCENDIE));
-            fire = false;
         }
     }
 
@@ -184,15 +182,12 @@ public class ControllerAction implements ActionListener {
 
             if (plat) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
-                plat = false;
             }
             if (escarpe) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
-                escarpe = false;
             }
             if (inonder) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
-                inonder = false;
             }
             node1 = new Node();
             node2 = new Node();

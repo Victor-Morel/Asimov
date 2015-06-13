@@ -3,6 +3,7 @@ package controller;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
+import model.graph.TypeEdge;
 import model.robot.Manager;
 import view.Edge.AVEdge;
 import view.Edge.VEdgeEscarpe;
@@ -111,9 +112,12 @@ public class Controller {
 
 
         //addNode to sheet
-        if (edge.getType().getText() == "ESCARPE") viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
-        if (edge.getType().getText() == "INONDE") viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
-        if (edge.getType().getText() == "PLAT") viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+        if (edge.getType().getText() == TypeEdge.ESCARPE.getText())
+            viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
+        if (edge.getType().getText() == TypeEdge.INONDE.getText())
+            viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
+        if (edge.getType().getText() == TypeEdge.ESCARPE.getText())
+            viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
 
         window.getSheetDisplay().addEdge(viewEdge);
 
