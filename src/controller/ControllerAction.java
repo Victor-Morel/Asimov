@@ -139,6 +139,7 @@ public class ControllerAction implements ActionListener {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
             }
 
+
             node1 = new Node();
             node2 = new Node();
         }
