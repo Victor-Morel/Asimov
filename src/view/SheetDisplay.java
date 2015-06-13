@@ -64,4 +64,8 @@ public class SheetDisplay extends JPanel {
         nodes.add(node);
     }
 
+    public void addRobot(AVRobot robot) {
+        robots.add(robot);
+    }
+
 }

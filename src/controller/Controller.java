@@ -115,12 +115,12 @@ public class Controller {
 
 
         //addNode to sheet
-        if (edge.getType().getText() == TypeEdge.ESCARPE.getText())
-            viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
+        if (edge.getType().getText() == TypeEdge.PLAT.getText())
+            viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
         if (edge.getType().getText() == TypeEdge.INONDE.getText())
             viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
         if (edge.getType().getText() == TypeEdge.ESCARPE.getText())
-            viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+            viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
 
         window.getSheetDisplay().addEdge(viewEdge);
 
@@ -130,15 +130,15 @@ public class Controller {
     public void addRobot(Robot robot) {
         AVRobot viewRobot = null;
 
-        //addNode to graph
-        getGraph().addRobot(robot);
+        //add Robot to manager
+        //manager.addRobot(robot);
 
 
         viewRobot = new VRobotAllTerain(window.getSheetDisplay(), robot);
         //viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
         //viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
 
-        window.getSheetDisplay().addEdge(viewRobot);
+        window.getSheetDisplay().addRobot(viewRobot);
 
         this.repaint();
     }

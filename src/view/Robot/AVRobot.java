@@ -25,7 +25,7 @@ public class AVRobot implements Observer {
     }
 
     public void drawRobot(Graphics graph) {
-        //   graph.drawRect(robot.get);
+        graph.fillRect((int) robot.getNode().getX(), (int) robot.getNode().getY(), 10, 10);
 
     }
 

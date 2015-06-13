@@ -31,6 +31,9 @@ public class ControllerMouse implements MouseListener {
         }
 
         if (addRobot()) {
+            Node n;
+            n = controlAction.selectCurrentNode(e.getX(), e.getY());
+            controlAction.addRobot(n);
         }
         controlAction.selectCurrentNode(e.getX(), e.getY());
     }

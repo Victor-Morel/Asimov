@@ -146,7 +146,7 @@ public class ControllerAction implements ActionListener {
 
     public void addRobot(Node currentNode) {
         int _capacity = 10;
-        TypeRecherche type = TypeRecherche.astar;
+        TypeRecherche type = TypeRecherche.ASTAR;
 
         if (-1 == node1.getID()) {
             node1 = currentNode;
