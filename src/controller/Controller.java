@@ -3,6 +3,7 @@ package controller;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
+import model.robot.Manager;
 import view.Edge.AVEdge;
 import view.Edge.VEdgeEscarpe;
 import view.Edge.VEdgePlat;
@@ -20,6 +21,7 @@ public class Controller {
     private SheetDisplay sheetDisplay;
     private Graph graph;
     private GUI window;
+    private Manager manager;
 
     public Controller(String _path) {
         this.path = _path;
@@ -29,12 +31,14 @@ public class Controller {
         this.sheetDisplay = new SheetDisplay(controlMouse);
 
         this.setGraph(new Graph());
+        this.manager = new Manager();
 
         window = new GUI(controlAction, controlMouse);
     }
 
 
     public void run() {
+        manager.run();
 
     }
 

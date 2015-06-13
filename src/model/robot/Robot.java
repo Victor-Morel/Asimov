@@ -39,6 +39,14 @@ public abstract class Robot {
         this.node = node;
     }
 
+    public boolean isBusy() {
+        return busy;
+    }
+
+    public void setBusy(boolean busy) {
+        this.busy = busy;
+    }
+
     public enum TypeRecherche{
         dijkstra, astar
     }
@@ -53,7 +61,7 @@ public abstract class Robot {
 
     public Robot (TypeRecherche _type, double _capacity){
         this.setType(_type);
-        this.busy = false;
+        this.setBusy(false);
         this.capacity = _capacity;
     }
 
@@ -66,7 +74,7 @@ public abstract class Robot {
                 this.setStrat(new AStar(g, this.getNode(), inFlames));
                 break;
         }
-        return 0;
+        return this.getStrat().getDistanceValue();
     }
 
     public void extinguish (Node inFlames){
