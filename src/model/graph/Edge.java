@@ -25,8 +25,6 @@ public class Edge extends Observable {
 
     }
 
-
-
     /**
      * @return la valeur de l'arete
      */
