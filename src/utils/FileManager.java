@@ -1,10 +1,8 @@
 package utils;
 
-import model.graph.Edge;
-import model.graph.Graph;
-import model.graph.TypeEdge;
-import model.graph.TypeNode;
+import model.graph.*;
 import org.w3c.dom.*;
+import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -55,7 +53,10 @@ public class FileManager {
                     x = Double.parseDouble(eElement.getAttribute("x"));
                     y = Double.parseDouble(eElement.getAttribute("y"));
                     typeNode = TypeNode.fromString(eElement.getAttribute("type"));
-                    node = new model.graph.Node(id, x, y, typeNode);
+                    if(typeNode.equals(TypeNode.INCENDIE))
+                        node = new model.graph.Node(x, y, model.graph.Node.FIRE_DEFAULT_TEMPERATURE);
+                    else
+                        node = new model.graph.Node(x, y);
                     graph.addNode(node);
                 }
             }
@@ -114,9 +115,9 @@ public class FileManager {
                 y.setValue(String.valueOf(n.getY()));
                 staff.setAttributeNode(y);
 
-                Attr type = doc.createAttribute("type");
+/*                Attr type = doc.createAttribute("type");
                 type.setValue(String.valueOf(n.getType()));
-                staff.setAttributeNode(type);
+                staff.setAttributeNode(type);*/
 
             }
 

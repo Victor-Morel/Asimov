@@ -15,6 +15,7 @@ public class Graph {
     public Graph() {
         this.setNodes(new HashSet<Node>());
         this.setEdges(new HashSet<Edge>());
+
     }
 
     public void addNode(Node _node) {
@@ -154,5 +155,23 @@ public class Graph {
                 break;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Graph graph = (Graph) o;
+
+        if (nodes != null ? !nodes.equals(graph.nodes) : graph.nodes != null) return false;
+        return !(edges != null ? !edges.equals(graph.edges) : graph.edges != null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nodes != null ? nodes.hashCode() : 0;
+        result = 31 * result + (edges != null ? edges.hashCode() : 0);
+        return result;
     }
 }

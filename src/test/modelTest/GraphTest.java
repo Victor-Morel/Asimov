@@ -39,13 +39,13 @@ public class GraphTest {
     @Before
     public void setUp() {
         g = new Graph();
-        n1 = new Node(5,2.0,6.3);
-        n2 = new Node(0,0,0);
-        n3 = new Node(9,1.0,6.3,0);
-        n4 = new Node(-2,2.0,6.3,120);
-        n5 = new Node(1,9,15.2,0);
-        n6 = new Node(Integer.MAX_VALUE,7.6,7.6,1);
-        n7 = new Node(3,1,1,Integer.MAX_VALUE);
+        n1 = new Node(2.0,6.3);
+        n2 = new Node(0,0);
+        n3 = new Node(1.0,6.3,0);
+        n4 = new Node(2.0,6.3,120);
+        n5 = new Node(9,15.2,0);
+        n6 = new Node(7.6,7.6,1);
+        n7 = new Node(1,1,Integer.MAX_VALUE);
         e1 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n3, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
         e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);
@@ -63,64 +63,51 @@ public class GraphTest {
         le.add(e2);
         le.add(e3);
         le.add(e4);
+        for(Node n : ln) {
+            g.addNode(n);
+        }
     }
 
     @Test
     public void testAddNode() throws Exception {
-
         for(Node n : ln) {
-            g.addNode(n);
-            Assert.assertTrue(g.findNode(n.getID()).equals(n));
+            assertTrue(g.findNode(n.getID()).equals(n));
         }
     }
 
     @Test
     public void testFindNode() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
-        Assert.assertTrue(g.findNode(0).equals(ln.get(1)));
-        Assert.assertTrue(g.findNode(5).equals(ln.get(0)));
-        Assert.assertTrue(g.findNode(-2).equals(ln.get(3)));
+        System.out.println(ln.get(2).getID());
+        assertTrue(g.findNode(49).equals(ln.get(0)));
+        assertTrue(g.findNode(54).equals(ln.get(5)));
+        assertFalse(g.findNode(54).equals(ln.get(2)));
     }
 
     @Test
     public void testGetAllNodes() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         Set s = g.getAllNodes();
         for(Node n : ln) {
-            Assert.assertTrue(s.contains(n));
+            assertTrue(s.contains(n));
         }
     }
 
     @Test
     public void testGetAllFireNodes() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         Set s = g.getAllFireNodes();
         for(Node n : ln) {
             if(n.getIntensity() > 0) {
-                Assert.assertTrue(s.contains(n));
+                assertTrue(s.contains(n));
             }
         }
     }
 
     @Test
     public void testGetNbNodes() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         Assert.assertEquals(ln.size(), g.getNbNodes());
     }
 
     @Test
     public void testGetNextNodes() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         for(Edge e : le) {
             g.addEdge(e);
         }
@@ -134,9 +121,6 @@ public class GraphTest {
 
     @Test
     public void testHasEdge() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         for(Edge e : le) {
             g.addEdge(e);
         }
@@ -150,9 +134,6 @@ public class GraphTest {
 
     @Test
     public void testAddEdge() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         g.addEdge(e1);
         assertTrue(g.getAllEdges().contains(e1));
         assertFalse(g.getAllEdges().contains(e2));
@@ -160,9 +141,6 @@ public class GraphTest {
 
     @Test
     public void testGetSubGraph() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         for(Edge e : le) {
             g.addEdge(e);
         }
@@ -194,9 +172,6 @@ public class GraphTest {
 
     @Test
     public void testEdgeAuthorized() throws Exception {
-        for(Node n : ln) {
-            g.addNode(n);
-        }
         for(Edge e : le) {
             g.addEdge(e);
         }

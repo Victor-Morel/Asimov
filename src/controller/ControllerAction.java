@@ -3,7 +3,6 @@ package controller;
 import model.graph.Edge;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.graph.TypeNode;
 import model.robot.AllTerrainRobot;
 import model.robot.CaterpillarRobot;
 import model.robot.LeggedRobot;
@@ -18,7 +17,7 @@ import java.awt.event.ActionListener;
 public class ControllerAction implements ActionListener {
 
     String path;
-    Boolean node, fire, plat, inonder, escarpe,
+    Boolean node, fire, plat, inonde, escarpe,
             terrain, pate, chenille;
     Controller control;
     Node node1, node2;
@@ -36,7 +35,7 @@ public class ControllerAction implements ActionListener {
         node = false;
         fire = false;
         plat = false;
-        inonder = false;
+        inonde = false;
         escarpe = false;
         terrain = false;
         pate = false;
@@ -49,40 +48,40 @@ public class ControllerAction implements ActionListener {
             this.initialization();
             node = true;
         }
-        if (e.getActionCommand().matches("Feu")) {
+        else if (e.getActionCommand().matches("Feu")) {
             this.initialization();
             fire = true;
         }
-        if (e.getActionCommand().matches("Plat")) {
+        else if (e.getActionCommand().matches("Plat")) {
             this.initialization();
             plat = true;
         }
-        if (e.getActionCommand().matches("Escarpe")) {
+        else if (e.getActionCommand().matches("Escarpe")) {
             this.initialization();
             escarpe = true;
         }
-        if (e.getActionCommand().matches("Inonde")) {
+        else if (e.getActionCommand().matches("Inonde")) {
             this.initialization();
-            inonder = true;
+            inonde = true;
         }
-        if (e.getActionCommand().matches("Save")) {
+        else if (e.getActionCommand().matches("Save")) {
             ChooseFile chooseFile = new ChooseFile();
             FileManager.saveFileManager(chooseFile.selectFile(this.path), control.getGraph());
         }
-        if (e.getActionCommand().matches("Load")) {
+        else if (e.getActionCommand().matches("Load")) {
             ChooseFile chooseFile = new ChooseFile();
             control.setGraph(FileManager.loadFileManager(chooseFile.selectFile(this.path)));
             control.displayGraphe();
         }
-        if (e.getActionCommand().matches("Tout Terrain")) {
+        else if (e.getActionCommand().matches("Tout Terrain")) {
             this.initialization();
             terrain = true;
         }
-        if (e.getActionCommand().matches("Chenille")) {
+        else if (e.getActionCommand().matches("Chenille")) {
             this.initialization();
             chenille = true;
         }
-        if (e.getActionCommand().matches("Pates")) {
+        else if (e.getActionCommand().matches("Pates")) {
             this.initialization();
             pate = true;
         }
@@ -93,10 +92,10 @@ public class ControllerAction implements ActionListener {
 
         int id = -1;
         if (node) {
-            control.addNode(new Node(id, x, y));
+            control.addNode(new Node(x, y));
         }
-        if (fire) {
-            control.addNode(new Node(id, x, y, TypeNode.INCENDIE));
+        else if (fire) {
+            control.addNode(new Node(x, y, Node.FIRE_DEFAULT_TEMPERATURE));
         }
     }
 
@@ -132,10 +131,10 @@ public class ControllerAction implements ActionListener {
             if (plat) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
             }
-            if (escarpe) {
+            else if (escarpe) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
             }
-            if (inonder) {
+            else if (inonde) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
             }
 
@@ -154,10 +153,10 @@ public class ControllerAction implements ActionListener {
             if (terrain) {
                 control.addRobot(new AllTerrainRobot(type, _capacity));
             }
-            if (chenille) {
+            else if (chenille) {
                 control.addRobot(new CaterpillarRobot(type, _capacity));
             }
-            if (pate) {
+            else if (pate) {
                 control.addRobot(new LeggedRobot(type, _capacity));
             }
         }

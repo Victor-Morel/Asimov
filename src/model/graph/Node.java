@@ -7,7 +7,14 @@ public class Node extends Observable {
 
     // BEUG creations des nodes +
     // loader files
-    // TODO probleme gestion id
+
+    public static final int FIRE_DEFAULT_TEMPERATURE = 100;
+
+    /**
+     * nombre de noeuds instanciés
+     */
+    private static int nbNodes;
+
     /**
      * coordonnée x d'un noeud
      */
@@ -33,49 +40,28 @@ public class Node extends Observable {
      */
     protected int uniqueID;
 
-    private TypeNode type;
-
 
     public Node() {
         uniqueID = -1;
     }
 
-    /**
-     * Construit un noeud avec une etiquette et une intensite
-     *
-     * @param _id   identifiant du noeud
-     * @param _x    coordonnée x du noeud
-     * @param _y    coordonnée y du noeud
-     * @param _type type du noeud
-     */
-    public Node(int _id, double _x, double _y, TypeNode _type) {
-        this.uniqueID = _id;
-        this.x = _x;
-        this.y = _y;
-        this.type = _type;
-        if (_type.getText() == "NORMAL") this.intensity = 0;
-        if (_type.getText() == "INCENDIE") this.intensity = 100;
-        currentNode = false;
-
-    }
-
-    public Node(int _id, double _x, double _y, int intensity) {
-        this.uniqueID = _id;
+    public Node(double _x, double _y, int intensity) {
+        this.uniqueID = Node.nbNodes;
         this.x = _x;
         this.y = _y;
         this.intensity = intensity;
+        Node.nbNodes++;
     }
 
 
     /**
      * Construit un noeud avec une etiquette et une intensite
      *
-     * @param _id identifiant du noeud
      * @param _x  coordonnée x du noeud
      * @param _y  coordonnée y du noeud
      */
-    public Node(int _id, double _x, double _y) {
-        this(_id, _x, _y, TypeNode.NORMAL);
+    public Node(double _x, double _y) {
+        this(_x, _y, 0);
     }
 
 
@@ -153,14 +139,6 @@ public class Node extends Observable {
         return y;
     }
 
-    public TypeNode getType() {
-        return type;
-    }
-
-    public void setType(TypeNode type) {
-        this.type = type;
-    }
-
     public boolean isCurrentNode() {
         return currentNode;
     }
@@ -169,6 +147,5 @@ public class Node extends Observable {
         this.currentNode = currentNode;
         setChanged();
         notifyObservers();
-
     }
 }

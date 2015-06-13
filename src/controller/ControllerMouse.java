@@ -66,7 +66,7 @@ public class ControllerMouse implements MouseListener {
     }
 
     public boolean addEdge() {
-        return controlAction.escarpe || controlAction.inonder || controlAction.plat;
+        return controlAction.escarpe || controlAction.inonde || controlAction.plat;
     }
 
     private boolean addRobot() {

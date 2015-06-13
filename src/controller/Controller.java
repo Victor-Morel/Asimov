@@ -70,17 +70,17 @@ public class Controller {
     protected void displayGraphe() {
         AVNode viewNode = null;
         for (Node node : graph.getAllNodes()) {
-            if (node.getType().getText() == "NORMAL")
+            if (node.getIntensity() == 0)
                 viewNode = new VNodeNormal(window.getSheetDisplay(), node);
-            if (node.getType().getText() == "INCENDIE")
+            else
                 viewNode = new VNodeFire(window.getSheetDisplay(), node);
             window.getSheetDisplay().addNode(viewNode);
         }
         AVEdge viewEdge = null;
         for (Edge edge : graph.getAllEdges()) {
-            if (edge.getType().getText() == "PLAT")
+            if (edge.getType().equals(TypeEdge.PLAT))
                 viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
-            if (edge.getType().getText() == "ESCARPE")
+            if (edge.getType().equals(TypeEdge.ESCARPE))
                 viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
             window.getSheetDisplay().addEdge(viewEdge);
         }
@@ -97,8 +97,8 @@ public class Controller {
         getGraph().addNode(node);
 
         //addNode to sheet
-        if (node.getType().getText() == "NORMAL") viewNode = new VNodeNormal(window.getSheetDisplay(), node);
-        if (node.getType().getText() == "INCENDIE") viewNode = new VNodeFire(window.getSheetDisplay(), node);
+        if (node.getIntensity() == 0) viewNode = new VNodeNormal(window.getSheetDisplay(), node);
+        else viewNode = new VNodeFire(window.getSheetDisplay(), node);
 
         window.getSheetDisplay().addNode(viewNode);
 
@@ -115,11 +115,11 @@ public class Controller {
 
 
         //addNode to sheet
-        if (edge.getType().getText() == TypeEdge.PLAT.getText())
+        if (edge.getType().equals(TypeEdge.PLAT))
             viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
-        if (edge.getType().getText() == TypeEdge.INONDE.getText())
+        else if (edge.getType().equals(TypeEdge.INONDE))
             viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
-        if (edge.getType().getText() == TypeEdge.ESCARPE.getText())
+        else if (edge.getType().equals(TypeEdge.ESCARPE))
             viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
 
         window.getSheetDisplay().addEdge(viewEdge);
