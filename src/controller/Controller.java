@@ -6,6 +6,7 @@ import model.graph.Node;
 import model.robot.Manager;
 import view.Edge.AVEdge;
 import view.Edge.VEdgeEscarpe;
+import view.Edge.VEdgeInonde;
 import view.Edge.VEdgePlat;
 import view.GUI;
 import view.Node.AVNode;
@@ -100,4 +101,22 @@ public class Controller {
         this.repaint();
     }
 
+
+    public void addEdge(Edge edge) {
+
+        AVEdge viewEdge = null;
+
+        //addNode to graph
+        getGraph().addEdge(edge);
+
+
+        //addNode to sheet
+        if (edge.getType().getText() == "ESCARPE") viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
+        if (edge.getType().getText() == "INONDE") viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
+        if (edge.getType().getText() == "PLAT") viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+
+        window.getSheetDisplay().addEdge(viewEdge);
+
+        this.repaint();
+    }
 }

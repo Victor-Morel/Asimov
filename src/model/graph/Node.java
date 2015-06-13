@@ -37,6 +37,7 @@ public class Node extends Observable {
 
 
     public Node() {
+        uniqueID = -1;
     }
 
     /**

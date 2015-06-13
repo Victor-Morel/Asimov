@@ -56,11 +56,11 @@ public class SheetDisplay extends JPanel {
         }
     }
 
-    private void addEdge(AVEdge edge) {
+    public void addEdge(AVEdge edge) {
         edges.add(edge);
     }
 
-    private void addNode(AVNode node) {
+    public void addNode(AVNode node) {
         nodes.add(node);
     }
 

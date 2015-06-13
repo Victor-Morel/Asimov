@@ -1,27 +1,33 @@
 package controller;
 
+import model.graph.Node;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ControllerMouse implements MouseListener {
 
-    private int x, y;
-    private boolean stat;
+
 
     private ControllerAction controlAction;
 
     public ControllerMouse(ControllerAction _controlAction) {
         super();
-
         this.controlAction = _controlAction;
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (check()) {
-            controlAction.addElement(e.getX(), e.getY());
-            stat = false;
+
+        if (addNode()) {
+            controlAction.addNode(e.getX(), e.getY());
+
+        }
+        if (addEdge()) {
+            Node n;
+            n = controlAction.selectCurrentNode(e.getX(), e.getY());
+            controlAction.addEdge(n);
         }
         controlAction.selectCurrentNode(e.getX(), e.getY());
     }
@@ -48,8 +54,12 @@ public class ControllerMouse implements MouseListener {
     }
 
 
-    public boolean check() {
-        return controlAction.escarpe || controlAction.inonder || controlAction.plat ||
-                controlAction.fire || controlAction.node;
+    public boolean addNode() {
+        return controlAction.fire || controlAction.node;
     }
+
+    public boolean addEdge() {
+        return controlAction.escarpe || controlAction.inonder || controlAction.plat;
+    }
+
 }
