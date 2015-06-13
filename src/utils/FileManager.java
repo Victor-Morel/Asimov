@@ -122,7 +122,7 @@ public class FileManager {
 
             for (Edge e : g.getAllEdges()) {
                 // staff elements
-                Element staff = doc.createElement("edge");
+                Element staff = doc.createElement("robot");
                 rootElement.appendChild(staff);
 
                 // set attribute to staff element

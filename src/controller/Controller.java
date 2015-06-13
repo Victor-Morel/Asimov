@@ -31,7 +31,7 @@ public class Controller {
         this.sheetDisplay = new SheetDisplay(controlMouse);
 
         this.setGraph(new Graph());
-        this.manager = new Manager();
+//        this.manager = new Manager();
 
         window = new GUI(controlAction, controlMouse);
     }
@@ -77,9 +77,7 @@ public class Controller {
                 viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
             window.getSheetDisplay().addEdge(viewEdge);
         }
-
         this.repaint();
-
     }
 
 
@@ -99,6 +97,5 @@ public class Controller {
 
         this.repaint();
     }
-
 
 }

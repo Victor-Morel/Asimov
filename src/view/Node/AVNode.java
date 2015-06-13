@@ -12,10 +12,15 @@ public abstract class AVNode implements Observer {
 
     protected final SheetDisplay sheetDisplay;
     protected Node node;
+    Graphics2D g2d;
+
+
+    private final int rayon = 7;
 
     public AVNode(SheetDisplay sheetDisplay, Node node) {
         this.sheetDisplay = sheetDisplay;
-        setT(node);
+        this.node = node;
+        this.node.addObserver(this);
     }
 
     @Override
@@ -24,16 +29,18 @@ public abstract class AVNode implements Observer {
     }
 
     public void drawNode(Graphics graph) {
-        int rayon;
-        Graphics2D g2d;
-        rayon = 5;
+        //Graphics2D g2d;
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
+        if (node.isCurrentNode()) {
+            graph.setColor(Color.blue);
+            graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
+        }
     }
 
-    public void setT(Node node) {
-        this.node = node;
-        this.node.addObserver(this);
-    }
 
+    public void drawCurrent(Graphics graph) {
+        graph.setColor(Color.blue);
+        graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
+    }
 }

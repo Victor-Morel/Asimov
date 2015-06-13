@@ -34,7 +34,6 @@ public class ControllerAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().matches("Noeud")) {
             node = true;
-
         }
         if (e.getActionCommand().matches("Feu")) {
             fire = true;
@@ -56,6 +55,15 @@ public class ControllerAction implements ActionListener {
             ChooseFile chooseFile = new ChooseFile();
             control.setGraph(FileManager.loadFileManager(chooseFile.selectFile(this.path)));
             control.displayGraphe();
+        }
+        if (e.getActionCommand().matches("Tout Terrain")) {
+
+        }
+        if (e.getActionCommand().matches("Chenille")) {
+
+        }
+        if (e.getActionCommand().matches("Pates")) {
+
         }
 
     }
@@ -83,6 +91,26 @@ public class ControllerAction implements ActionListener {
         if (inonder) {
 
             inonder = false;
+        }
+    }
+
+    protected void clickOnNode(int x, int y) {
+        int currentNode = 0;
+        for (Node n : control.getGraph().getAllNodes()) {
+            for (int i = -10; i < 10; i++) {
+                for (int j = -10; j < 10; j++) {
+                    if ((x == (int) n.getX() + i) && (y == (int) n.getY() + j)) {
+                        n.setCurrentNode(true);
+                        currentNode = n.getID();
+                        break;
+                    }
+                }
+            }
+        }
+        for (Node n : control.getGraph().getAllNodes()) {
+            if (n.getID() != currentNode && n.isCurrentNode()) {
+                n.setCurrentNode(false);
+            }
         }
     }
 }

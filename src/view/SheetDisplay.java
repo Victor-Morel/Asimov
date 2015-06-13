@@ -14,11 +14,12 @@ public class SheetDisplay extends JPanel {
     private ArrayList<AVNode> nodes; // la liste des nodes enregistrees
     private ArrayList<AVEdge> edges; // la liste des nodes enregistrees
 
+    int currentNode;
+
     public SheetDisplay(ControllerMouse controlMouse) {
         super();
         nodes = new ArrayList<>();
         edges = new ArrayList<>();
-
         addMouseListener(controlMouse);
     }
 
@@ -39,12 +40,11 @@ public class SheetDisplay extends JPanel {
         }
     }
 
-    public void showEdges(Graphics g) {
+    public void showEdges(Graphics graphics) {
         for (AVEdge avEdge : edges) {
-            avEdge.drawEdge(g);
+            avEdge.drawEdge(graphics);
         }
     }
-
 
     public void addEdge(AVEdge edge) {
         edges.add(edge);
@@ -53,4 +53,5 @@ public class SheetDisplay extends JPanel {
     public void addNode(AVNode node) {
         nodes.add(node);
     }
+
 }

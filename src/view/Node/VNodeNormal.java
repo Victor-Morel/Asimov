@@ -8,6 +8,7 @@ import java.awt.*;
 public class VNodeNormal extends AVNode {
 
     public VNodeNormal(SheetDisplay sheetDisplay, Node n) {
+
         super(sheetDisplay, n);
     }
 

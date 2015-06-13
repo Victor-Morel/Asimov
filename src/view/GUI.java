@@ -11,9 +11,11 @@ import javax.swing.plaf.DimensionUIResource;
 public class GUI extends JFrame {
 
 	private JPanel rootPanel;
-	private javax.swing.JToolBar jToolBar;
-	private JButton addNodeFire, addNode, addEdgeEscarpe, addEdgePlat, addEdgeInonde;
+	private JButton addNodeFire, addNode,
+			addRobotToutTerrain, addRobotChenille, addRobotPates,
+			addEdgeEscarpe, addEdgePlat, addEdgeInonde;
 	private SheetDisplay sheetDisplay;
+
 
 	private ControllerMouse controlMouse;
 
@@ -40,6 +42,9 @@ public class GUI extends JFrame {
 		addEdgeEscarpe.addActionListener(controlAction);
 		addEdgePlat.addActionListener(controlAction);
 		addEdgeInonde.addActionListener(controlAction);
+		addRobotChenille.addActionListener(controlAction);
+		addRobotPates.addActionListener(controlAction);
+		addRobotToutTerrain.addActionListener(controlAction);
 		save.addActionListener(controlAction);
 		load.addActionListener(controlAction);
 

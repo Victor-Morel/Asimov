@@ -1,80 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.GUI">
-  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="40" y="40" width="534" height="544"/>
+      <xy x="41" y="40" width="857" height="809"/>
     </constraints>
     <properties>
       <foreground color="-12828863"/>
+      <opaque value="true"/>
+      <requestFocusEnabled value="false"/>
+      <verifyInputWhenFocusTarget value="false"/>
+      <visible value="true"/>
     </properties>
     <border type="none"/>
     <children>
-      <toolbar id="bd8cb" binding="jToolBar">
+      <grid id="92d5d" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="3" col-span="2" vsize-policy="0" hsize-policy="6" anchor="2" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="-1" height="20"/>
-          </grid>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <enabled value="true"/>
-          <floatable value="false"/>
-        </properties>
+        <properties/>
         <border type="none"/>
         <children>
-          <hspacer id="db24a">
-            <constraints/>
-          </hspacer>
-          <component id="b7f18" class="javax.swing.JButton" binding="addNode">
-            <constraints/>
+          <toolbar id="b5dcf">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="82" height="20"/>
+              </grid>
+            </constraints>
             <properties>
-              <text value="Noeud"/>
+              <floatable value="false"/>
+              <orientation value="1"/>
             </properties>
-          </component>
-          <hspacer id="cb2da">
-            <constraints/>
-          </hspacer>
-          <component id="c8f45" class="javax.swing.JButton" binding="addNodeFire">
-            <constraints/>
-            <properties>
-              <text value="Feu"/>
-            </properties>
-          </component>
-          <hspacer id="552b9">
-            <constraints/>
-          </hspacer>
-          <component id="715aa" class="javax.swing.JButton" binding="addEdgePlat">
-            <constraints/>
-            <properties>
-              <text value="Plat"/>
-            </properties>
-          </component>
-          <hspacer id="be753">
-            <constraints/>
-          </hspacer>
-          <component id="dd6c0" class="javax.swing.JButton" binding="addEdgeEscarpe">
-            <constraints/>
-            <properties>
-              <text value="Escarpe"/>
-            </properties>
-          </component>
-          <hspacer id="767c6">
-            <constraints/>
-          </hspacer>
-          <component id="dc01" class="javax.swing.JButton" binding="addEdgeInonde">
-            <constraints/>
-            <properties>
-              <text value="Inonde"/>
-            </properties>
-          </component>
-          <hspacer id="69694">
-            <constraints/>
-          </hspacer>
+            <border type="none"/>
+            <children>
+              <vspacer id="aea7a">
+                <constraints/>
+              </vspacer>
+              <component id="47945" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Node"/>
+                </properties>
+              </component>
+              <vspacer id="b925a">
+                <constraints/>
+              </vspacer>
+              <component id="b7f18" class="javax.swing.JButton" binding="addNode">
+                <constraints/>
+                <properties>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Noeud"/>
+                </properties>
+              </component>
+              <vspacer id="f8e73">
+                <constraints/>
+              </vspacer>
+              <component id="c8f45" class="javax.swing.JButton" binding="addNodeFire">
+                <constraints/>
+                <properties>
+                  <text value="Feu"/>
+                </properties>
+              </component>
+              <vspacer id="ff0da">
+                <constraints/>
+              </vspacer>
+              <component id="f23c" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <text value="Arc"/>
+                </properties>
+              </component>
+              <vspacer id="49f84">
+                <constraints/>
+              </vspacer>
+              <component id="715aa" class="javax.swing.JButton" binding="addEdgePlat">
+                <constraints/>
+                <properties>
+                  <text value="Plat"/>
+                </properties>
+              </component>
+              <vspacer id="ff1dd">
+                <constraints/>
+              </vspacer>
+              <component id="dd6c0" class="javax.swing.JButton" binding="addEdgeEscarpe">
+                <constraints/>
+                <properties>
+                  <text value="Escarpe"/>
+                </properties>
+              </component>
+              <vspacer id="1c858">
+                <constraints/>
+              </vspacer>
+              <component id="dc01" class="javax.swing.JButton" binding="addEdgeInonde">
+                <constraints/>
+                <properties>
+                  <text value="Inonde"/>
+                </properties>
+              </component>
+              <vspacer id="120bf">
+                <constraints/>
+              </vspacer>
+              <component id="d384c" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <text value="Robot"/>
+                </properties>
+              </component>
+              <vspacer id="66d0f">
+                <constraints/>
+              </vspacer>
+              <component id="6678e" class="javax.swing.JButton" binding="addRobotToutTerrain">
+                <constraints/>
+                <properties>
+                  <text value="Tout Terrain"/>
+                </properties>
+              </component>
+              <vspacer id="fe30b">
+                <constraints/>
+              </vspacer>
+              <component id="67d82" class="javax.swing.JButton" binding="addRobotChenille">
+                <constraints/>
+                <properties>
+                  <text value="Chenille"/>
+                </properties>
+              </component>
+              <vspacer id="62c1d">
+                <constraints/>
+              </vspacer>
+              <component id="2c28d" class="javax.swing.JButton" binding="addRobotPates">
+                <constraints/>
+                <properties>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Pates"/>
+                </properties>
+              </component>
+              <vspacer id="9b4c9">
+                <constraints/>
+              </vspacer>
+            </children>
+          </toolbar>
         </children>
-      </toolbar>
+      </grid>
       <component id="ea33b" class="view.SheetDisplay" binding="sheetDisplay" custom-create="true">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false">
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false">
             <minimum-size width="450" height="450"/>
             <preferred-size width="450" height="450"/>
             <maximum-size width="450" height="450"/>

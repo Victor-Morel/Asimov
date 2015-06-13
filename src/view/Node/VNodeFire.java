@@ -7,11 +7,9 @@ import java.awt.*;
 
 public class VNodeFire extends AVNode {
 
-
     public VNodeFire(SheetDisplay sheetDisplay, Node n) {
         super(sheetDisplay, n);
     }
-
 
     @Override
     public void drawNode(Graphics graph) {
