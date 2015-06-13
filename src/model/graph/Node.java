@@ -13,7 +13,7 @@ public class Node extends Observable {
     /**
      * nombre de noeuds instanciés
      */
-    private static int nbNodes;
+    private static int maxId;
 
     /**
      * coordonnée x d'un noeud
@@ -46,11 +46,11 @@ public class Node extends Observable {
     }
 
     public Node(double _x, double _y, int intensity) {
-        this.uniqueID = Node.nbNodes;
+        this.uniqueID = Node.maxId;
         this.x = _x;
         this.y = _y;
         this.intensity = intensity;
-        Node.nbNodes++;
+        Node.maxId++;
     }
 
 
@@ -126,11 +126,6 @@ public class Node extends Observable {
         return uniqueID == other.uniqueID;
     }
 
-
-    public void reset() {
-        //TODO destroy instance
-    }
-
     public double getX() {
         return x;
     }
@@ -147,5 +142,9 @@ public class Node extends Observable {
         this.currentNode = currentNode;
         setChanged();
         notifyObservers();
+    }
+
+    public void reset() throws Throwable {
+        this.finalize();
     }
 }

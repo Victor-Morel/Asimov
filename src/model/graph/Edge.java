@@ -83,4 +83,8 @@ public class Edge extends Observable {
     public void setType(TypeEdge type) {
         this.type = type;
     }
+
+    public void reset() throws Throwable {
+        this.finalize();
+    }
 }

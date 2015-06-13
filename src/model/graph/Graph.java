@@ -174,4 +174,14 @@ public class Graph {
         result = 31 * result + (edges != null ? edges.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public void finalize() throws Throwable{
+        for(Node n : this.getAllNodes()) {
+            n.reset();
+        }
+        for(Edge e : this.getAllEdges()) {
+            e.reset();
+        }
+    }
 }
