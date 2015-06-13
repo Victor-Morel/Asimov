@@ -12,15 +12,14 @@ public class ChooseFile extends JFileChooser {
     }
 
     public File selectFile(String path) {
-        while (true) {
-            JFileChooser chooser = new JFileChooser(path);
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("XML", "xml");
-            chooser.setFileFilter(filter);
-            int returnVal = chooser.showOpenDialog(this);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                return chooser.getSelectedFile();
-            }
+        JFileChooser chooser = new JFileChooser(path);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("XML", "xml");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            return chooser.getSelectedFile();
         }
+        return null;
     }
 }
 

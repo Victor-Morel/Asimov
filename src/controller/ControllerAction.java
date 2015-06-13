@@ -13,6 +13,7 @@ import view.ChooseFile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 
 public class ControllerAction implements ActionListener {
@@ -67,12 +68,18 @@ public class ControllerAction implements ActionListener {
         }
         if (e.getActionCommand().matches("Save")) {
             ChooseFile chooseFile = new ChooseFile();
-            FileManager.saveFileManager(chooseFile.selectFile(this.path), control.getGraph());
+            File file = chooseFile.selectFile(this.path);
+            if (null != file) {
+                FileManager.saveFileManager(file, control.getGraph());
+            }
         }
         if (e.getActionCommand().matches("Load")) {
             ChooseFile chooseFile = new ChooseFile();
-            control.setGraph(FileManager.loadFileManager(chooseFile.selectFile(this.path)));
-            control.displayGraphe();
+            File file = chooseFile.selectFile(this.path);
+            if (null != file) {
+                control.setGraph(FileManager.loadFileManager(file));
+                control.displayGraphe();
+            }
         }
         if (e.getActionCommand().matches("Tout Terrain")) {
             this.initialization();
