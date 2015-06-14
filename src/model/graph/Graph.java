@@ -99,7 +99,7 @@ public class Graph {
     public String toString() {
         String s = "";
         for (Node n : this.getAllNodes()) {
-            s = s + "[ noeud=" + n.getLabel() + " : ";
+            s = s + "[" + n.toString() + " : ";
             s = s + this.getEdges(n).toString();
             s = s + " ]\n";
         }

@@ -117,7 +117,7 @@ public class Node extends Observable {
 
     @Override
     public String toString() {
-        return "" + getID();
+        return "n : " + getID();
     }
 
     @Override

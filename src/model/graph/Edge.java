@@ -65,18 +65,19 @@ public class Edge {
         this.destination = _n;
     }
 
-    /*
     @Override
     public String toString() {
-        return source.getLabel().toString() + " ==> "
-                + destination.getLabel().getLabel() + "(" + valuation + ")";
-    }*/
+        return source.getID() + " => "
+                + destination.getID() + "(" + valuation + ")";
+    }
 
     public TypeEdge getType() {
+
         return type;
     }
 
     public void setType(TypeEdge type) {
+
         this.type = type;
     }
 

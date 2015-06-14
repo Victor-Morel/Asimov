@@ -43,9 +43,9 @@ public class GraphTest {
         n2 = new Node(0,0);
         n3 = new Node(1.0,6.3,0);
         n4 = new Node(2.0,6.3,120);
-        n5 = new Node(9,15.2,0);
+        n5 = new Node(9.0,15.2,0);
         n6 = new Node(7.6,7.6,1);
-        n7 = new Node(1,1,Integer.MAX_VALUE);
+        n7 = new Node(1.0,1.0,Integer.MAX_VALUE);
         e1 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n3, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
         e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);

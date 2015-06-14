@@ -26,32 +26,35 @@ public class AStar extends Strategy {
 
     @Override
     public void generateBestPath() {
-        SearchNode searchNodeStart = new SearchNode(source,null,0);
+        SearchNode currentSearchNode = new SearchNode(source,null,0);
         SearchNode bestSn = null;
-
         do {
-            for(Node n : graph.getNextNodes(searchNodeStart.getNode())) {
-                SearchNode sn = new SearchNode(n,searchNodeStart,EuclidianDistance.getDistance(n,destination));
+            //System.out.println("\nCurrent children : " + graph.getNextNodes(currentSearchNode.getNode()));
+            for(Node n : graph.getNextNodes(currentSearchNode.getNode())) {
+                SearchNode sn = new SearchNode(n,currentSearchNode,EuclidianDistance.getDistance(n,destination));
+                //System.out.println("Current node : " + sn);
                 int id = -1;
                 for(int i = 0; i < closedList.size(); i++) {
                     if(closedList.get(i).getNode().equals(sn.getNode())) {
                         id = i;
+                        //System.out.println("Break1");
                         break;
                     }
                 }
                 if(id >= 0) {
-                    break;
+                    continue;
                 }
-                for(int i = 0; i < closedList.size(); i++) {
-                    if(closedList.get(i).getNode().equals(sn.getNode())) {
+                for(int i = 0; i < openedList.size(); i++) {
+                    if(openedList.get(i).getNode().equals(sn.getNode())) {
                         id = i;
+                        //System.out.println("Break2");
                         break;
                     }
                 }
                 if(id >= 0) {
                     if(sn.getValue() < openedList.get(id).getValue()) {
                         openedList.remove(id);
-                        openedList.add(id,sn);
+                        closedList.add(id,sn);
                     }
                 }
                 else {
@@ -59,8 +62,11 @@ public class AStar extends Strategy {
                 }
             }
 
+            //System.out.println("OpenedList : " + openedList);
+            //System.out.println("ClosedList : " + closedList);
             if(openedList.isEmpty()) {
                 this.resultGraph = new Graph();
+                //System.out.println("Break3");
                 break;
             }
             bestSn = openedList.get(0);
@@ -69,10 +75,12 @@ public class AStar extends Strategy {
                     bestSn = sn;
                 }
             }
+            System.out.println("BestNode : " + bestSn);
             openedList.remove(bestSn);
             closedList.add(bestSn);
 
-        }while(bestSn.getNode().equals(destination));
+            currentSearchNode = bestSn;
+        }while(!bestSn.getNode().equals(destination));
 
         if(null != bestSn && bestSn.getNode().equals(destination)) {
             this.resultGraph = new Graph();
@@ -81,6 +89,7 @@ public class AStar extends Strategy {
             while(null != currentNode.getParent()) {
                 getResultGraph().addEdge(graph.getEdge(currentNode.getNode(), currentNode.getParent().getNode()));
                 getResultGraph().addNode(currentNode.getNode());
+                currentNode = currentNode.getParent();
             }
             getResultGraph().addNode(currentNode.getNode());
         }
