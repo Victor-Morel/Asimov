@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by victor on 20/05/15.
- */
+
 public class Graph {
     private Set<Node> nodes;
     private Set<Edge> edges;

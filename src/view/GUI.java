@@ -10,15 +10,33 @@ import javax.swing.plaf.DimensionUIResource;
 
 public class GUI extends JFrame {
 
+	/**
+	 * JPANEL principale
+	 */
 	private JPanel rootPanel;
+
+	/**
+	 * JButtons de la fenetre
+	 */
 	private JButton addNodeFire, addNode,
 			addRobotToutTerrain, addRobotChenille, addRobotPates,
 			addEdgeEscarpe, addEdgePlat, addEdgeInonde;
+
+	/**
+	 *  SheetDisplay
+	 */
 	private SheetDisplay sheetDisplay;
 
-
+	/**
+	 * Controlleur de la souris
+	 */
 	private ControllerMouse controlMouse;
 
+	/**
+	 * Conscruit l interface graphique
+	 * @param controlAction Controlleur des actions
+	 * @param controlMouse Controlleur de la souris
+	 */
 	public GUI(ControllerAction controlAction, ControllerMouse controlMouse) {
 
 		super("Asimov");
@@ -32,9 +50,11 @@ public class GUI extends JFrame {
 		JMenu file = new JMenu("File");
 		menuBar.add(file);
 		JMenuItem save = new JMenuItem("Save");
-		JMenuItem load = new JMenuItem("Load");
+		JMenuItem LoadXml = new JMenuItem("Load XML");
+		JMenuItem LoadImage = new JMenuItem("Load Image");
 		file.add(save);
-		file.add(load);
+		file.add(LoadXml);
+		file.add(LoadImage);
 
 
 		addNodeFire.addActionListener(controlAction);
@@ -46,7 +66,8 @@ public class GUI extends JFrame {
 		addRobotPates.addActionListener(controlAction);
 		addRobotToutTerrain.addActionListener(controlAction);
 		save.addActionListener(controlAction);
-		load.addActionListener(controlAction);
+		LoadXml.addActionListener(controlAction);
+		LoadImage.addActionListener(controlAction);
 
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -56,11 +77,18 @@ public class GUI extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Initalise les components personalise
+	 */
 	private void createUIComponents() {
 		sheetDisplay = new SheetDisplay(controlMouse);
 
 	}
 
+	/**
+	 * Acceder au SheetDisplay
+	 * @return sheetDisplay
+	 */
 	public SheetDisplay getSheetDisplay() {
 		return sheetDisplay;
 	}

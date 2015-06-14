@@ -5,23 +5,29 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
+
 public class ChooseFile extends JFileChooser {
 
-    String s;
-
-    public ChooseFile(String s) {
-        super();
-        this.s = s + " fichier";
+    /**
+     * Construit un ChooseFile avec un nom et un chemin
+     * @param _name nom de la windows
+     * @param _path chemin par default
+     */
+    public ChooseFile(String _name, String _path) {
+        super(_path);
+        this.setDialogTitle(_name + " fichier");
     }
 
-    public File selectFile(String path) {
-        JFileChooser chooser = new JFileChooser(path);
-        chooser.setDialogTitle(s);
+    /**
+     * selectionner le fichier
+     * @return fichier selectionner ou null si aucun fichier selectionner
+     */
+    public File selectFile() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("XML", "xml");
-        chooser.setFileFilter(filter);
-        int returnVal = chooser.showOpenDialog(this);
+        this.setFileFilter(filter);
+        int returnVal = this.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            return chooser.getSelectedFile();
+            return this.getSelectedFile();
         }
         return null;
     }

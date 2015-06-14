@@ -11,9 +11,16 @@ import java.util.Observer;
 public abstract class AVNode implements Observer {
 
     protected final SheetDisplay sheetDisplay;
+
+    /**
+     * Noeud correspondant a la vue
+     */
     protected Node node;
     Graphics2D g2d;
 
+    /**
+     * Rayon du cercle
+     */
     private final int rayon = 7;
 
     public AVNode(SheetDisplay sheetDisplay, Node node) {
@@ -22,11 +29,20 @@ public abstract class AVNode implements Observer {
         this.node.addObserver(this);
     }
 
+    /**
+     * Mise à jour du Noeud
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void update(Observable arg0, Object arg1) {
         sheetDisplay.repaint();
     }
 
+    /**
+     * Dessine le Noeud
+     * @param graph
+     */
     public void drawNode(Graphics graph) {
         //Graphics2D g2d;
         g2d = (Graphics2D) graph;

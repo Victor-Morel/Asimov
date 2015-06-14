@@ -1,14 +1,13 @@
 package view.Edge;
 
 import model.graph.Edge;
-import view.SheetDisplay;
 
 import java.awt.*;
 
 public class VEdgeEscarpe extends AVEdge {
 
-    public VEdgeEscarpe(SheetDisplay sheetDisplay, Edge edge) {
-        super(sheetDisplay, edge);
+    public VEdgeEscarpe(Edge edge) {
+        super(edge);
     }
 
     @Override

@@ -27,6 +27,10 @@ public class Controller {
     private GUI window;
     private Manager manager;
 
+    /**
+     * Construit le controlleur
+     * @param _path chemin vers le fichier data
+     */
     public Controller(String _path) {
         this.path = _path;
         this.controlAction = new ControllerAction(path, this);
@@ -44,19 +48,32 @@ public class Controller {
 
     }
 
+    /**
+     * Muter le Graph
+     * @param graph
+     */
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
 
+    /**
+     * Redessiner les elements
+     */
     public void repaint() {
         window.getSheetDisplay().repaint();
     }
 
+    /**
+     * Acceder au graph
+     * @return Graph
+     */
     public Graph getGraph() {
         return graph;
     }
 
-
+    /**
+     * Affiche un Graphe
+     */
     protected void displayGraphe() {
         AVNode viewNode;
         for (Node node : graph.getAllNodes()) {
@@ -69,16 +86,21 @@ public class Controller {
         AVEdge viewEdge = null;
         for (Edge edge : graph.getAllEdges()) {
             if (edge.getType().equals(TypeEdge.PLAT))
-                viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+                viewEdge = new VEdgePlat(edge);
             if (edge.getType().equals(TypeEdge.ESCARPE))
-                viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
+                viewEdge = new VEdgeEscarpe(edge);
+            if (edge.getType().equals(TypeEdge.INONDE))
+                viewEdge = new VEdgeInonde(edge);
             window.getSheetDisplay().addEdge(viewEdge);
         }
         this.repaint();
     }
 
 
-    // ajouter un noeud
+    /**
+     *  ajouter un noeud
+     * @param node
+     */
     public void addNode(Node node) {
 
         AVNode viewNode;
@@ -95,7 +117,10 @@ public class Controller {
         this.repaint();
     }
 
-
+    /**
+     * Ajouter un arc
+     * @param edge
+     */
     public void addEdge(Edge edge) {
 
         AVEdge viewEdge = null;
@@ -106,17 +131,21 @@ public class Controller {
 
         //addNode to sheet
         if (edge.getType().equals(TypeEdge.PLAT))
-            viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+            viewEdge = new VEdgePlat(edge);
         else if (edge.getType().equals(TypeEdge.INONDE))
-            viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
+            viewEdge = new VEdgeInonde(edge);
         else if (edge.getType().equals(TypeEdge.ESCARPE))
-            viewEdge = new VEdgeEscarpe(window.getSheetDisplay(), edge);
+            viewEdge = new VEdgeEscarpe(edge);
 
         window.getSheetDisplay().addEdge(viewEdge);
 
         this.repaint();
     }
 
+    /**
+     * Ajouter un robot
+     * @param robot
+     */
     public void addRobot(Robot robot) {
         AVRobot viewRobot;
 
@@ -133,6 +162,9 @@ public class Controller {
         this.repaint();
     }
 
+    /**
+     * Réinitialiser le programme
+     */
     public void reset() {
         try {
             getGraph().finalize();

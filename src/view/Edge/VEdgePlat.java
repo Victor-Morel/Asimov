@@ -1,14 +1,13 @@
 package view.Edge;
 
 import model.graph.Edge;
-import view.SheetDisplay;
 
 import java.awt.*;
 
 public class VEdgePlat extends AVEdge {
 
-    public VEdgePlat(SheetDisplay sheetDisplay, Edge edge) {
-        super(sheetDisplay, edge);
+    public VEdgePlat(Edge edge) {
+        super(edge);
     }
 
     @Override

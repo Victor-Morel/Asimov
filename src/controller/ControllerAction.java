@@ -18,12 +18,26 @@ import java.io.File;
 
 public class ControllerAction implements ActionListener {
 
+    /**
+     * Chemin pour acceder au fichier data
+     */
     String path;
+    /**
+     * Boolean pour savoir quelle bouton à été selectionner
+     */
     Boolean node, fire, plat, inonde, escarpe,
             terrain, pate, chenille;
-    Controller control;
-    Node node1, node2;
 
+    /**
+     * Controlleur
+     */
+    Controller control;
+
+    /**
+     * Consctruit un controlleur des actions
+     * @param _path
+     * @param control
+     */
     public ControllerAction(String _path, Controller control) {
         super();
         this.path = _path;
@@ -32,8 +46,6 @@ public class ControllerAction implements ActionListener {
     }
 
     private void initialization() {
-        node1 = null;
-        node2 = null;
         node = false;
         fire = false;
         plat = false;
@@ -44,6 +56,10 @@ public class ControllerAction implements ActionListener {
         chenille = false;
     }
 
+    /**
+     * Chaque action de chaque bouton
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().matches("Noeud")) {
@@ -61,28 +77,6 @@ public class ControllerAction implements ActionListener {
         } else if (e.getActionCommand().matches("Inonde")) {
             this.initialization();
             inonde = true;
-        } else if (e.getActionCommand().matches("Save")) {
-            saveFile();
-        } else if (e.getActionCommand().matches("Load")) {
-            if (0 == control.getGraph().getNbNodes()) {
-                loadFile();
-            } else {
-                JDialog jdialog = new JDialog();
-                switch (jdialog.getN()) {
-                    case 0:
-                        saveFile();
-                        control.reset();
-                        loadFile();
-                        break;
-                    case 1:
-                        control.reset();
-                        loadFile();
-                        break;
-                    default:
-                        break;
-                }
-
-            }
         } else if (e.getActionCommand().matches("Tout Terrain")) {
             this.initialization();
             terrain = true;
@@ -92,11 +86,40 @@ public class ControllerAction implements ActionListener {
         } else if (e.getActionCommand().matches("Pates")) {
             this.initialization();
             pate = true;
+        } else if (e.getActionCommand().matches("Save")) {
+            saveFile();
+        } else if (e.getActionCommand().matches("Load XML")) {
+            if (0 == control.getGraph().getNbNodes()) {
+                loadFileXML();
+            } else {
+                JDialog jdialog = new JDialog();
+                switch (jdialog.getElementChoose()) {
+                    case 0:
+                        saveFile();
+                        control.reset();
+                        loadFileXML();
+                        break;
+                    case 1:
+                        control.reset();
+                        loadFileXML();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        } else if (e.getActionCommand().matches("Load IMAGE")) {
+
         }
 
     }
 
-
+    /**
+     * Verifie si dans il existe un noeud au coordonnée x et y
+     * @param x coordonnée x de la souris
+     * @param y coordonnée y
+     * @return Node selectioner ou null
+     */
     protected Node clickOnNode(int x, int y) {
         for (Node n : control.getGraph().getAllNodes()) {
             for (int i = -10; i < 10; i++) {
@@ -110,7 +133,13 @@ public class ControllerAction implements ActionListener {
         return null;
     }
 
-    protected Node selectCurrentNode(int x, int y) {
+    /**
+     * Affiche si nouveau noeud courant selectionner
+     * @param x parametre x de la souris
+     * @param y parametre y de la souris
+     * @return nouveau noeud courant ou null
+     */
+    protected Node checkCurrentNode(int x, int y) {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
@@ -120,7 +149,12 @@ public class ControllerAction implements ActionListener {
         return currentNode;
     }
 
-
+    /**
+     * Ajouter noeud
+     *
+     * @param x cordonnée x du noeud
+     * @param y cordonnée y du noeud
+     */
     public void addNode(int x, int y) {
 
         if (node) {
@@ -130,46 +164,46 @@ public class ControllerAction implements ActionListener {
         }
     }
 
-    public void addEdge(Node currentNode) {
+    /**
+     * Ajouter un arc
+     *
+     * @param node1 noeud 1 du nouveau arc
+     * @param node2 noeud 2 du nouveau arc
+     */
+    public void addEdge(Node node1, Node node2) {
         double valuation = 0;
-
-        if (null == node1) {
-            node1 = currentNode;
-        } else if (null == node2) {
-            node2 = currentNode;
-
-            if (plat) {
-                control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
-            } else if (escarpe) {
-                control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
-            } else if (inonde) {
-                control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
-            }
-
-
-            // initialization for add new edge
-            node1 = null;
-            node2 = null;
+        if (plat) {
+            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
+        } else if (escarpe) {
+            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
+        } else if (inonde) {
+            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
         }
     }
 
+    /**
+     * Ajouter un robot
+     *
+     * @param currentNode noeud ou le robot sera instancié
+     */
     public void addRobot(Node currentNode) {
         int _capacity = 10;
         TypeRecherche type = TypeRecherche.ASTAR;
-
-        if (null == node1) {
-            node1 = currentNode;
-
-            if (terrain) {
-                control.addRobot(new AllTerrainRobot(type, _capacity));
-            } else if (chenille) {
-                control.addRobot(new CaterpillarRobot(type, _capacity));
-            } else if (pate) {
-                control.addRobot(new LeggedRobot(type, _capacity));
-            }
+        if (terrain) {
+            control.addRobot(new AllTerrainRobot(type, _capacity));
+        } else if (chenille) {
+            control.addRobot(new CaterpillarRobot(type, _capacity));
+        } else if (pate) {
+            control.addRobot(new LeggedRobot(type, _capacity));
         }
     }
 
+
+    /**
+     * Verifie qu'il y a un seul noeud courant
+     *
+     * @param currentNode
+     */
     private void checkOnlyNode(int currentNode) {
         for (Node n : control.getGraph().getAllNodes()) {
             if (n.getID() != currentNode && n.isCurrentNode()) {
@@ -178,18 +212,23 @@ public class ControllerAction implements ActionListener {
         }
     }
 
-
+    /**
+     * Save File
+     */
     private void saveFile() {
-        ChooseFile chooseFile = new ChooseFile("Sauvegarder");
-        File file = chooseFile.selectFile(this.path);
+        ChooseFile chooseFile = new ChooseFile("Sauvegarder", this.path);
+        File file = chooseFile.selectFile();
         if (null != file) {
             FileManager.saveFileManager(file, control.getGraph());
         }
     }
 
-    private void loadFile() {
-        ChooseFile chooseFile = new ChooseFile("Charger");
-        File file = chooseFile.selectFile(this.path);
+    /**
+     * Load File XML
+     */
+    private void loadFileXML() {
+        ChooseFile chooseFile = new ChooseFile("Charger", this.path);
+        File file = chooseFile.selectFile();
         if (null != file) {
             control.setGraph(FileManager.loadFileManager(file));
             control.displayGraphe();

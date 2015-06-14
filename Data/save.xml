@@ -1,5 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<osm>
-    <node id="1" type="NORMAL" x="95.0" y="158.0"/>
-    <node id="0" type="NORMAL" x="71.0" y="91.0"/>
-</osm>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><osm><node id="2" type="NORMAL" x="113.0" y="248.0"/><node id="8" type="INCENDIE" x="307.0" y="176.0"/><node id="4" type="NORMAL" x="353.0" y="76.0"/><node id="6" type="INCENDIE" x="80.0" y="231.0"/><node id="3" type="NORMAL" x="288.0" y="271.0"/><node id="0" type="NORMAL" x="210.0" y="199.0"/><node id="1" type="NORMAL" x="164.0" y="98.0"/><node id="7" type="INCENDIE" x="190.0" y="366.0"/><node id="5" type="INCENDIE" x="222.0" y="99.0"/><node id="9" type="INCENDIE" x="360.0" y="308.0"/><robot nd1="3" nd2="8" type="PLAT"/><robot nd1="2" nd2="0" type="PLAT"/></osm>
