@@ -41,10 +41,6 @@ public class Node extends Observable {
     protected int uniqueID;
 
 
-    public Node() {
-        uniqueID = -1;
-    }
-
     public Node(double _x, double _y, int intensity) {
         this.uniqueID = Node.maxId;
         this.x = _x;

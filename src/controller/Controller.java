@@ -68,7 +68,7 @@ public class Controller {
 
 
     protected void displayGraphe() {
-        AVNode viewNode = null;
+        AVNode viewNode;
         for (Node node : graph.getAllNodes()) {
             if (node.getIntensity() == 0)
                 viewNode = new VNodeNormal(window.getSheetDisplay(), node);
@@ -91,7 +91,7 @@ public class Controller {
     // ajouter un noeud
     public void addNode(Node node) {
 
-        AVNode viewNode = null;
+        AVNode viewNode;
 
         //addNode to graph
         getGraph().addNode(node);
@@ -141,5 +141,14 @@ public class Controller {
         window.getSheetDisplay().addRobot(viewRobot);
 
         this.repaint();
+    }
+
+    public void reset() {
+        try {
+            getGraph().finalize();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        sheetDisplay.reset();
     }
 }

@@ -16,19 +16,21 @@ public class SheetDisplay extends JPanel {
     private ArrayList<AVEdge> edges; // la liste des nodes enregistrees
     private ArrayList<AVRobot> robots; // la liste des nodes enregistrees
 
-    int currentNode;
-
     public SheetDisplay(ControllerMouse controlMouse) {
         super();
+        initialization();
+        addMouseListener(controlMouse);
+    }
+
+    private void initialization() {
         nodes = new ArrayList<>();
         edges = new ArrayList<>();
         robots = new ArrayList<>();
-        addMouseListener(controlMouse);
     }
 
 
     public void reset() {
-
+        initialization();
     }
 
     public void paintComponent(Graphics g) {

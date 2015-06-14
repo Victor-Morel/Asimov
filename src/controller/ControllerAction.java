@@ -8,7 +8,8 @@ import model.robot.CaterpillarRobot;
 import model.robot.LeggedRobot;
 import model.robot.TypeRecherche;
 import utils.FileManager;
-import view.ChooseFile;
+import view.Dialog.ChooseFile;
+import view.Dialog.JDialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,8 +32,8 @@ public class ControllerAction implements ActionListener {
     }
 
     private void initialization() {
-        node1 = new Node();
-        node2 = new Node();
+        node1 = null;
+        node2 = null;
         node = false;
         fire = false;
         plat = false;
@@ -48,63 +49,52 @@ public class ControllerAction implements ActionListener {
         if (e.getActionCommand().matches("Noeud")) {
             this.initialization();
             node = true;
-        }
-        else if (e.getActionCommand().matches("Feu")) {
+        } else if (e.getActionCommand().matches("Feu")) {
             this.initialization();
             fire = true;
-        }
-        else if (e.getActionCommand().matches("Plat")) {
+        } else if (e.getActionCommand().matches("Plat")) {
             this.initialization();
             plat = true;
-        }
-        else if (e.getActionCommand().matches("Escarpe")) {
+        } else if (e.getActionCommand().matches("Escarpe")) {
             this.initialization();
             escarpe = true;
-        }
-        else if (e.getActionCommand().matches("Inonde")) {
+        } else if (e.getActionCommand().matches("Inonde")) {
             this.initialization();
             inonde = true;
-        }
-        else if (e.getActionCommand().matches("Save")) {
-            ChooseFile chooseFile = new ChooseFile();
-            File file = chooseFile.selectFile(this.path);
-            if (null != file) {
-                FileManager.saveFileManager(file, control.getGraph());
+        } else if (e.getActionCommand().matches("Save")) {
+            saveFile();
+        } else if (e.getActionCommand().matches("Load")) {
+            if (0 == control.getGraph().getNbNodes()) {
+                loadFile();
+            } else {
+                JDialog jdialog = new JDialog();
+                switch (jdialog.getN()) {
+                    case 0:
+                        saveFile();
+                        loadFile();
+                        break;
+                    case 1:
+                        control.reset();
+                        loadFile();
+                        break;
+                    default:
+                        break;
+                }
+
             }
-        }
-        else if (e.getActionCommand().matches("Load")) {
-            ChooseFile chooseFile = new ChooseFile();
-            File file = chooseFile.selectFile(this.path);
-            if (null != file) {
-                control.setGraph(FileManager.loadFileManager(file));
-                control.displayGraphe();
-            }
-        }
-        else if (e.getActionCommand().matches("Tout Terrain")) {
+        } else if (e.getActionCommand().matches("Tout Terrain")) {
             this.initialization();
             terrain = true;
-        }
-        else if (e.getActionCommand().matches("Chenille")) {
+        } else if (e.getActionCommand().matches("Chenille")) {
             this.initialization();
             chenille = true;
-        }
-        else if (e.getActionCommand().matches("Pates")) {
+        } else if (e.getActionCommand().matches("Pates")) {
             this.initialization();
             pate = true;
         }
 
     }
 
-    public void addNode(int x, int y) {
-
-        int id = -1;
-        if (node) {
-            control.addNode(new Node(x, y));
-        }
-        else if (fire) {
-            control.addNode(new Node(x, y, Node.FIRE_DEFAULT_TEMPERATURE));
-        }
-    }
 
     protected Node clickOnNode(int x, int y) {
         for (Node n : control.getGraph().getAllNodes()) {
@@ -116,38 +106,49 @@ public class ControllerAction implements ActionListener {
                 }
             }
         }
-        return new Node();
+        return null;
     }
 
     protected Node selectCurrentNode(int x, int y) {
         Node currentNode;
         currentNode = clickOnNode(x, y);
-        currentNode.setCurrentNode(true);
-        checkOnlyNode(currentNode.getID());
+        if (null != currentNode) {
+            currentNode.setCurrentNode(true);
+            checkOnlyNode(currentNode.getID());
+        }
         return currentNode;
+    }
+
+
+    public void addNode(int x, int y) {
+
+        if (node) {
+            control.addNode(new Node(x, y));
+        } else if (fire) {
+            control.addNode(new Node(x, y, Node.FIRE_DEFAULT_TEMPERATURE));
+        }
     }
 
     public void addEdge(Node currentNode) {
         double valuation = 0;
 
-        if (-1 == node1.getID()) {
+        if (null == node1) {
             node1 = currentNode;
-        } else if (-1 == node2.getID()) {
+        } else if (null == node2) {
             node2 = currentNode;
 
             if (plat) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
-            }
-            else if (escarpe) {
+            } else if (escarpe) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
-            }
-            else if (inonde) {
+            } else if (inonde) {
                 control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
             }
 
 
-            node1 = new Node();
-            node2 = new Node();
+            // initialization for add new edge
+            node1 = null;
+            node2 = null;
         }
     }
 
@@ -155,16 +156,14 @@ public class ControllerAction implements ActionListener {
         int _capacity = 10;
         TypeRecherche type = TypeRecherche.ASTAR;
 
-        if (-1 == node1.getID()) {
+        if (null == node1) {
             node1 = currentNode;
 
             if (terrain) {
                 control.addRobot(new AllTerrainRobot(type, _capacity));
-            }
-            else if (chenille) {
+            } else if (chenille) {
                 control.addRobot(new CaterpillarRobot(type, _capacity));
-            }
-            else if (pate) {
+            } else if (pate) {
                 control.addRobot(new LeggedRobot(type, _capacity));
             }
         }
@@ -175,6 +174,24 @@ public class ControllerAction implements ActionListener {
             if (n.getID() != currentNode && n.isCurrentNode()) {
                 n.setCurrentNode(false);
             }
+        }
+    }
+
+
+    private void saveFile() {
+        ChooseFile chooseFile = new ChooseFile("Sauvegarder");
+        File file = chooseFile.selectFile(this.path);
+        if (null != file) {
+            FileManager.saveFileManager(file, control.getGraph());
+        }
+    }
+
+    private void loadFile() {
+        ChooseFile chooseFile = new ChooseFile("Charger");
+        File file = chooseFile.selectFile(this.path);
+        if (null != file) {
+            control.setGraph(FileManager.loadFileManager(file));
+            control.displayGraphe();
         }
     }
 }
