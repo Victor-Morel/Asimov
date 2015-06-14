@@ -41,4 +41,5 @@ public abstract class AVEdge implements Observer {
         this.edge = edge;
         this.edge.addObserver(this);
     }
+
 }

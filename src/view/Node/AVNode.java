@@ -37,9 +37,4 @@ public abstract class AVNode implements Observer {
         }
     }
 
-
-    public void drawCurrent(Graphics graph) {
-        graph.setColor(Color.blue);
-        graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
-    }
 }

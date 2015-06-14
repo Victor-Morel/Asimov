@@ -29,8 +29,9 @@ public class SheetDisplay extends JPanel {
     }
 
 
-    public void reset() {
+    public void reset() throws Throwable {
         initialization();
+        repaint();
     }
 
     public void paintComponent(Graphics g) {

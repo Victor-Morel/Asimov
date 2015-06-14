@@ -16,14 +16,13 @@ import view.Node.VNodeFire;
 import view.Node.VNodeNormal;
 import view.Robot.AVRobot;
 import view.Robot.VRobotAllTerain;
-import view.SheetDisplay;
 
 public class Controller {
 
     private String path;
     private ControllerAction controlAction;
     private ControllerMouse controlMouse;
-    private SheetDisplay sheetDisplay;
+
     private Graph graph;
     private GUI window;
     private Manager manager;
@@ -33,11 +32,7 @@ public class Controller {
         this.controlAction = new ControllerAction(path, this);
         this.controlMouse = new ControllerMouse(controlAction);
 
-        this.sheetDisplay = new SheetDisplay(controlMouse);
-
         this.setGraph(new Graph());
-
-
         this.manager = new Manager();
 
         window = new GUI(controlAction, controlMouse);
@@ -48,11 +43,6 @@ public class Controller {
         manager.run();
 
     }
-
-    public void draw() {
-
-    }
-
 
     public void setGraph(Graph graph) {
         this.graph = graph;
@@ -128,7 +118,7 @@ public class Controller {
     }
 
     public void addRobot(Robot robot) {
-        AVRobot viewRobot = null;
+        AVRobot viewRobot;
 
         //add Robot to manager
         //manager.addRobot(robot);
@@ -146,9 +136,9 @@ public class Controller {
     public void reset() {
         try {
             getGraph().finalize();
+            window.getSheetDisplay().reset();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        sheetDisplay.reset();
     }
 }

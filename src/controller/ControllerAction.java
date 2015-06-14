@@ -71,6 +71,7 @@ public class ControllerAction implements ActionListener {
                 switch (jdialog.getN()) {
                     case 0:
                         saveFile();
+                        control.reset();
                         loadFile();
                         break;
                     case 1:
