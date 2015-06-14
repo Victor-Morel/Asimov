@@ -1,8 +1,10 @@
 package utils;
 
-import model.graph.*;
+import model.graph.Edge;
+import model.graph.Graph;
+import model.graph.TypeEdge;
+import model.graph.TypeNode;
 import org.w3c.dom.*;
-import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -115,9 +117,14 @@ public class FileManager {
                 y.setValue(String.valueOf(n.getY()));
                 staff.setAttributeNode(y);
 
-/*                Attr type = doc.createAttribute("type");
-                type.setValue(String.valueOf(n.getType()));
-                staff.setAttributeNode(type);*/
+                Attr type = doc.createAttribute("type");
+                if (n.getIntensity() > 0) {
+                    type.setValue(TypeNode.INCENDIE.getText());
+                } else {
+                    type.setValue(TypeNode.NORMAL.getText());
+                }
+
+                staff.setAttributeNode(type);
 
             }
 
