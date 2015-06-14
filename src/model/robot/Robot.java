@@ -8,9 +8,7 @@ import model.research.Strategy;
 
 import java.util.Observable;
 
-/**
- * Created by victor on 20/05/15.
- */
+
 public abstract class Robot extends Observable {
 
     public int getId() {

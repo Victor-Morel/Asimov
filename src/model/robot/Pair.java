@@ -1,8 +1,6 @@
 package model.robot;
 
-/**
- * Created by victor on 11/06/15.
- */
+
 public class Pair<A, B> {
     private A first;
     private B second;
