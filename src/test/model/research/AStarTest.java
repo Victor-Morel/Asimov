@@ -92,10 +92,12 @@ public class AStarTest {
         gRes.addEdge(e3);
         gRes.addEdge(e4);
         Strategy s = new AStar(g,n0,n4);
-        System.out.println(g);
-        System.out.println(gRes);
-        System.out.println(s.getResultGraph());
         assertTrue(gRes.equals(s.getResultGraph()));
+
+        s = new AStar(g,n2,n5);
+        assertFalse(gRes.equals(s.getResultGraph()));
+
+
     }
 
 }

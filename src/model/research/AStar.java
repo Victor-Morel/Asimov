@@ -75,7 +75,7 @@ public class AStar extends Strategy {
                     bestSn = sn;
                 }
             }
-            System.out.println("BestNode : " + bestSn);
+            //System.out.println("BestNode : " + bestSn);
             openedList.remove(bestSn);
             closedList.add(bestSn);
 

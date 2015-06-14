@@ -77,7 +77,6 @@ public class GraphTest {
 
     @Test
     public void testFindNode() throws Exception {
-        System.out.println(ln.get(2).getID());
         assertTrue(g.findNode(49).equals(ln.get(0)));
         assertTrue(g.findNode(54).equals(ln.get(5)));
         assertFalse(g.findNode(54).equals(ln.get(2)));
