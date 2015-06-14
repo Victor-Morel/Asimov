@@ -21,18 +21,25 @@ public class Dijkstra extends Strategy {
     public Dijkstra(Graph g, Node n_start, Node n_dest) {
         this.destination = n_dest;
         this.source = n_start;
+        this.graph = g;
         this.d = new HashMap<Node,Double>();
         this.viewed = new ArrayList<Node>();
         this.path = new ArrayList<Edge>();
-        Node currentNode = n_start;
+        this.generateBestPath();
+    }
 
-        initialization(g,n_start);
-        viewed.add(n_start);
-        for(Node n : graph.getNextNodes(n_start)) {
-            updateDistance(g, n_start, n);
+
+    @Override
+    public void generateBestPath() {
+        Node currentNode = source;
+
+        initialization(graph,source);
+        viewed.add(source);
+        for(Node n : graph.getNextNodes(source)) {
+            updateDistance(graph, source, n);
         }
 
-        while(!currentNode.equals(n_dest)) {
+        while(!currentNode.equals(destination)) {
             Double minDist = d.get(0);
             Node bestNode = null;
             for (Node keyNode : d.keySet()) {
@@ -42,11 +49,11 @@ public class Dijkstra extends Strategy {
                 }
             }
             if(null != bestNode) {
-                path.add(g.getEdge(currentNode,bestNode));
+                path.add(graph.getEdge(currentNode, bestNode));
                 currentNode = bestNode;
                 viewed.add(currentNode);
                 for(Node nextNode : graph.getNextNodes(currentNode)) {
-                    updateDistance(g, currentNode, nextNode);
+                    updateDistance(graph, currentNode, nextNode);
                 }
             }
             else {
@@ -55,7 +62,7 @@ public class Dijkstra extends Strategy {
         }
 
         this.resultGraph = new Graph();
-        while(!currentNode.equals(n_start)) {
+        while(!currentNode.equals(source)) {
             Double bestValue = Double.MAX_VALUE;
             Edge bestEdge = null;
             for (Edge e : path) {
@@ -64,8 +71,8 @@ public class Dijkstra extends Strategy {
                     bestEdge = e;
                 }
             }
-            this.resultGraph.addNode(currentNode);
-            this.resultGraph.addEdge(bestEdge);
+            this.getResultGraph().addNode(currentNode);
+            this.getResultGraph().addEdge(bestEdge);
             currentNode = bestEdge.getSource();
         }
     }

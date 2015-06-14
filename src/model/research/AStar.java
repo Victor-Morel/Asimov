@@ -18,15 +18,20 @@ public class AStar extends Strategy {
     public AStar(Graph g, Node n_start, Node n_dest) {
         this.destination = n_dest;
         this.source = n_start;
-        openedList = new ArrayList<SearchNode>();
-        closedList = new ArrayList<SearchNode>();
+        this.graph = g;
+        this.openedList = new ArrayList<SearchNode>();
+        this.closedList = new ArrayList<SearchNode>();
+        this.generateBestPath();
+    }
 
-        SearchNode searchNodeStart = new SearchNode(n_start,null,0);
+    @Override
+    public void generateBestPath() {
+        SearchNode searchNodeStart = new SearchNode(source,null,0);
         SearchNode bestSn = null;
 
         do {
-            for(Node n : g.getNextNodes(searchNodeStart.getNode())) {
-                SearchNode sn = new SearchNode(n,searchNodeStart,EuclidianDistance.getDistance(n,n_dest));
+            for(Node n : graph.getNextNodes(searchNodeStart.getNode())) {
+                SearchNode sn = new SearchNode(n,searchNodeStart,EuclidianDistance.getDistance(n,destination));
                 int id = -1;
                 for(int i = 0; i < closedList.size(); i++) {
                     if(closedList.get(i).getNode().equals(sn.getNode())) {
@@ -67,17 +72,17 @@ public class AStar extends Strategy {
             openedList.remove(bestSn);
             closedList.add(bestSn);
 
-        }while(bestSn.getNode().equals(n_dest));
+        }while(bestSn.getNode().equals(destination));
 
-        if(bestSn.getNode().equals(n_dest)) {
+        if(null != bestSn && bestSn.getNode().equals(destination)) {
             this.resultGraph = new Graph();
-            resultGraph.addNode(bestSn.getNode());
+            getResultGraph().addNode(bestSn.getNode());
             SearchNode currentNode = bestSn;
             while(null != currentNode.getParent()) {
-                resultGraph.addEdge(g.getEdge(currentNode.getNode(),currentNode.getParent().getNode()));
-                resultGraph.addNode(currentNode.getNode());
+                getResultGraph().addEdge(graph.getEdge(currentNode.getNode(), currentNode.getParent().getNode()));
+                getResultGraph().addNode(currentNode.getNode());
             }
-            resultGraph.addNode(currentNode.getNode());
+            getResultGraph().addNode(currentNode.getNode());
         }
     }
 

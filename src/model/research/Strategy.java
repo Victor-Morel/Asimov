@@ -16,10 +16,15 @@ public abstract class Strategy {
 
 	public int getDistanceValue() {
 		distanceValue = 0;
-		for(Edge e : resultGraph.getAllEdges()){
+		for(Edge e : getResultGraph().getAllEdges()){
 			distanceValue+=e.getValuation();
 		}
 		return distanceValue;
 	}
 
+	public abstract void generateBestPath();
+
+	public Graph getResultGraph() {
+		return resultGraph;
+	}
 }
