@@ -13,9 +13,9 @@ import java.awt.event.ActionListener;
 public class ControllerActionRobot implements ActionListener {
 
     protected Boolean terrain, patte, chenille;
-    private ControllerAction control;
+    private Controller control;
 
-    public ControllerActionRobot(ControllerAction control) {
+    public ControllerActionRobot(Controller control) {
         this.control = control;
         this.initialization();
     }

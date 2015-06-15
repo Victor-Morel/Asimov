@@ -11,9 +11,9 @@ import java.io.File;
 
 public class ControllerActionWindows implements ActionListener {
 
-    private ControllerAction control;
+    private Controller control;
 
-    public ControllerActionWindows(ControllerAction control) {
+    public ControllerActionWindows(Controller control) {
         this.control = control;
     }
 
@@ -92,6 +92,8 @@ public class ControllerActionWindows implements ActionListener {
             }
         } else if (e.getActionCommand().matches("Lancer Simulation")) {
             control.launchSimulation();
+        } else if (e.getActionCommand().matches("Stop Simulation")){
+
         }
     }
 

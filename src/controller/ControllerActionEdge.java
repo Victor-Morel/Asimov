@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
 public class ControllerActionEdge implements ActionListener {
 
     protected boolean plat, escarpe, inonde;
-    private ControllerAction control;
+    private Controller control;
 
-    public ControllerActionEdge(ControllerAction controller) {
+    public ControllerActionEdge(Controller controller) {
         this.control = controller;
         this.initialization();
     }

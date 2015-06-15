@@ -1,53 +1,138 @@
 package controller;
 
+import model.graph.Edge;
 import model.graph.Graph;
+import model.graph.Node;
+import model.graph.TypeEdge;
 import model.robot.Manager;
 import model.robot.Simulation;
+import view.Edge.AVEdge;
+import view.Edge.VEdgeEscarpe;
+import view.Edge.VEdgeInonde;
+import view.Edge.VEdgePlat;
+import view.GUI;
+import view.Node.AVNode;
+import view.Node.VNodeFire;
+import view.Node.VNodeNormal;
 
 public class Controller {
 
-    private ControllerAction controlAction;
     private Graph graph;
     private Manager manager;
 
+    private ControllerActionNode controlNode;
+    private ControllerActionEdge controlEdge;
+    private ControllerActionRobot controlRobot;
+    private ControllerActionWindows controlWindows;
+
+    private ControllerMouse controlMouse;
+
+    private GUI window;
+
+
     /**
-     * Construit le controlleur
+     * Consctruit un controlleur des actions
      */
     public Controller() {
-        this.controlAction = new ControllerAction(this);
+        super();
+        this.controlNode = new ControllerActionNode(this);
+        this.controlEdge = new ControllerActionEdge(this);
+        this.controlRobot = new ControllerActionRobot(this);
+        this.controlWindows = new ControllerActionWindows(this);
+
+        this.controlMouse = new ControllerMouse(this);
+        window = new GUI(this, controlMouse);
+
         this.setGraph(new Graph());
         this.manager = new Manager();
     }
 
+
     /**
-     * Lance la simulation
+     * Redessiner les elements
      */
-    public void launchSimulation(){
+    public void repaint() {
+        window.getSheetDisplay().repaint();
+    }
+
+
+    /**
+     * Réinitialiser le programme
+     */
+    public void reset() {
+        try {
+            getGraph().finalize();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        window.getSheetDisplay().reset();
+    }
+
+
+    /**
+     * Affiche un Graphe
+     */
+    protected void displayGraphe() {
+        AVNode viewNode;
+        for (Node node : getGraph().getAllNodes()) {
+            if (node.getIntensity() == 0)
+                viewNode = new VNodeNormal(window.getSheetDisplay(), node);
+            else
+                viewNode = new VNodeFire(window.getSheetDisplay(), node);
+            window.getSheetDisplay().addNode(viewNode);
+        }
+        AVEdge viewEdge = null;
+        for (Edge edge : getGraph().getAllEdges()) {
+            if (edge.getType().equals(TypeEdge.PLAT))
+                viewEdge = new VEdgePlat(edge);
+            if (edge.getType().equals(TypeEdge.ESCARPE))
+                viewEdge = new VEdgeEscarpe(edge);
+            if (edge.getType().equals(TypeEdge.INONDE))
+                viewEdge = new VEdgeInonde(edge);
+            window.getSheetDisplay().addEdge(viewEdge);
+        }
+        this.repaint();
+    }
+
+    public void launchSimulation() {
         manager.setGraph(graph);
         Simulation simulation = new Simulation(manager, graph);
         new Thread(simulation).start();
+
+
     }
 
-
-
-
-    public Manager getManager() {
-        return manager;
-    }
-
-    /**
-     * Muter le Graph
-     * @param graph
-     */
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
 
-    /**
-     * Acceder au graph
-     * @return Graph
-     */
+    public ControllerActionNode getControlNode() {
+        return controlNode;
+    }
+
+    public ControllerActionEdge getControlEdge() {
+        return controlEdge;
+    }
+
+    public ControllerActionWindows getControlWindows() {
+        return controlWindows;
+    }
+
+    public ControllerActionRobot getControlRobot() {
+        return controlRobot;
+    }
+
     public Graph getGraph() {
         return graph;
     }
+
+    public GUI getWindow() {
+        return window;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
 }
+
+

@@ -1,7 +1,7 @@
 package view;
 
 
-import controller.ControllerAction;
+import controller.Controller;
 import controller.ControllerMouse;
 
 import javax.swing.*;
@@ -37,7 +37,7 @@ public class GUI extends JFrame {
 	 * @param controlAction Controlleur des actions
 	 * @param controlMouse Controlleur de la souris
 	 */
-	public GUI(ControllerAction controlAction, ControllerMouse controlMouse) {
+	public GUI(Controller controlAction, ControllerMouse controlMouse) {
 
 		super("Asimov");
 
@@ -57,12 +57,14 @@ public class GUI extends JFrame {
 		JMenuItem LoadXml = new JMenuItem("Charger XML");
 		JMenuItem LoadImage = new JMenuItem("Charger Image");
 		JMenuItem RunAlgo = new JMenuItem("Lancer Simulation");
+		JMenuItem StopAlgo = new JMenuItem("Stop Simulation");
 
 		file.add(New);
 		file.add(Save);
 		file.add(LoadXml);
 		file.add(LoadImage);
 		run.add(RunAlgo);
+		run.add(StopAlgo);
 
 
 		addNodeFire.addActionListener(controlAction.getControlNode());
@@ -76,6 +78,7 @@ public class GUI extends JFrame {
 		addRobotPates.addActionListener(controlAction.getControlRobot());
 		addRobotToutTerrain.addActionListener(controlAction.getControlRobot());
 
+		StopAlgo.addActionListener(controlAction.getControlWindows());
 		RunAlgo.addActionListener(controlAction.getControlWindows());
 		Save.addActionListener(controlAction.getControlWindows());
 		New.addActionListener(controlAction.getControlWindows());
