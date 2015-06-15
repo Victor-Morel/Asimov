@@ -11,6 +11,11 @@ public class Node extends Observable {
     public static final int FIRE_DEFAULT_TEMPERATURE = 100;
 
     /**
+     * Constante correspondant à la probabilité qu'un noeud normal s'enflamme de lui-même
+     */
+    public static final double IGNITE_PROBABILITY = 0.01;
+
+    /**
      * plus grand id parmi tous les ids des noeuds instanciés
      */
     private static int maxId;
