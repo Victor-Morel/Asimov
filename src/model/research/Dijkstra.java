@@ -40,10 +40,10 @@ public class Dijkstra extends Strategy {
         }
 
         while(!currentNode.equals(destination)) {
-            Double minDist = d.get(0);
+            Double minDist = Double.MAX_VALUE;
             Node bestNode = null;
             for (Node keyNode : d.keySet()) {
-                if(d.get(keyNode) <= minDist && !viewed.contains(keyNode)) {
+                if(graph.hasEdge(keyNode,currentNode) && d.get(keyNode) <= minDist && !viewed.contains(keyNode)) {
                     minDist = d.get(keyNode);
                     bestNode = keyNode;
                 }
@@ -57,23 +57,16 @@ public class Dijkstra extends Strategy {
                 }
             }
             else {
-                System.out.println("Erreur dijkstra");
+                this.resultGraph = new Graph();
+                return;
             }
         }
 
         this.resultGraph = new Graph();
-        while(!currentNode.equals(source)) {
-            Double bestValue = Double.MAX_VALUE;
-            Edge bestEdge = null;
-            for (Edge e : path) {
-                if (e.getDestination().equals(currentNode) && e.getValuation() < bestValue) {
-                    bestValue = e.getValuation();
-                    bestEdge = e;
-                }
-            }
-            this.getResultGraph().addNode(currentNode);
-            this.getResultGraph().addEdge(bestEdge);
-            currentNode = bestEdge.getSource();
+        for(Edge e : path) {
+            this.resultGraph.addNode(e.getSource());
+            this.resultGraph.addNode(e.getDestination());
+            this.resultGraph.addEdge(e);
         }
     }
 
@@ -91,16 +84,5 @@ public class Dijkstra extends Strategy {
                 d.put(n2, d.get(n1) + g.getEdge(n1, n2).getValuation());
             }
         }
-    }
-
-    public Edge extract_min(List<Edge> p) {
-        Edge minEdge = p.get(0);
-        for(Edge e : p) {
-            if(e.getValuation() < minEdge.getValuation()) {
-                minEdge = e;
-            }
-        }
-        p.remove(minEdge);
-        return minEdge;
     }
 }
