@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class ControllerActionRobot implements ActionListener {
 
-    protected Boolean terrain, patte, chenille;
+    protected Boolean allTerrain, leg, caterpillar;
     private Controller control;
 
     public ControllerActionRobot(Controller control) {
@@ -21,9 +21,9 @@ public class ControllerActionRobot implements ActionListener {
     }
 
     public void initialization() {
-        terrain = false;
-        patte = false;
-        chenille = false;
+        allTerrain = false;
+        leg = false;
+        caterpillar = false;
     }
 
     /**
@@ -39,13 +39,13 @@ public class ControllerActionRobot implements ActionListener {
 
         viewRobot = null;
         bot = null;
-        if (terrain) {
+        if (allTerrain) {
             bot = new AllTerrainRobot( _capacity, currentNode);
             viewRobot = new VRobotAllTerain(control.getWindow().getSheetDisplay(), bot);
-        } else if (chenille) {
+        } else if (caterpillar) {
             bot = new CaterpillarRobot(_capacity, currentNode);
             viewRobot = new VRobotChenille(control.getWindow().getSheetDisplay(), bot);
-        } else if (patte) {
+        } else if (leg) {
             bot = new LeggedRobot( _capacity, currentNode);
             viewRobot = new VRobotPate(control.getWindow().getSheetDisplay(), bot);
         }
@@ -62,13 +62,13 @@ public class ControllerActionRobot implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().matches("Tout Terrain")) {
             this.initialization();
-            terrain = true;
+            allTerrain = true;
         } else if (e.getActionCommand().matches("Chenille")) {
             this.initialization();
-            chenille = true;
+            caterpillar = true;
         } else if (e.getActionCommand().matches("Pattes")) {
             this.initialization();
-            patte = true;
+            leg = true;
         }
     }
 }

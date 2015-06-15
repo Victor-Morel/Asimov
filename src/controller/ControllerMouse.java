@@ -108,9 +108,9 @@ public class ControllerMouse implements MouseListener {
      * @return si button robot actionner VRAI sinon FAUX
      */
     private boolean checkAddRobot() {
-        return controlAction.getControlRobot().patte ||
-               controlAction.getControlRobot().chenille ||
-               controlAction.getControlRobot().terrain;
+        return controlAction.getControlRobot().leg ||
+               controlAction.getControlRobot().caterpillar ||
+               controlAction.getControlRobot().allTerrain;
     }
 
 

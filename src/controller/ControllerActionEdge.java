@@ -25,7 +25,6 @@ public class ControllerActionEdge implements ActionListener {
         plat = false;
         escarpe = false;
         inonde = false;
-
     }
 
     /**
