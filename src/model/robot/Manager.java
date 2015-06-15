@@ -12,28 +12,31 @@ import java.util.List;
  */
 public class Manager implements Runnable {
 
-    private List<Robot> bots;
-    private Graph g;
+    public List<Robot> bots;
+    private Graph graph;
     public HashMap<Integer, HashMap<Integer, Double>> listDistance = new HashMap<>();
     public HashMap<Integer, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(); //key idFireNode, value : idBot/distance
 
-    public Manager(){
+    public Manager() {
         this.bots = new ArrayList<>();
         this.bestBotForFire = new HashMap<>();
-        this.g = new Graph();
+        this.graph = new Graph();
     }
 
     public void getBestDistance() {
-        for (Node inFlames : g.getAllFireNodes()) {
+        for (Node inFlames : graph.getAllFireNodes()) {
             for (Robot bot : bots) {
                 if (!bot.isBusy()) {
-                    if ((bot.getDistance(inFlames) < bestBotForFire.get(inFlames.getID()).getSecond())
-                            || ((bestBotForFire.get(inFlames.getID()).getSecond()) == null)) {
+                    if (bestBotForFire.get(inFlames.getID()) != null) {
+                        if (bot.getDistance(inFlames) < bestBotForFire.get(inFlames.getID()).getSecond()) {
+                            Pair<Robot, Integer> best = new Pair<>(bot, bot.getDistance(inFlames));
+                            bestBotForFire.put(inFlames.getID(), best);
+                        }
+                    } else {
                         Pair<Robot, Integer> best = new Pair<>(bot, bot.getDistance(inFlames));
                         bestBotForFire.put(inFlames.getID(), best);
                     }
                 }
-
             }
         }
     }
@@ -47,21 +50,32 @@ public class Manager implements Runnable {
     }
 
     public void chooseRobot() {//décide quel robot fait quoi
-        for (Node inFlames : g.getAllFireNodes()) {
-            setAction(bestBotForFire.get(inFlames.getID()).getFirst(), inFlames);
+        for (Node inFlames : graph.getAllFireNodes()) {
+            getBestDistance(); //pas optimal du tout pour l'instant, comme la méthode ne prends en compte que le meilleur robot, ça loupe des noeufs enflammés
+            if(!bestBotForFire.get(inFlames.getID()).getFirst().isBusy()){
+                setAction(bestBotForFire.get(inFlames.getID()).getFirst(), inFlames);
+                bestBotForFire.get(inFlames.getID()).getFirst().setBusy(true);
+            }
         }
     }
 
 
     //à appeler pour que le manager gère les robots
     public void decide() {
-        getBestDistance();
         chooseRobot();
     }
 
     @Override
     public void run() {
         decide();
+    }
+
+    public Graph getGraph() {
+        return graph;
+    }
+
+    public void setGraph(Graph graph) {
+        this.graph = graph;
     }
 }
 

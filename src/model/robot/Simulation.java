@@ -26,6 +26,7 @@ public class Simulation extends Observable implements Runnable {
                 Thread.sleep(tempsPause);
                 compteurTemps += tempsPause;
                 System.out.println("test");
+                manager.decide();
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

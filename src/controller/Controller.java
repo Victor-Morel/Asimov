@@ -147,6 +147,7 @@ public class Controller {
      */
 
     public void launchSimulation(){
+        manager.setGraph(graph);
         Simulation simulation = new Simulation(manager, graph);
         new Thread(simulation).start();
     }
@@ -158,9 +159,8 @@ public class Controller {
     public void addRobot(Robot robot) {
         AVRobot viewRobot;
 
-        //add Robot to manager
-        //manager.addRobot(robot);
-
+      //  add Robot to manager
+        manager.bots.add(robot);
 
         viewRobot = new VRobotAllTerain(window.getSheetDisplay(), robot);
         //viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
