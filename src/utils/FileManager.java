@@ -12,6 +12,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 
 
@@ -56,9 +57,9 @@ public class FileManager {
                     y = Double.parseDouble(eElement.getAttribute("y"));
                     typeNode = TypeNode.fromString(eElement.getAttribute("type"));
                     if(typeNode.equals(TypeNode.INCENDIE))
-                        node = new model.graph.Node(x, y, model.graph.Node.FIRE_DEFAULT_TEMPERATURE);
+                        node = new model.graph.Node(id, x, y, model.graph.Node.FIRE_DEFAULT_TEMPERATURE);
                     else
-                        node = new model.graph.Node(x, y);
+                        node = new model.graph.Node(id, x, y);
                     graph.addNode(node);
                 }
             }
@@ -96,9 +97,10 @@ public class FileManager {
 
             // root elements
             Document doc = docBuilder.newDocument();
+
+            doc.createTextNode(System.getProperty("line.separator"));
             Element rootElement = doc.createElement("osm");
             doc.appendChild(rootElement);
-
             for (model.graph.Node n : g.getAllNodes()) {
                 // staff elements
                 Element staff = doc.createElement("node");
@@ -149,14 +151,12 @@ public class FileManager {
             }
 
             // write the content into xml file
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
+            Transformer transformer = TransformerFactory.newInstance().
+                    newTransformer( new StreamSource("src/resource/style.xsl"));
+
             StreamResult result = new StreamResult(file);
-
-
+            DOMSource source = new DOMSource(doc);
             transformer.transform(source, result);
-
 
         } catch (Exception pce) {
             pce.printStackTrace();

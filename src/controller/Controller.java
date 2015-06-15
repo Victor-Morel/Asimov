@@ -144,15 +144,6 @@ public class Controller {
     }
 
     /**
-     * Lance la simulation
-     */
-
-    public void launchSimulation(){
-        Simulation simulation = new Simulation(manager, graph);
-        new Thread(simulation).start();
-    }
-
-    /**
      * Ajouter un robot
      * @param robot
      */
@@ -173,7 +164,18 @@ public class Controller {
     }
 
     /**
-     * R�initialiser le programme
+     * Lance la simulation
+     */
+
+    public void launchSimulation(){
+        Simulation simulation = new Simulation(manager, graph);
+        new Thread(simulation).start();
+    }
+
+
+
+    /**
+     * Reinitialiser le programme
      */
     public void reset() {
         try {
