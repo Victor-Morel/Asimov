@@ -10,9 +10,6 @@ import view.Robot.VRobotPate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by TD on 6/15/2015.
- */
 public class ControllerActionRobot implements ActionListener {
 
     protected Boolean terrain, patte, chenille;

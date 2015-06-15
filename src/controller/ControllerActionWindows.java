@@ -9,9 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-/**
- * Created by TD on 6/15/2015.
- */
 public class ControllerActionWindows implements ActionListener {
 
     private ControllerAction control;
