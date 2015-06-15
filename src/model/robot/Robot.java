@@ -43,7 +43,7 @@ public abstract class Robot extends Observable {
 
     private TypeRecherche type;
     private int id;
-    private Node node;
+    protected Node node;
     private boolean busy;
     private double capacity;
     private Strategy strat;

@@ -3,10 +3,7 @@ package controller;
 import model.graph.Edge;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.robot.AllTerrainRobot;
-import model.robot.CaterpillarRobot;
-import model.robot.LeggedRobot;
-import model.robot.TypeRecherche;
+import model.robot.*;
 import utils.FileManager;
 import view.Dialog.ChooseFile;
 import view.Dialog.JDialog;
@@ -207,13 +204,15 @@ public class ControllerAction implements ActionListener {
      */
     public void addRobot(Node currentNode) {
         int _capacity = 10;
+        Robot bot;
         TypeRecherche type = TypeRecherche.ASTAR;
         if (terrain) {
-            control.addRobot(new AllTerrainRobot(type, _capacity, control.getGraph()));
+            bot = new AllTerrainRobot(type, _capacity, control.getGraph(), currentNode);
+            control.addRobot(bot);
         } else if (chenille) {
-            control.addRobot(new CaterpillarRobot(type, _capacity, control.getGraph()));
+            control.addRobot(new CaterpillarRobot(type, _capacity, control.getGraph(), currentNode));
         } else if (patte) {
-            control.addRobot(new LeggedRobot(type, _capacity, control.getGraph()));
+            control.addRobot(new LeggedRobot(type, _capacity, control.getGraph(), currentNode));
         }
     }
 
