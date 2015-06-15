@@ -29,6 +29,8 @@ public abstract class Robot extends Observable implements Runnable {
 
     public void setNode(Node node) {
         this.node = node;
+        setChanged();
+        notifyObservers();
     }
 
     public boolean isBusy() {
@@ -95,8 +97,7 @@ public abstract class Robot extends Observable implements Runnable {
         System.out.println("fin incendie");
         inFlames.setIntensity(0);
         this.setBusy(false);
-        setChanged();
-        notifyObservers();
+
     }
 
     public void goTo(Node inFlames, int distance){
@@ -115,12 +116,11 @@ public abstract class Robot extends Observable implements Runnable {
         }
         inFlames.setIntensity(0);
         this.setBusy(false);
-        setChanged();
-        notifyObservers();
-    }
 
+    }
 
     public ResearchType getType() {
         return researchType;
     }
+
 }
