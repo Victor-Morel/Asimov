@@ -130,19 +130,18 @@ public class FileManager {
 
             for (Edge e : g.getAllEdges()) {
                 // staff elements
-                Element staff = doc.createElement("robot");
+                Element staff = doc.createElement("edge");
                 rootElement.appendChild(staff);
 
                 // set attribute to staff element
                 Attr nd1 = doc.createAttribute("nd1");
                 nd1.setValue(String.valueOf(e.getSource().getID()));
-                System.out.println(String.valueOf(e.getSource().getID()));
                 staff.setAttributeNode(nd1);
 
                 Attr nd2 = doc.createAttribute("nd2");
                 nd2.setValue(String.valueOf(e.getDestination().getID()));
                 staff.setAttributeNode(nd2);
-                System.out.println(String.valueOf(e.getDestination().getID()));
+
 
                 Attr type = doc.createAttribute("type");
                 type.setValue(String.valueOf(e.getType()));
@@ -155,8 +154,6 @@ public class FileManager {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(file);
 
-            // Output to console for testing
-            // StreamResult result = new StreamResult(System.out);
 
             transformer.transform(source, result);
 
