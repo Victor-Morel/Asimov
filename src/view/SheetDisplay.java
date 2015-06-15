@@ -2,6 +2,7 @@ package view;
 
 import controller.ControllerMouse;
 import view.Edge.AVEdge;
+import view.Image.BackgroundImage;
 import view.Node.AVNode;
 import view.Robot.AVRobot;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 
 
 public class SheetDisplay extends JPanel {
+
+    private BackgroundImage image;
 
     /**
      * Liste des diffentes vues des noeuds
@@ -33,6 +36,7 @@ public class SheetDisplay extends JPanel {
         super();
         initialization();
         addMouseListener(controlMouse);
+        image = new BackgroundImage();
     }
 
     /**
@@ -59,6 +63,7 @@ public class SheetDisplay extends JPanel {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        image.drawImage(g);
         showNodes(g);
         showEdges(g);
         showRobots(g);
@@ -117,5 +122,8 @@ public class SheetDisplay extends JPanel {
     public void addRobot(AVRobot robot) {
         robots.add(robot);
     }
+
+
+
 
 }

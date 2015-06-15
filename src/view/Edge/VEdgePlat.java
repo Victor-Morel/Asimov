@@ -12,7 +12,7 @@ public class VEdgePlat extends AVEdge {
 
     @Override
     public void drawEdge(Graphics graph) {
-        graph.setColor(Color.white);
+        graph.setColor(Color.black);
         super.drawEdge(graph);
     }
 

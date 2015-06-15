@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 	 *  SheetDisplay
 	 */
 	private SheetDisplay sheetDisplay;
+
 	private JButton launchSimulation;
 
 	/**

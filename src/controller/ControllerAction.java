@@ -1,12 +1,9 @@
 package controller;
 
-import model.graph.Edge;
-import model.graph.Node;
-import model.graph.TypeEdge;
+import model.graph.*;
 import model.robot.*;
 import utils.FileManager;
-import view.Dialog.ChooseFile;
-import view.Dialog.JDialog;
+import view.Dialog.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +13,7 @@ import java.io.File;
 public class ControllerAction implements ActionListener {
 
     /**
-     * Chemin pour acceder au fichier data
-     */
-    String path;
-    /**
-     * Boolean pour savoir quelle bouton � �t� selectionner
+     * Boolean pour savoir quelle bouton a ete selectionner
      */
     Boolean node, fire, plat, inonde, escarpe,
             terrain, patte, chenille;
@@ -32,13 +25,10 @@ public class ControllerAction implements ActionListener {
 
     /**
      * Consctruit un controlleur des actions
-     *
-     * @param _path
      * @param control
      */
-    public ControllerAction(String _path, Controller control) {
+    public ControllerAction(Controller control) {
         super();
-        this.path = _path;
         this.control = control;
         initialization();
     }
@@ -234,7 +224,7 @@ public class ControllerAction implements ActionListener {
      * Save File
      */
     private void saveFile() {
-        ChooseFile chooseFile = new ChooseFile("Sauvegarder", this.path);
+        ChooseFileXml chooseFile = new ChooseFileXml("Sauvegarder");
         File file = chooseFile.selectFile();
         if (null != file) {
             FileManager.saveFileManager(file, control.getGraph());
@@ -245,7 +235,7 @@ public class ControllerAction implements ActionListener {
      * Load File XML
      */
     private void loadFileXML() {
-        ChooseFile chooseFile = new ChooseFile("Charger", this.path);
+        ChooseFileXml chooseFile = new ChooseFileXml("Charger");
         File file = chooseFile.selectFile();
         if (null != file) {
             control.setGraph(FileManager.loadFileManager(file));
