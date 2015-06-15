@@ -1,5 +1,7 @@
 package model.graph;
 
+import utils.EuclidianDistance;
+
 public class Edge {
 
 
@@ -26,22 +28,32 @@ public class Edge {
     /**
      * Construit une arête entre 2 noeuds, avec un poids et un type
      *
-     * @param _v1 premier noeud de l'arête
-     * @param _v2 deuxième noeud de l'arête
+     * @param _n1 premier noeud de l'arête
+     * @param _n2 deuxième noeud de l'arête
      * @param _valuation poids de l'arête
      * @param type type d'arête
      */
-    public Edge(Node _v1, Node _v2, double _valuation, TypeEdge type) {
+    public Edge(Node _n1, Node _n2, double _valuation, TypeEdge type) {
         this.valuation = _valuation;
-        this.source = _v1;
-        this.destination = _v2;
+        this.source = _n1;
+        this.destination = _n2;
         this.setType(type);
-
     }
 
     /**
-     * @return la valeur de l'arete
+     * Construit une arête entre 2 noeuds, avec un poids correspondant à la distance entre les noeuds, et un type
+     *
+     * @param _n1 premier noeud de l'arête
+     * @param _n2 deuxième noeud de l'arête
+     * @param type type d'arête
      */
+    public Edge(Node _n1, Node _n2, TypeEdge type) {
+        this(_n1, _n2, EuclidianDistance.getDistance(_n1, _n2), type);
+    }
+
+        /**
+         * @return la valeur de l'arete
+         */
     public double getValuation() {
         return valuation;
     }
