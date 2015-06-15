@@ -58,9 +58,10 @@ public abstract class Robot extends Observable implements Runnable {
         this.distance = _distance;
     }
 
-    public Robot (double _capacity){
+    public Robot (double _capacity, Node _node){
         this.setBusy(false);
         this.capacity = _capacity;
+        this.node = _node;
     }
 
     public int getDistance(Node inFlames) {
@@ -120,5 +121,7 @@ public abstract class Robot extends Observable implements Runnable {
     public ResearchType getType() {
         return researchType;
     }
+
+    public abstract void generateSubGraph(Graph _g);
 
 }

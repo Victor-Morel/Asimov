@@ -92,6 +92,9 @@ public class Manager implements Runnable {
 
     public void setGraph(Graph graph) {
         this.graph = graph;
+        for(Robot r : this.bots) {
+            r.generateSubGraph(graph);
+        }
     }
 }
 

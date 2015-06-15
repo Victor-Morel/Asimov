@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 public class ControllerMouse implements MouseListener {
 
 
-    private Controller2 controlAction;
+    private Controller controlAction;
     private Node node1, node2, currentNode;
 
     /**
@@ -16,7 +16,7 @@ public class ControllerMouse implements MouseListener {
      *
      * @param _controlAction controller des actions sur la fenetre
      */
-    public ControllerMouse(Controller2 _controlAction) {
+    public ControllerMouse(Controller _controlAction) {
         super();
         this.controlAction = _controlAction;
         initialization();

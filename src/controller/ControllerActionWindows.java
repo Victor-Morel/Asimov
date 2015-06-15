@@ -11,9 +11,9 @@ import java.io.File;
 
 public class ControllerActionWindows implements ActionListener {
 
-    private Controller2 control;
+    private Controller control;
 
-    public ControllerActionWindows(Controller2 control) {
+    public ControllerActionWindows(Controller control) {
         this.control = control;
     }
 
@@ -36,7 +36,7 @@ public class ControllerActionWindows implements ActionListener {
         File file = chooseFile.selectFile();
         if (null != file) {
             control.setGraph(FileManager.loadFileManager(file));
-            control.displayGraphe();
+            control.displayGraph();
         }
     }
 

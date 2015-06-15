@@ -13,7 +13,7 @@ import view.Edge.VEdgePlat;
 import view.GUI;
 import view.Node.VNode;
 
-public class Controller2 {
+public class Controller {
 
     private Graph graph;
     private Manager manager;
@@ -31,7 +31,7 @@ public class Controller2 {
     /**
      * Consctruit un controlleur des actions
      */
-    public Controller2() {
+    public Controller() {
         super();
         this.controlNode = new ControllerActionNode(this);
         this.controlEdge = new ControllerActionEdge(this);
@@ -70,7 +70,7 @@ public class Controller2 {
     /**
      * Affiche un Graphe
      */
-    protected void displayGraphe() {
+    protected void displayGraph() {
         VNode viewNode;
         for (Node node : getGraph().getAllNodes()) {
                 viewNode = new VNode(window.getSheetDisplay(), node);

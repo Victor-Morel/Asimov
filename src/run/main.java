@@ -1,12 +1,12 @@
 package run;
 
-import controller.Controller2;
+import controller.Controller;
 
 public class main {
 
     public static void main(String[] args) {
 
-        Controller2 controller = new Controller2();
+        Controller controller = new Controller();
     }
 
 }
