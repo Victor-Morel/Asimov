@@ -6,6 +6,7 @@ import model.graph.Node;
 import model.graph.TypeEdge;
 import model.robot.Manager;
 import model.robot.Robot;
+import model.robot.Simulation;
 import view.Edge.AVEdge;
 import view.Edge.VEdgeEscarpe;
 import view.Edge.VEdgeInonde;
@@ -143,6 +144,15 @@ public class Controller {
     }
 
     /**
+     * Lance la simulation
+     */
+
+    public void launchSimulation(){
+        Simulation simulation = new Simulation(manager, graph);
+        new Thread(simulation).start();
+    }
+
+    /**
      * Ajouter un robot
      * @param robot
      */
@@ -163,7 +173,7 @@ public class Controller {
     }
 
     /**
-     * Réinitialiser le programme
+     * Rï¿½initialiser le programme
      */
     public void reset() {
         try {

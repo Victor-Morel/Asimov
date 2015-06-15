@@ -23,10 +23,10 @@ public class ControllerAction implements ActionListener {
      */
     String path;
     /**
-     * Boolean pour savoir quelle bouton à été selectionner
+     * Boolean pour savoir quelle bouton ï¿½ ï¿½tï¿½ selectionner
      */
     Boolean node, fire, plat, inonde, escarpe,
-            terrain, pate, chenille;
+            terrain, patte, chenille;
 
     /**
      * Controlleur
@@ -35,6 +35,7 @@ public class ControllerAction implements ActionListener {
 
     /**
      * Consctruit un controlleur des actions
+     *
      * @param _path
      * @param control
      */
@@ -52,12 +53,13 @@ public class ControllerAction implements ActionListener {
         inonde = false;
         escarpe = false;
         terrain = false;
-        pate = false;
+        patte = false;
         chenille = false;
     }
 
     /**
      * Chaque action de chaque bouton
+     *
      * @param e
      */
     @Override
@@ -85,7 +87,7 @@ public class ControllerAction implements ActionListener {
             chenille = true;
         } else if (e.getActionCommand().matches("Pates")) {
             this.initialization();
-            pate = true;
+            patte = true;
         } else if (e.getActionCommand().matches("Save")) {
             saveFile();
         } else if (e.getActionCommand().matches("Load XML")) {
@@ -110,14 +112,17 @@ public class ControllerAction implements ActionListener {
             }
         } else if (e.getActionCommand().matches("Load IMAGE")) {
 
+        } else if (e.getActionCommand().matches("Lancer Simulation")) {
+            control.launchSimulation();
         }
 
     }
 
     /**
-     * Verifie si dans il existe un noeud au coordonnée x et y
-     * @param x coordonnée x de la souris
-     * @param y coordonnée y
+     * Verifie si dans il existe un noeud au coordonnï¿½e x et y
+     *
+     * @param x coordonnï¿½e x de la souris
+     * @param y coordonnï¿½e y
      * @return Node selectioner ou null
      */
     protected Node clickOnNode(int x, int y) {
@@ -135,6 +140,7 @@ public class ControllerAction implements ActionListener {
 
     /**
      * Affiche si nouveau noeud courant selectionner
+     *
      * @param x parametre x de la souris
      * @param y parametre y de la souris
      * @return nouveau noeud courant ou null
@@ -152,15 +158,15 @@ public class ControllerAction implements ActionListener {
     /**
      * Ajouter noeud
      *
-     * @param x cordonnée x du noeud
-     * @param y cordonnée y du noeud
+     * @param x cordonnï¿½e x du noeud
+     * @param y cordonnï¿½e y du noeud
      */
     public void addNode(int x, int y) {
 
         if (node) {
             control.addNode(new Node(x, y));
         } else if (fire) {
-            control.addNode(new Node(x, y, Node.FIRE_DEFAULT_TEMPERATURE));
+            control.addNode(new Node(x, y, (double) Node.FIRE_DEFAULT_TEMPERATURE));
         }
     }
 
@@ -184,17 +190,17 @@ public class ControllerAction implements ActionListener {
     /**
      * Ajouter un robot
      *
-     * @param currentNode noeud ou le robot sera instancié
+     * @param currentNode noeud ou le robot sera instanciï¿½
      */
     public void addRobot(Node currentNode) {
         int _capacity = 10;
         TypeRecherche type = TypeRecherche.ASTAR;
         if (terrain) {
-            control.addRobot(new AllTerrainRobot(type, _capacity));
+            control.addRobot(new AllTerrainRobot(type, _capacity, control.getGraph()));
         } else if (chenille) {
-            control.addRobot(new CaterpillarRobot(type, _capacity));
-        } else if (pate) {
-            control.addRobot(new LeggedRobot(type, _capacity));
+            control.addRobot(new CaterpillarRobot(type, _capacity, control.getGraph()));
+        } else if (patte) {
+            control.addRobot(new LeggedRobot(type, _capacity, control.getGraph()));
         }
     }
 

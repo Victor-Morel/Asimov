@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 	 *  SheetDisplay
 	 */
 	private SheetDisplay sheetDisplay;
+	private JButton launchSimulation;
 
 	/**
 	 * Controlleur de la souris
@@ -65,6 +66,7 @@ public class GUI extends JFrame {
 		addRobotChenille.addActionListener(controlAction);
 		addRobotPates.addActionListener(controlAction);
 		addRobotToutTerrain.addActionListener(controlAction);
+		launchSimulation.addActionListener(controlAction);
 		save.addActionListener(controlAction);
 		LoadXml.addActionListener(controlAction);
 		LoadImage.addActionListener(controlAction);

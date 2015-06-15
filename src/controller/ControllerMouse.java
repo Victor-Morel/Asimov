@@ -29,7 +29,7 @@ public class ControllerMouse implements MouseListener {
     }
 
     /**
-     * Si la souris a clické
+     * Si la souris a clickï¿½
      *
      * @param e
      */
@@ -84,7 +84,7 @@ public class ControllerMouse implements MouseListener {
     }
 
     /**
-     * Verifié si button Node ou Fire actionné
+     * Verifiï¿½ si button Node ou Fire actionnï¿½
      * @return si button noeud actionner VRAI sinon FAUX
      */
     private boolean checkAddNode() {
@@ -92,7 +92,7 @@ public class ControllerMouse implements MouseListener {
     }
 
     /**
-     * Verifié si button Escarpe ou Inonde ou Plat actionner
+     * Verifiï¿½ si button Escarpe ou Inonde ou Plat actionner
      * @return si button arc actionner VRAI sinon FAUX
      */
     private boolean checkAddEdge() {
@@ -100,11 +100,11 @@ public class ControllerMouse implements MouseListener {
     }
 
     /**
-     * Verifié si button Pate ou Chenille ou  Terrain actionner
+     * Verifiï¿½ si button Pate ou Chenille ou  Terrain actionner
      * @return si button robot actionner VRAI sinon FAUX
      */
     private boolean checkAddRobot() {
-        return controlAction.pate || controlAction.chenille || controlAction.terrain;
+        return controlAction.patte || controlAction.chenille || controlAction.terrain;
     }
 
 
