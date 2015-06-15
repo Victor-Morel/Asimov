@@ -1,5 +1,6 @@
 package utils;
 
+import controller.config;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.TypeEdge;
@@ -152,7 +153,7 @@ public class FileManager {
 
             // write the content into xml file
             Transformer transformer = TransformerFactory.newInstance().
-                    newTransformer( new StreamSource("src/resource/style.xsl"));
+                    newTransformer( new StreamSource(config.pathStyleXslt));
 
             StreamResult result = new StreamResult(file);
             DOMSource source = new DOMSource(doc);

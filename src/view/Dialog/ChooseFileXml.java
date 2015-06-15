@@ -1,20 +1,21 @@
 
 package view.Dialog;
 
+import controller.config;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
 
-public class ChooseFile extends JFileChooser {
+public class ChooseFileXml extends JFileChooser {
 
     /**
      * Construit un ChooseFile avec un nom et un chemin
      * @param _name nom de la windows
-     * @param _path chemin par default
      */
-    public ChooseFile(String _name, String _path) {
-        super(_path);
+    public ChooseFileXml(String _name) {
+        super(config.pathData);
         this.setDialogTitle(_name + " fichier");
     }
 

@@ -2,21 +2,18 @@ package view;
 
 import controller.ControllerMouse;
 import view.Edge.AVEdge;
+import view.Image.BackgroundImage;
 import view.Node.AVNode;
 import view.Robot.AVRobot;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class SheetDisplay extends JPanel {
 
-    private BufferedImage image;
+    private BackgroundImage image;
 
     /**
      * Liste des diffentes vues des noeuds
@@ -39,11 +36,7 @@ public class SheetDisplay extends JPanel {
         super();
         initialization();
         addMouseListener(controlMouse);
-        try {
-            image = ImageIO.read(new File("Data/mapsixieme.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        image = new BackgroundImage();
     }
 
     /**
@@ -70,7 +63,7 @@ public class SheetDisplay extends JPanel {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0,0,null);
+        image.drawImage(g);
         showNodes(g);
         showEdges(g);
         showRobots(g);

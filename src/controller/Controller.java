@@ -20,7 +20,6 @@ import view.Robot.VRobotAllTerain;
 
 public class Controller {
 
-    private String path;
     private ControllerAction controlAction;
     private ControllerMouse controlMouse;
 
@@ -30,11 +29,10 @@ public class Controller {
 
     /**
      * Construit le controlleur
-     * @param _path chemin vers le fichier data
      */
-    public Controller(String _path) {
-        this.path = _path;
-        this.controlAction = new ControllerAction(path, this);
+    public Controller() {
+
+        this.controlAction = new ControllerAction(this);
         this.controlMouse = new ControllerMouse(controlAction);
 
         this.setGraph(new Graph());
