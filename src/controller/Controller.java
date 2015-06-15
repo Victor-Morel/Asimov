@@ -1,63 +1,54 @@
 package controller;
 
-import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
-import model.graph.TypeEdge;
 import model.robot.Manager;
 import model.robot.Simulation;
-import view.Edge.AVEdge;
-import view.Edge.VEdgeEscarpe;
-import view.Edge.VEdgeInonde;
-import view.Edge.VEdgePlat;
-import view.GUI;
-import view.Node.AVNode;
-import view.Node.VNodeFire;
-import view.Node.VNodeNormal;
 
 public class Controller {
 
+    private ControllerAction controlAction;
     private Graph graph;
     private Manager manager;
 
-    private ControllerActionNode controlNode;
-    private ControllerActionEdge controlEdge;
-    private ControllerActionRobot controlRobot;
-    private ControllerActionWindows controlWindows;
-
-    private ControllerMouse controlMouse;
-
-    private GUI window;
-
-
     /**
-     * Consctruit un controlleur des actions
+     * Construit le controlleur
      */
     public Controller() {
-        super();
-        this.controlNode = new ControllerActionNode(this);
-        this.controlEdge = new ControllerActionEdge(this);
-        this.controlRobot = new ControllerActionRobot(this);
-        this.controlWindows = new ControllerActionWindows(this);
-
-        this.controlMouse = new ControllerMouse(this);
-        window = new GUI(this, controlMouse);
-
+        this.controlAction = new ControllerAction(this);
         this.setGraph(new Graph());
         this.manager = new Manager();
     }
 
 
+    public void run() {
+    }
+
+
+
+
+
     /**
-     * Redessiner les elements
+     *  ajouter un noeud
+     * @param node
      */
-    public void repaint() {
-        window.getSheetDisplay().repaint();
+    public void addNode(Node node) {
+        getGraph().addNode(node);
     }
 
 
     /**
-     * Réinitialiser le programme
+     * Lance la simulation
+     */
+    public void launchSimulation(){
+        manager.setGraph(graph);
+        Simulation simulation = new Simulation(manager, graph);
+        new Thread(simulation).start();
+    }
+
+
+    /**
+     * Reinitialiser le programme
      */
     public void reset() {
         try {
@@ -65,74 +56,26 @@ public class Controller {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        window.getSheetDisplay().reset();
     }
 
-
-    /**
-     * Affiche un Graphe
-     */
-    protected void displayGraphe() {
-        AVNode viewNode;
-        for (Node node : getGraph().getAllNodes()) {
-            if (node.getIntensity() == 0)
-                viewNode = new VNodeNormal(window.getSheetDisplay(), node);
-            else
-                viewNode = new VNodeFire(window.getSheetDisplay(), node);
-            window.getSheetDisplay().addNode(viewNode);
-        }
-        AVEdge viewEdge = null;
-        for (Edge edge : getGraph().getAllEdges()) {
-            if (edge.getType().equals(TypeEdge.PLAT))
-                viewEdge = new VEdgePlat(edge);
-            if (edge.getType().equals(TypeEdge.ESCARPE))
-                viewEdge = new VEdgeEscarpe(edge);
-            if (edge.getType().equals(TypeEdge.INONDE))
-                viewEdge = new VEdgeInonde(edge);
-            window.getSheetDisplay().addEdge(viewEdge);
-        }
-        this.repaint();
-    }
-
-    public void launchSimulation() {
-        manager.setGraph(graph);
-        Simulation simulation = new Simulation(manager, graph);
-        new Thread(simulation).start();
-
-
-    }
-
-    public void setGraph(Graph graph) {
-        this.graph = graph;
-    }
-
-    public ControllerActionNode getControlNode() {
-        return controlNode;
-    }
-
-    public ControllerActionEdge getControlEdge() {
-        return controlEdge;
-    }
-
-    public ControllerActionWindows getControlWindows() {
-        return controlWindows;
-    }
-
-    public ControllerActionRobot getControlRobot() {
-        return controlRobot;
-    }
-
-    public Graph getGraph() {
-        return graph;
-    }
-
-    public GUI getWindow() {
-        return window;
-    }
 
     public Manager getManager() {
         return manager;
     }
+
+    /**
+     * Muter le Graph
+     * @param graph
+     */
+    public void setGraph(Graph graph) {
+        this.graph = graph;
+    }
+
+    /**
+     * Acceder au graph
+     * @return Graph
+     */
+    public Graph getGraph() {
+        return graph;
+    }
 }
-
-

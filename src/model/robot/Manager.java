@@ -50,7 +50,8 @@ public class Manager implements Runnable {
     //c'est peut être plus judicieux de savoir pour chaque feu quel robot est le plus proche
 
     public void setAction(Robot bot, Node inFlames, int distance) { //envoie le robot sur le noeud
-        bot.goTo(inFlames, distance);
+        bot.setExtinction(inFlames, distance);
+        new Thread(bot).start();
     }
 
     public void chooseRobot() {//décide quel robot fait quoi

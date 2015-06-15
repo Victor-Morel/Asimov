@@ -9,7 +9,7 @@ import model.research.Strategy;
 import java.util.Observable;
 
 
-public abstract class Robot extends Observable {
+public abstract class Robot extends Observable implements Runnable {
 
     public int getId() {
         return id;
@@ -48,6 +48,13 @@ public abstract class Robot extends Observable {
     private double capacity;
     private Strategy strat;
     protected Graph g;
+    private Node inFlames;
+    private int distance;
+
+    public void setExtinction(Node _inFlames, int _distance){
+        this.inFlames = _inFlames;
+        this.distance = _distance;
+    }
 
     public Robot (ResearchType _type, double _capacity){
         this.researchType = _type;
@@ -71,6 +78,27 @@ public abstract class Robot extends Observable {
         inFlames.cooling(capacity);
     }
 
+    @Override
+    public void run(){
+        try {
+            Thread.sleep(distance * 20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("fin trajet");
+        this.setNode(inFlames);
+        try {
+            Thread.sleep((long) (this.capacity * inFlames.getIntensity()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("fin incendie");
+        inFlames.setIntensity(0);
+        this.setBusy(false);
+        setChanged();
+        notifyObservers();
+    }
+
     public void goTo(Node inFlames, int distance){
         //envoie un robot sur le noeud en question
         Thread waiting = new Thread();
@@ -81,7 +109,7 @@ public abstract class Robot extends Observable {
         }
         this.setNode(inFlames);
         try {
-            waiting.sleep((long) (this.capacity * 10 * inFlames.getIntensity()));
+            waiting.sleep((long) (this.capacity * inFlames.getIntensity()));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
