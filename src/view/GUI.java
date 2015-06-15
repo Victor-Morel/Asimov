@@ -27,8 +27,6 @@ public class GUI extends JFrame {
 	 */
 	private SheetDisplay sheetDisplay;
 
-	private JButton launchSimulation;
-
 	/**
 	 * Controlleur de la souris
 	 */
@@ -50,26 +48,35 @@ public class GUI extends JFrame {
 		setJMenuBar(menuBar);
 
 		JMenu file = new JMenu("File");
+		JMenu run = new JMenu("Run");
 		menuBar.add(file);
+		menuBar.add(run);
+
 		JMenuItem New = new JMenuItem("Nouveau");
 		JMenuItem Save = new JMenuItem("Sauvegarder");
 		JMenuItem LoadXml = new JMenuItem("Charger XML");
 		JMenuItem LoadImage = new JMenuItem("Charger Image");
+		JMenuItem RunAlgo = new JMenuItem("Lancer Simulation");
+
 		file.add(New);
 		file.add(Save);
 		file.add(LoadXml);
 		file.add(LoadImage);
+		run.add(RunAlgo);
 
 
 		addNodeFire.addActionListener(controlAction.getControlNode());
 		addNode.addActionListener(controlAction.getControlNode());
+
 		addEdgeEscarpe.addActionListener(controlAction.getControlEdge());
 		addEdgePlat.addActionListener(controlAction.getControlEdge());
 		addEdgeInonde.addActionListener(controlAction.getControlEdge());
+
 		addRobotChenille.addActionListener(controlAction.getControlRobot());
 		addRobotPates.addActionListener(controlAction.getControlRobot());
 		addRobotToutTerrain.addActionListener(controlAction.getControlRobot());
-		launchSimulation.addActionListener(controlAction.getControlWindows());
+
+		RunAlgo.addActionListener(controlAction.getControlWindows());
 		Save.addActionListener(controlAction.getControlWindows());
 		New.addActionListener(controlAction.getControlWindows());
 		LoadXml.addActionListener(controlAction.getControlWindows());
