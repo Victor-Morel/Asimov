@@ -35,7 +35,6 @@ public class ControllerActionEdge implements ActionListener {
      * @param node2 noeud 2 du nouveau arc
      */
     public void addEdge(Node node1, Node node2) {
-        double valuation = 0;
         Edge edge;
         AVEdge viewEdge;
 
@@ -43,16 +42,15 @@ public class ControllerActionEdge implements ActionListener {
         viewEdge = null;
 
         if (plat) {
-            edge = new Edge(node1, node2, valuation, TypeEdge.PLAT);
+            edge = new Edge(node1, node2,TypeEdge.PLAT);
             viewEdge = new VEdgePlat(edge);
         } else if (escarpe) {
-            edge = new Edge(node1, node2, valuation, TypeEdge.ESCARPE);
+            edge = new Edge(node1, node2, TypeEdge.ESCARPE);
             viewEdge = new VEdgeInonde(edge);
         } else if (inonde) {
-            edge = new Edge(node1, node2, valuation, TypeEdge.INONDE);
+            edge = new Edge(node1, node2, TypeEdge.INONDE);
             viewEdge = new VEdgeEscarpe(edge);
         }
-
 
         control.getGraph().addEdge(edge);
         control.getWindow().getSheetDisplay().addEdge(viewEdge);

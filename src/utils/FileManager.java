@@ -74,8 +74,7 @@ public class FileManager {
                     nd1 = graph.findNode(Integer.parseInt(eElement.getAttribute("nd1")));
                     nd2 = graph.findNode(Integer.parseInt(eElement.getAttribute("nd2")));
                     typeEdge = TypeEdge.fromString(eElement.getAttribute("type"));
-                    distance = EuclidianDistance.getDistance(nd1, nd2);
-                    graph.addEdge(new Edge(nd1, nd2, distance, typeEdge));
+                    graph.addEdge(new Edge(nd1, nd2,typeEdge));
                 }
             }
         } catch (
