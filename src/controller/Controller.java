@@ -143,15 +143,24 @@ public class Controller {
     }
 
     /**
+     * Lance la simulation
+     */
+
+    public void launchSimulation(){
+        manager.setGraph(graph);
+        Simulation simulation = new Simulation(manager, graph);
+        new Thread(simulation).start();
+    }
+
+    /**
      * Ajouter un robot
      * @param robot
      */
     public void addRobot(Robot robot) {
         AVRobot viewRobot;
 
-        //add Robot to manager
-        //manager.addRobot(robot);
-
+      //  add Robot to manager
+        manager.bots.add(robot);
 
         viewRobot = new VRobotAllTerain(window.getSheetDisplay(), robot);
         //viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
@@ -163,18 +172,7 @@ public class Controller {
     }
 
     /**
-     * Lance la simulation
-     */
-
-    public void launchSimulation(){
-        Simulation simulation = new Simulation(manager, graph);
-        new Thread(simulation).start();
-    }
-
-
-
-    /**
-     * Reinitialiser le programme
+     * R?initialiser le programme
      */
     public void reset() {
         try {
