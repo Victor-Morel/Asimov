@@ -4,10 +4,13 @@ import java.util.Observable;
 
 public class Node extends Observable {
 
+    /**
+     * Constante correspondant à la tempérture par défaut d'un noeud en feu
+     */
     public static final int FIRE_DEFAULT_TEMPERATURE = 100;
 
     /**
-     * nombre de noeuds instanciés
+     * plus grand id parmi tous les ids des noeuds instanciés
      */
     private static int maxId;
 
@@ -24,7 +27,7 @@ public class Node extends Observable {
     private boolean currentNode;
 
     /**
-     * l'intensite du noeud en feu. 0 correspond a un noeud non-enflamme
+     * l'intensite du noeud en feu. 0 correspond a un noeud non-enflammé
      */
     private int intensity;
     /**
@@ -33,30 +36,52 @@ public class Node extends Observable {
     protected int uniqueID;
 
 
-    public Node(int _id, double _x, double _y, int intensity) {
+    /**
+     * Construit un noeud enflammé avec un id donné
+     *
+     * @param _id id du noeud
+     * @param _x  coordonnée x du noeud
+     * @param _y  coordonnée y du noeud
+     * @param _intensity intensité du noeud enflammé
+     */
+    public Node(int _id, double _x, double _y, int _intensity) {
         this.uniqueID = _id;
         this.x = _x;
         this.y = _y;
-        this.intensity = intensity;
+        this.intensity = _intensity;
         if(maxId < _id) {
             maxId = _id + 1;
         }
     }
 
+    /**
+     * Construit un noeud normal avec un id donné
+     *
+     * @param _id id du noeud
+     * @param _x  coordonnée x du noeud
+     * @param _y  coordonnée y du noeud
+     */
     public Node(int _id, double _x, double _y) {
         this(_id,_x,_y,0);
     }
 
-    public Node(double _x, double _y, int intensity) {
+    /**
+     * Construit un noeud enflammé
+     *
+     * @param _x  coordonnée x du noeud
+     * @param _y  coordonnée y du noeud
+     * @param _intensity intensité du noeud enflammé
+     */
+    public Node(double _x, double _y, int _intensity) {
         this.uniqueID = Node.maxId;
         this.x = _x;
         this.y = _y;
-        this.intensity = intensity;
+        this.intensity = _intensity;
         Node.maxId++;
     }
 
     /**
-     * Construit un noeud avec une etiquette et une intensite
+     * Construit un noeud normal
      *
      * @param _x  coordonnée x du noeud
      * @param _y  coordonnée y du noeud
@@ -69,6 +94,8 @@ public class Node extends Observable {
 
     /**
      * Fonction de refroidissement d'un noeud
+     *
+     * @param capacity correspond à l'efficacité de refroidissement [0;1]
      */
     public void cooling(double capacity) {
         this.intensity = (int) (this.intensity * (1 - capacity));
@@ -82,24 +109,32 @@ public class Node extends Observable {
     }
 
     /**
-     * @return the intensity
+     * @return l'intensité d'un noeud
      */
     public int getIntensity() {
         return intensity;
     }
 
     /**
-     * @param intensity the intensity to set
+     * @param intensity intensité du feu à setter
      */
     public void setIntensity(int intensity) {
         this.intensity = intensity;
     }
 
+    /**
+     * @return un String correspond au noeud
+     */
     @Override
     public String toString() {
         return "n : " + getID();
     }
 
+
+    /**
+     * @param obj le noeud a comparer à this
+     * @return true si les noeuds sont égaux, false sinon
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -130,6 +165,10 @@ public class Node extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Destructeur de noeud
+     * @throws Throwable
+     */
     public void reset() throws Throwable {
         this.finalize();
     }
