@@ -5,12 +5,18 @@ import view.Edge.AVEdge;
 import view.Node.AVNode;
 import view.Robot.AVRobot;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class SheetDisplay extends JPanel {
+
+    private BufferedImage image;
 
     /**
      * Liste des diffentes vues des noeuds
@@ -33,6 +39,11 @@ public class SheetDisplay extends JPanel {
         super();
         initialization();
         addMouseListener(controlMouse);
+        try {
+            image = ImageIO.read(new File("Data/mapsixieme.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -59,6 +70,7 @@ public class SheetDisplay extends JPanel {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(image, 0,0,null);
         showNodes(g);
         showEdges(g);
         showRobots(g);
@@ -117,5 +129,8 @@ public class SheetDisplay extends JPanel {
     public void addRobot(AVRobot robot) {
         robots.add(robot);
     }
+
+
+
 
 }
