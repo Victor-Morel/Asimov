@@ -123,6 +123,9 @@ public class SheetDisplay extends JPanel {
         robots.add(robot);
     }
 
+    public void removeNode(AVNode node) { nodes.remove(node); }
+
+
     public BackgroundImage getImage() {
         return image;
     }

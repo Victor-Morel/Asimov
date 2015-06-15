@@ -45,6 +45,7 @@ public abstract class AVNode implements Observer {
      */
     public void drawNode(Graphics graph) {
         //Graphics2D g2d;
+
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
         graph.setColor(Color.BLACK);

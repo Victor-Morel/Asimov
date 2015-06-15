@@ -13,7 +13,18 @@ public class VNodeFire extends AVNode {
 
     @Override
     public void drawNode(Graphics graph) {
-        graph.setColor(Color.RED);
-        super.drawNode(graph);
+        if(super.node.getIntensity() == 0){
+         changeNode();
+        }
+        else {
+            graph.setColor(Color.RED);
+            super.drawNode(graph);
+        }
+    }
+
+    public void changeNode(){
+        sheetDisplay.addNode(new VNodeNormal(super.sheetDisplay, super.node));
+        sheetDisplay.removeNode(this);
+
     }
 }
