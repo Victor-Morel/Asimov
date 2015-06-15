@@ -1,7 +1,6 @@
 package controller;
 
 import model.graph.Graph;
-import model.graph.Node;
 import model.robot.Manager;
 import model.robot.Simulation;
 
@@ -20,27 +19,9 @@ public class Controller {
         this.manager = new Manager();
     }
 
-
-    public void run() {
-    }
-
-
-
-
-
-    /**
-     *  ajouter un noeud
-     * @param node
-     */
-    public void addNode(Node node) {
-        getGraph().addNode(node);
-    }
-
-
     /**
      * Lance la simulation
      */
-
     public void launchSimulation(){
         manager.setGraph(graph);
         Simulation simulation = new Simulation(manager, graph);
@@ -48,16 +29,6 @@ public class Controller {
     }
 
 
-    /**
-     * Reinitialiser le programme
-     */
-    public void reset() {
-        try {
-            getGraph().finalize();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-    }
 
 
     public Manager getManager() {

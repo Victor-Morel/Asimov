@@ -14,8 +14,6 @@ import view.Node.AVNode;
 import view.Node.VNodeFire;
 import view.Node.VNodeNormal;
 
-import java.io.File;
-
 public class ControllerAction {
 
     private ControllerActionNode controlNode;
@@ -49,24 +47,6 @@ public class ControllerAction {
         window = new GUI(this, controlMouse);
     }
 
-    /**
-     * ajouter un noeud
-     *
-     * @param node
-     */
-    public void addNode(Node node) {
-
-        control.addNode(node);
-
-        AVNode viewNode;
-        //addNode to sheet
-        if (node.getIntensity() == 0) viewNode = new VNodeNormal(window.getSheetDisplay(), node);
-        else viewNode = new VNodeFire(window.getSheetDisplay(), node);
-
-        window.getSheetDisplay().addNode(viewNode);
-        repaint();
-    }
-
 
     /**
      * Redessiner les elements
@@ -75,16 +55,17 @@ public class ControllerAction {
         window.getSheetDisplay().repaint();
     }
 
-    public void changePicture(File file) {
-        window.getSheetDisplay().getImage().setImage(file);
-        repaint();
-    }
+
 
     /**
      * Réinitialiser le programme
      */
     public void reset() {
-        control.reset();
+        try {
+            getGraph().finalize();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         window.getSheetDisplay().reset();
     }
 

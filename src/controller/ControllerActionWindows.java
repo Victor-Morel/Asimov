@@ -47,7 +47,8 @@ public class ControllerActionWindows implements ActionListener {
         ChooseFileImage chooseFile = new ChooseFileImage();
         File file = chooseFile.selectFile();
         if (null != file) {
-            control.changePicture(file);
+            control.getWindow().getSheetDisplay().getImage().setImage(file);
+            control.repaint();
         }
     }
 
@@ -93,4 +94,5 @@ public class ControllerActionWindows implements ActionListener {
             control.launchSimulation();
         }
     }
+
 }
