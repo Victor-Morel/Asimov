@@ -28,7 +28,7 @@ public class FileManager {
         TypeEdge typeEdge;
         TypeNode typeNode;
         int id;
-        double x, y, distance;
+        double x, y;
         model.graph.Node nd1, nd2;
         model.graph.Node node;
 
