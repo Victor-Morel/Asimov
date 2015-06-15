@@ -1,10 +1,8 @@
 package controller;
 
-import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.robot.Manager;
-import model.robot.Robot;
 import model.robot.Simulation;
 
 public class Controller {
@@ -26,23 +24,7 @@ public class Controller {
     public void run() {
     }
 
-    /**
-     * Muter le Graph
-     * @param graph
-     */
-    public void setGraph(Graph graph) {
-        this.graph = graph;
-    }
 
-
-
-    /**
-     * Acceder au graph
-     * @return Graph
-     */
-    public Graph getGraph() {
-        return graph;
-    }
 
 
 
@@ -54,14 +36,6 @@ public class Controller {
         getGraph().addNode(node);
     }
 
-    /**
-     * Ajouter un arc
-     * @param edge
-     */
-    public void addEdge(Edge edge) {
-        //addNode to graph
-        getGraph().addEdge(edge);
-    }
 
     /**
      * Lance la simulation
@@ -73,17 +47,9 @@ public class Controller {
         new Thread(simulation).start();
     }
 
-    /**
-     * Ajouter un robot
-     * @param robot
-     */
-    public void addRobot(Robot robot) {
-        manager.bots.add(robot);
-    }
-
 
     /**
-     * R?initialiser le programme
+     * Reinitialiser le programme
      */
     public void reset() {
         try {
@@ -94,7 +60,23 @@ public class Controller {
     }
 
 
+    public Manager getManager() {
+        return manager;
+    }
 
+    /**
+     * Muter le Graph
+     * @param graph
+     */
+    public void setGraph(Graph graph) {
+        this.graph = graph;
+    }
 
-
+    /**
+     * Acceder au graph
+     * @return Graph
+     */
+    public Graph getGraph() {
+        return graph;
+    }
 }

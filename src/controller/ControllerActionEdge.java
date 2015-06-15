@@ -3,6 +3,10 @@ package controller;
 import model.graph.Edge;
 import model.graph.Node;
 import model.graph.TypeEdge;
+import view.Edge.AVEdge;
+import view.Edge.VEdgeEscarpe;
+import view.Edge.VEdgeInonde;
+import view.Edge.VEdgePlat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,13 +36,28 @@ public class ControllerActionEdge implements ActionListener {
      */
     public void addEdge(Node node1, Node node2) {
         double valuation = 0;
+        Edge edge;
+        AVEdge viewEdge;
+
+        edge = null;
+        viewEdge = null;
+
         if (plat) {
-            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
+            edge = new Edge(node1, node2, valuation, TypeEdge.PLAT);
+            viewEdge = new VEdgePlat(edge);
         } else if (escarpe) {
-            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
+            edge = new Edge(node1, node2, valuation, TypeEdge.ESCARPE);
+            viewEdge = new VEdgeInonde(edge);
         } else if (inonde) {
-            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
+            edge = new Edge(node1, node2, valuation, TypeEdge.INONDE);
+            viewEdge = new VEdgeEscarpe(edge);
         }
+
+
+        control.getGraph().addEdge(edge);
+        control.getWindow().getSheetDisplay().addEdge(viewEdge);
+        control.repaint();
+
         this.initialization();
     }
 

@@ -2,6 +2,9 @@ package controller;
 
 
 import model.graph.Node;
+import view.Node.AVNode;
+import view.Node.VNodeFire;
+import view.Node.VNodeNormal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +12,7 @@ import java.awt.event.ActionListener;
 public class ControllerActionNode implements ActionListener {
 
     protected Boolean node, fire;
-
-    /**
-     * Controlleur
-     */
-    ControllerAction control;
+    private ControllerAction control;
 
     public ControllerActionNode(ControllerAction control) {
         super();
@@ -62,12 +61,24 @@ public class ControllerActionNode implements ActionListener {
      * @param y cordonnee y du noeud
      */
     public void addNode(int x, int y) {
+        AVNode viewNode;
+        Node n;
+
+        viewNode =null;
+        n = null;
 
         if (node) {
-            control.addNode(new Node(x, y));
+            n = (new Node(x, y));
+            viewNode = new VNodeNormal(control.getWindow().getSheetDisplay(), n);
         } else if (fire) {
-            control.addNode(new Node((double)x, (double)y, Node.FIRE_DEFAULT_TEMPERATURE));
+            n = new Node((double)x, (double)y, Node.FIRE_DEFAULT_TEMPERATURE);
+            viewNode = new VNodeFire(control.getWindow().getSheetDisplay(), n);
         }
+
+        control.getGraph().addNode(n);
+        control.getWindow().getSheetDisplay().addNode(viewNode);
+        control.repaint();
+
         this.initialization();
     }
 
