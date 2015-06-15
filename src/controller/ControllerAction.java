@@ -176,7 +176,7 @@ public class ControllerAction implements ActionListener {
         if (node) {
             control.addNode(new Node(x, y));
         } else if (fire) {
-            control.addNode(new Node(x, y, (double) Node.FIRE_DEFAULT_TEMPERATURE));
+            control.addNode(new Node((double)x, (double)y, Node.FIRE_DEFAULT_TEMPERATURE));
         }
     }
 
