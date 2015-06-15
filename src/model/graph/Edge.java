@@ -51,9 +51,9 @@ public class Edge {
         this(_n1, _n2, EuclidianDistance.getDistance(_n1, _n2), type);
     }
 
-        /**
-         * @return la valeur de l'arete
-         */
+    /**
+     * @return la valeur de l'arete
+     */
     public double getValuation() {
         return valuation;
     }
@@ -97,7 +97,8 @@ public class Edge {
     }
 
     /**
-     * @return un String correspondant à l'arète     */
+     * @return un String correspondant à l'arète
+     */
     @Override
     public String toString() {
         return source.getID() + " => "
