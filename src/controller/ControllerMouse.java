@@ -37,29 +37,30 @@ public class ControllerMouse implements MouseListener {
     public void mouseClicked(MouseEvent e) {
 
         if (checkAddNode()) {
-            controlAction.addNode(e.getX(), e.getY());
+            controlAction.getControlNode().addNode(e.getX(), e.getY());
             initialization();
 
         }
         if (checkAddEdge()) {
-            currentNode = controlAction.checkCurrentNode(e.getX(), e.getY());
+            currentNode = controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
             if (null != currentNode && node1 == null) {
                 node1 = currentNode;
             } else if (null != currentNode && node2 == null) {
                 node2 = currentNode;
-                controlAction.addEdge(node1, node2);
+                controlAction.getControlEdge().addEdge(node1, node2);
                 initialization();
             }
         }
 
         if (checkAddRobot()) {
-            currentNode = controlAction.checkCurrentNode(e.getX(), e.getY());
+            currentNode = controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
             if (null != currentNode) {
-                controlAction.addRobot(currentNode);
+                controlAction.getControlRobot().addRobot(currentNode);
                 initialization();
             }
         }
-        controlAction.checkCurrentNode(e.getX(), e.getY());
+
+        controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
     }
 
 
@@ -88,7 +89,8 @@ public class ControllerMouse implements MouseListener {
      * @return si button noeud actionner VRAI sinon FAUX
      */
     private boolean checkAddNode() {
-        return controlAction.fire || controlAction.node;
+        return controlAction.getControlNode().fire ||
+               controlAction.getControlNode().node;
     }
 
     /**
@@ -96,7 +98,9 @@ public class ControllerMouse implements MouseListener {
      * @return si button arc actionner VRAI sinon FAUX
      */
     private boolean checkAddEdge() {
-        return controlAction.escarpe || controlAction.inonde || controlAction.plat;
+        return controlAction.getControlEdge().escarpe ||
+               controlAction.getControlEdge().inonde ||
+               controlAction.getControlEdge().plat;
     }
 
     /**
@@ -104,7 +108,9 @@ public class ControllerMouse implements MouseListener {
      * @return si button robot actionner VRAI sinon FAUX
      */
     private boolean checkAddRobot() {
-        return controlAction.patte || controlAction.chenille || controlAction.terrain;
+        return controlAction.getControlRobot().patte ||
+               controlAction.getControlRobot().chenille ||
+               controlAction.getControlRobot().terrain;
     }
 
 

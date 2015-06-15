@@ -1,22 +1,33 @@
 package controller;
 
-import model.graph.*;
-import model.robot.*;
-import utils.FileManager;
-import view.Dialog.*;
+import model.graph.Edge;
+import model.graph.Graph;
+import model.graph.Node;
+import model.graph.TypeEdge;
+import model.robot.Robot;
+import view.Edge.AVEdge;
+import view.Edge.VEdgeEscarpe;
+import view.Edge.VEdgeInonde;
+import view.Edge.VEdgePlat;
+import view.GUI;
+import view.Node.AVNode;
+import view.Node.VNodeFire;
+import view.Node.VNodeNormal;
+import view.Robot.AVRobot;
+import view.Robot.VRobotAllTerain;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
+public class ControllerAction {
 
-public class ControllerAction implements ActionListener {
+    private ControllerActionNode controlNode;
+    private ControllerActionEdge controlEdge;
+    private ControllerActionRobot controlRobot;
+    private ControllerActionWindows controlWindows;
 
-    /**
-     * Boolean pour savoir quelle bouton a ete selectionner
-     */
-    Boolean node, fire, plat, inonde, escarpe,
-            terrain, patte, chenille;
+    private ControllerMouse controlMouse;
+
+    private GUI window;
 
     /**
      * Controlleur
@@ -25,223 +36,154 @@ public class ControllerAction implements ActionListener {
 
     /**
      * Consctruit un controlleur des actions
+     *
      * @param control
      */
     public ControllerAction(Controller control) {
         super();
         this.control = control;
-        initialization();
-    }
+        this.controlNode = new ControllerActionNode(this);
+        this.controlEdge = new ControllerActionEdge(this);
+        this.controlRobot = new ControllerActionRobot(this);
+        this.controlWindows = new ControllerActionWindows(this);
 
-    private void initialization() {
-        node = false;
-        fire = false;
-        plat = false;
-        inonde = false;
-        escarpe = false;
-        terrain = false;
-        patte = false;
-        chenille = false;
+        this.controlMouse = new ControllerMouse(this);
+        window = new GUI(this, controlMouse);
     }
 
     /**
-     * Chaque action de chaque bouton
+     * ajouter un noeud
      *
-     * @param e
+     * @param node
      */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().matches("Noeud")) {
-            this.initialization();
-            node = true;
-        } else if (e.getActionCommand().matches("Feu")) {
-            this.initialization();
-            fire = true;
-        } else if (e.getActionCommand().matches("Plat")) {
-            this.initialization();
-            plat = true;
-        } else if (e.getActionCommand().matches("Escarpe")) {
-            this.initialization();
-            escarpe = true;
-        } else if (e.getActionCommand().matches("Inonde")) {
-            this.initialization();
-            inonde = true;
-        } else if (e.getActionCommand().matches("Tout Terrain")) {
-            this.initialization();
-            terrain = true;
-        } else if (e.getActionCommand().matches("Chenille")) {
-            this.initialization();
-            chenille = true;
-        } else if (e.getActionCommand().matches("Pates")) {
-            this.initialization();
-            patte = true;
-        } else if (e.getActionCommand().matches("Sauvegarder")) {
-            saveFile();
-        } else if (e.getActionCommand().matches("Charger XML")) {
-            if (0 == control.getGraph().getNbNodes()) {
-                loadFileXML();
-            } else {
-                JDialog jdialog = new JDialog();
-                switch (jdialog.getElementChoose()) {
-                    case 0:
-                        saveFile();
-                        control.reset();
-                        loadFileXML();
-                        break;
-                    case 1:
-                        control.reset();
-                        loadFileXML();
-                        break;
-                    default:
-                        break;
-                }
+    public void addNode(Node node) {
 
-            }
-        } else if (e.getActionCommand().matches("Charger IMAGE")) {
+        control.addNode(node);
 
-        } else if (e.getActionCommand().matches("Nouveau")) {
-            JDialog jdialog = new JDialog();
-            switch (jdialog.getElementChoose()) {
-                case 0:
-                    saveFile();
-                    control.reset();
-                    break;
-                case 1:
-                    control.reset();
-                    break;
-                default:
-                    break;
-            }
-        } else if (e.getActionCommand().matches("Lancer Simulation")) {
-            control.launchSimulation();
-        }
+        AVNode viewNode;
+        //addNode to sheet
+        if (node.getIntensity() == 0) viewNode = new VNodeNormal(window.getSheetDisplay(), node);
+        else viewNode = new VNodeFire(window.getSheetDisplay(), node);
 
-    }
-
-    /**
-     * Verifie si dans il existe un noeud au coordonn�e x et y
-     *
-     * @param x coordonn�e x de la souris
-     * @param y coordonn�e y
-     * @return Node selectioner ou null
-     */
-    protected Node clickOnNode(int x, int y) {
-        for (Node n : control.getGraph().getAllNodes()) {
-            for (int i = -10; i < 10; i++) {
-                for (int j = -10; j < 10; j++) {
-                    if ((x == (int) n.getX() + i) && (y == (int) n.getY() + j)) {
-                        return n;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Affiche si nouveau noeud courant selectionner
-     *
-     * @param x parametre x de la souris
-     * @param y parametre y de la souris
-     * @return nouveau noeud courant ou null
-     */
-    protected Node checkCurrentNode(int x, int y) {
-        Node currentNode;
-        currentNode = clickOnNode(x, y);
-        if (null != currentNode) {
-            currentNode.setCurrentNode(true);
-            checkOnlyNode(currentNode.getID());
-        }
-        return currentNode;
-    }
-
-    /**
-     * Ajouter noeud
-     *
-     * @param x cordonn�e x du noeud
-     * @param y cordonn�e y du noeud
-     */
-    public void addNode(int x, int y) {
-
-        if (node) {
-            control.addNode(new Node(x, y));
-        } else if (fire) {
-            control.addNode(new Node((double)x, (double)y, Node.FIRE_DEFAULT_TEMPERATURE));
-        }
+        window.getSheetDisplay().addNode(viewNode);
+        repaint();
     }
 
     /**
      * Ajouter un arc
      *
-     * @param node1 noeud 1 du nouveau arc
-     * @param node2 noeud 2 du nouveau arc
+     * @param edge
      */
-    public void addEdge(Node node1, Node node2) {
-        double valuation = 0;
-        if (plat) {
-            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.PLAT));
-        } else if (escarpe) {
-            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.ESCARPE));
-        } else if (inonde) {
-            control.addEdge(new Edge(node1, node2, valuation, TypeEdge.INONDE));
-        }
+    public void addEdge(Edge edge) {
+        control.addEdge(edge);
+
+        AVEdge viewEdge = null;
+        //addNode to sheet
+        if (edge.getType().equals(TypeEdge.PLAT))
+            viewEdge = new VEdgePlat(edge);
+        else if (edge.getType().equals(TypeEdge.INONDE))
+            viewEdge = new VEdgeInonde(edge);
+        else if (edge.getType().equals(TypeEdge.ESCARPE))
+            viewEdge = new VEdgeEscarpe(edge);
+
+        window.getSheetDisplay().addEdge(viewEdge);
+        repaint();
     }
+
 
     /**
      * Ajouter un robot
      *
-     * @param currentNode noeud ou le robot sera instanci�
+     * @param robot
      */
-    public void addRobot(Node currentNode) {
-        int _capacity = 10;
-        Robot bot;
-        TypeRecherche type = TypeRecherche.ASTAR;
-        if (terrain) {
-            bot = new AllTerrainRobot(type, _capacity, control.getGraph(), currentNode);
-            control.addRobot(bot);
-        } else if (chenille) {
-            control.addRobot(new CaterpillarRobot(type, _capacity, control.getGraph(), currentNode));
-        } else if (patte) {
-            control.addRobot(new LeggedRobot(type, _capacity, control.getGraph(), currentNode));
-        }
+    public void addRobot(Robot robot) {
+        AVRobot viewRobot;
+
+
+        viewRobot = new VRobotAllTerain(window.getSheetDisplay(), robot);
+        //viewEdge = new VEdgeInonde(window.getSheetDisplay(), edge);
+        //viewEdge = new VEdgePlat(window.getSheetDisplay(), edge);
+
+        window.getSheetDisplay().addRobot(viewRobot);
+        repaint();
     }
 
 
     /**
-     * Verifie qu'il y a un seul noeud courant
-     *
-     * @param currentNode
+     * Redessiner les elements
      */
-    private void checkOnlyNode(int currentNode) {
-        for (Node n : control.getGraph().getAllNodes()) {
-            if (n.getID() != currentNode && n.isCurrentNode()) {
-                n.setCurrentNode(false);
-            }
-        }
+    public void repaint() {
+        window.getSheetDisplay().repaint();
+    }
+
+    public void changePicture(File file) {
+        window.getSheetDisplay().getImage().setImage(file);
+        repaint();
     }
 
     /**
-     * Save File
+     * Réinitialiser le programme
      */
-    private void saveFile() {
-        ChooseFileXml chooseFile = new ChooseFileXml("Sauvegarder");
-        File file = chooseFile.selectFile();
-        if (null != file) {
-            FileManager.saveFileManager(file, control.getGraph());
-        }
+    public void reset() {
+        control.reset();
+        window.getSheetDisplay().reset();
     }
 
+
     /**
-     * Load File XML
+     * Affiche un Graphe
      */
-    private void loadFileXML() {
-        ChooseFileXml chooseFile = new ChooseFileXml("Charger");
-        File file = chooseFile.selectFile();
-        if (null != file) {
-            control.setGraph(FileManager.loadFileManager(file));
-            control.displayGraphe();
+    protected void displayGraphe() {
+        AVNode viewNode;
+        for (Node node : control.getGraph().getAllNodes()) {
+            if (node.getIntensity() == 0)
+                viewNode = new VNodeNormal(window.getSheetDisplay(), node);
+            else
+                viewNode = new VNodeFire(window.getSheetDisplay(), node);
+            window.getSheetDisplay().addNode(viewNode);
         }
+        AVEdge viewEdge = null;
+        for (Edge edge : control.getGraph().getAllEdges()) {
+            if (edge.getType().equals(TypeEdge.PLAT))
+                viewEdge = new VEdgePlat(edge);
+            if (edge.getType().equals(TypeEdge.ESCARPE))
+                viewEdge = new VEdgeEscarpe(edge);
+            if (edge.getType().equals(TypeEdge.INONDE))
+                viewEdge = new VEdgeInonde(edge);
+            window.getSheetDisplay().addEdge(viewEdge);
+        }
+        this.repaint();
     }
+
+    public void launchSimulation() {
+        control.launchSimulation();
+    }
+
+    public void setGraph(Graph graph) {
+        control.setGraph(graph);
+    }
+
+    public ControllerActionNode getControlNode() {
+        return controlNode;
+    }
+
+    public ControllerActionEdge getControlEdge() {
+        return controlEdge;
+    }
+
+    public ControllerActionWindows getControlWindows() {
+        return controlWindows;
+    }
+
+    public ControllerActionRobot getControlRobot() {
+        return controlRobot;
+    }
+
+    public Graph getGraph() {
+        return control.getGraph();
+    }
+
+
 }
 
 

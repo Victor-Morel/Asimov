@@ -1,12 +1,13 @@
 package view.Image;
 
 
+import controller.config;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import controller.config;
 
 public class BackgroundImage {
 
@@ -22,5 +23,13 @@ public class BackgroundImage {
 
     public void drawImage(Graphics g){
         g.drawImage(image, 0, 0, null);
+    }
+
+    public void setImage(File file) {
+        try {
+            this.image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

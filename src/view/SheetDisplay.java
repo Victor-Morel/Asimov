@@ -123,7 +123,7 @@ public class SheetDisplay extends JPanel {
         robots.add(robot);
     }
 
-
-
-
+    public BackgroundImage getImage() {
+        return image;
+    }
 }

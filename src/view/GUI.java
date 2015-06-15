@@ -61,19 +61,19 @@ public class GUI extends JFrame {
 		file.add(LoadImage);
 
 
-		addNodeFire.addActionListener(controlAction);
-		addNode.addActionListener(controlAction);
-		addEdgeEscarpe.addActionListener(controlAction);
-		addEdgePlat.addActionListener(controlAction);
-		addEdgeInonde.addActionListener(controlAction);
-		addRobotChenille.addActionListener(controlAction);
-		addRobotPates.addActionListener(controlAction);
-		addRobotToutTerrain.addActionListener(controlAction);
-		launchSimulation.addActionListener(controlAction);
-		Save.addActionListener(controlAction);
-		New.addActionListener(controlAction);
-		LoadXml.addActionListener(controlAction);
-		LoadImage.addActionListener(controlAction);
+		addNodeFire.addActionListener(controlAction.getControlNode());
+		addNode.addActionListener(controlAction.getControlNode());
+		addEdgeEscarpe.addActionListener(controlAction.getControlEdge());
+		addEdgePlat.addActionListener(controlAction.getControlEdge());
+		addEdgeInonde.addActionListener(controlAction.getControlEdge());
+		addRobotChenille.addActionListener(controlAction.getControlRobot());
+		addRobotPates.addActionListener(controlAction.getControlRobot());
+		addRobotToutTerrain.addActionListener(controlAction.getControlRobot());
+		launchSimulation.addActionListener(controlAction.getControlWindows());
+		Save.addActionListener(controlAction.getControlWindows());
+		New.addActionListener(controlAction.getControlWindows());
+		LoadXml.addActionListener(controlAction.getControlWindows());
+		LoadImage.addActionListener(controlAction.getControlWindows());
 
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
