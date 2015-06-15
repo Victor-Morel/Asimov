@@ -1,7 +1,7 @@
 
 package view.Dialog;
 
-import controller.config;
+import run.config;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

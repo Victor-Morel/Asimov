@@ -1,4 +1,7 @@
-package controller;
+package run;
+
+import controller.Controller2;
+
 public class main {
 
     public static void main(String[] args) {

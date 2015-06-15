@@ -1,6 +1,6 @@
 package utils;
 
-import controller.config;
+import run.config;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.TypeEdge;

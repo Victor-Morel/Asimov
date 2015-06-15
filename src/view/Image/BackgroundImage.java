@@ -1,7 +1,7 @@
 package view.Image;
 
 
-import controller.config;
+import run.config;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
