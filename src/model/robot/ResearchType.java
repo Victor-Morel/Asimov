@@ -1,12 +1,12 @@
 package model.robot;
 
-public enum TypeRecherche {
+public enum ResearchType {
     DIJKSTRA("DIJKSTRA"),
     ASTAR("ASTAR");
 
     private String text;
 
-    TypeRecherche(String text) {
+    ResearchType(String text) {
         this.text = text;
     }
 
@@ -14,9 +14,9 @@ public enum TypeRecherche {
         return this.text;
     }
 
-    public static TypeRecherche fromString(String text) {
+    public static ResearchType fromString(String text) {
         if (text != null) {
-            for (TypeRecherche t : TypeRecherche.values()) {
+            for (ResearchType t : ResearchType.values()) {
                 if (text.equalsIgnoreCase(t.text)) {
                     return t;
                 }

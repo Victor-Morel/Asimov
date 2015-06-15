@@ -41,7 +41,7 @@ public abstract class Robot extends Observable {
 
 
 
-    private TypeRecherche type;
+    private ResearchType researchType;
     private int id;
     protected Node node;
     private boolean busy;
@@ -49,14 +49,14 @@ public abstract class Robot extends Observable {
     private Strategy strat;
     protected Graph g;
 
-    public Robot (TypeRecherche _type, double _capacity){
-        this.type = _type;
+    public Robot (ResearchType _type, double _capacity){
+        this.researchType = _type;
         this.setBusy(false);
         this.capacity = _capacity;
     }
 
     public int getDistance(Node inFlames) {
-        switch (type) {
+        switch (researchType) {
             case DIJKSTRA:
                 this.setStrat(new Dijkstra(g, this.getNode(), inFlames));
                 break;
@@ -71,12 +71,28 @@ public abstract class Robot extends Observable {
         inFlames.cooling(capacity);
     }
 
-    public void goTo(Node inFlames){
+    public void goTo(Node inFlames, int distance){
         //envoie un robot sur le noeud en question
+        Thread waiting = new Thread();
+        try {
+            waiting.sleep(distance * 20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.setNode(inFlames);
+        try {
+            waiting.sleep((long) (this.capacity * 10 * inFlames.getIntensity()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        inFlames.setIntensity(0);
+        this.setBusy(false);
+        setChanged();
+        notifyObservers();
     }
 
 
-    public TypeRecherche getType() {
-        return type;
+    public ResearchType getType() {
+        return researchType;
     }
 }
