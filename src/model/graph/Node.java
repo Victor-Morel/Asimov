@@ -24,10 +24,6 @@ public class Node extends Observable {
     private boolean currentNode;
 
     /**
-     * etiquette du noeud
-     */
-    private Label label;
-    /**
      * l'intensite du noeud en feu. 0 correspond a un noeud non-enflamme
      */
     private int intensity;
@@ -83,22 +79,6 @@ public class Node extends Observable {
      */
     public int getID() {
         return uniqueID;
-    }
-
-    /**
-     * Specifie l etiquette du noeud
-     *
-     * @param _label
-     */
-    public void setLabel(Label _label) {
-        this.label = _label;
-    }
-
-    /**
-     * @return l etiquette du noeud
-     */
-    public Label getLabel() {
-        return label;
     }
 
     /**
