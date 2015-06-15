@@ -6,7 +6,7 @@ import model.graph.Node;
 
 public class AllTerrainRobot extends Robot {
 
-	public AllTerrainRobot(int _capacity, Node _node) {
+	public AllTerrainRobot(double _capacity, Node _node) {
 		super(_capacity, _node);
 	}
 

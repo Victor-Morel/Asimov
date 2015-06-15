@@ -8,7 +8,7 @@ import model.graph.Node;
  */
 public class CaterpillarRobot extends Robot {
 
-	public CaterpillarRobot(int _capacity, Node _node) {
+	public CaterpillarRobot(double _capacity, Node _node) {
 		super(_capacity, _node);
 		// TODO Auto-generated constructor stub
 	}

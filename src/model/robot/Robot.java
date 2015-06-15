@@ -42,7 +42,8 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
 
-
+    private static final int ROBOT_MOBILITY_SPEED = 50;
+    private static final int ROBOT_EXTINGUISH_SPEED = 3;
     private static ResearchType researchType = ResearchType.ASTAR;
     private int id;
     protected Node node;
@@ -76,26 +77,31 @@ public abstract class Robot extends Observable implements Runnable {
         return this.getStrat().getDistanceValue();
     }
 
-    public void extinguish (Node inFlames){
-        inFlames.cooling(capacity);
+    public int extinguish (Node inFlames){
+        int timeNeeded = 0;
+        while(inFlames.getIntensity() > 0) {
+            inFlames.cooling(capacity);
+            timeNeeded += ROBOT_EXTINGUISH_SPEED;
+        }
+        return timeNeeded;
     }
 
     @Override
     public void run(){
         try {
-            Thread.sleep(distance * 20);
+            Thread.sleep(distance * ROBOT_MOBILITY_SPEED);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("fin trajet");
         this.setNode(inFlames);
         try {
-            Thread.sleep((long) (this.capacity * inFlames.getIntensity()));
+            Thread.sleep( (long)(extinguish(inFlames)) );
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("fin incendie");
-        inFlames.setIntensity(0);
+        System.out.println("fin incendie : " + inFlames.getIntensity());
+        //inFlames.setIntensity(0);
         this.setBusy(false);
     }
 
@@ -103,7 +109,7 @@ public abstract class Robot extends Observable implements Runnable {
         //envoie un robot sur le noeud en question
         Thread waiting = new Thread();
         try {
-            waiting.sleep(distance * 20);
+            waiting.sleep(distance * ROBOT_MOBILITY_SPEED);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

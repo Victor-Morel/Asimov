@@ -19,13 +19,13 @@ public class Simulation extends Observable implements Runnable {
 
     @Override
     public void run() {
-        int compteurTemps = 15000;
-        int tempsPause = 1000;
+        int timer = 15000;
+        int pauseTime = 1000;
         while (true) {
             try {
                 Thread.sleep(0);
-                compteurTemps += tempsPause;
-                System.out.println("test");
+                timer += pauseTime;
+               // System.out.println("test");
                 manager.decide();
 
             } catch (InterruptedException e) {

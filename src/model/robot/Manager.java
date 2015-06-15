@@ -57,7 +57,7 @@ public class Manager implements Runnable {
     public void chooseRobot() {//décide quel robot fait quoi
         for (Node inFlames : graph.getAllFireNodes()) {
             getBestDistance();
-            if ((!bestBotForFire.isEmpty())&&(!bestBotForFire.get(inFlames).getFirst().isBusy())) {
+            if ((!bestBotForFire.isEmpty()) && (!bestBotForFire.get(inFlames).getFirst().isBusy())) {
                 setAction(bestBotForFire.get(inFlames).getFirst(), inFlames, bestBotForFire.get(inFlames).getSecond());
                 bestBotForFire.get(inFlames).getFirst().setBusy(true);
                 inFlames.setSupported(true);

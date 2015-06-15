@@ -32,7 +32,7 @@ public class ControllerActionRobot implements ActionListener {
      * @param currentNode noeud ou le robot sera instanci?
      */
     public void addRobot(Node currentNode) {
-        int _capacity = 10;
+        double _capacity = 0.3;
         Robot bot;
         ResearchType type = ResearchType.ASTAR;
         AVRobot viewRobot;
