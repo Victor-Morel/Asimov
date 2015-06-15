@@ -3,7 +3,7 @@ package view;
 import controller.ControllerMouse;
 import view.Edge.AVEdge;
 import view.Image.BackgroundImage;
-import view.Node.AVNode;
+import view.Node.VNode;
 import view.Robot.AVRobot;
 
 import javax.swing.*;
@@ -18,7 +18,7 @@ public class SheetDisplay extends JPanel {
     /**
      * Liste des diffentes vues des noeuds
      */
-    private ArrayList<AVNode> nodes; // la liste des nodes enregistrees
+    private ArrayList<VNode> nodes; // la liste des nodes enregistrees
     /**
      * Liste des diffentes vues des arcs
      */
@@ -84,7 +84,7 @@ public class SheetDisplay extends JPanel {
      * @param g
      */
     private void showNodes(Graphics g) {
-        for (AVNode avNode : nodes) {
+        for (VNode avNode : nodes) {
             avNode.drawNode(g);
         }
     }
@@ -111,7 +111,7 @@ public class SheetDisplay extends JPanel {
      * Ajouter un noeud
      * @param node
      */
-    public void addNode(AVNode node) {
+    public void addNode(VNode node) {
         nodes.add(node);
     }
 
@@ -123,10 +123,9 @@ public class SheetDisplay extends JPanel {
         robots.add(robot);
     }
 
-    public void removeNode(AVNode node) { nodes.remove(node); }
-
-
     public BackgroundImage getImage() {
         return image;
     }
+
+
 }

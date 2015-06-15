@@ -42,9 +42,9 @@ public class Node extends Observable {
     /**
      * Construit un noeud enflammé avec un id donné
      *
-     * @param _id id du noeud
-     * @param _x  coordonnée x du noeud
-     * @param _y  coordonnée y du noeud
+     * @param _id        id du noeud
+     * @param _x         coordonnée x du noeud
+     * @param _y         coordonnée y du noeud
      * @param _intensity intensité du noeud enflammé
      */
     public Node(int _id, double _x, double _y, int _intensity) {
@@ -52,7 +52,7 @@ public class Node extends Observable {
         this.x = _x;
         this.y = _y;
         this.intensity = _intensity;
-        if(maxId < _id) {
+        if (maxId < _id) {
             maxId = _id + 1;
         }
         this.supported = false;
@@ -66,14 +66,14 @@ public class Node extends Observable {
      * @param _y  coordonnée y du noeud
      */
     public Node(int _id, double _x, double _y) {
-        this(_id,_x,_y,0);
+        this(_id, _x, _y, 0);
     }
 
     /**
      * Construit un noeud enflammé
      *
-     * @param _x  coordonnée x du noeud
-     * @param _y  coordonnée y du noeud
+     * @param _x         coordonnée x du noeud
+     * @param _y         coordonnée y du noeud
      * @param _intensity intensité du noeud enflammé
      */
     public Node(double _x, double _y, int _intensity) {
@@ -87,11 +87,10 @@ public class Node extends Observable {
     /**
      * Construit un noeud normal
      *
-     * @param _x  coordonnée x du noeud
-     * @param _y  coordonnée y du noeud
+     * @param _x coordonnée x du noeud
+     * @param _y coordonnée y du noeud
      */
-    public Node(double _x, double _y)
-    {
+    public Node(double _x, double _y) {
         this(_x, _y, 0);
     }
 
@@ -124,6 +123,9 @@ public class Node extends Observable {
      */
     public void setIntensity(int intensity) {
         this.intensity = intensity;
+        setChanged();
+        notifyObservers();
+
     }
 
     /**
@@ -171,6 +173,7 @@ public class Node extends Observable {
 
     /**
      * Destructeur de noeud
+     *
      * @throws Throwable
      */
     public void reset() throws Throwable {

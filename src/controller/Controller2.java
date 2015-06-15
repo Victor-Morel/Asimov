@@ -11,9 +11,7 @@ import view.Edge.VEdgeEscarpe;
 import view.Edge.VEdgeInonde;
 import view.Edge.VEdgePlat;
 import view.GUI;
-import view.Node.AVNode;
-import view.Node.VNodeFire;
-import view.Node.VNodeNormal;
+import view.Node.VNode;
 
 public class Controller2 {
 
@@ -73,12 +71,9 @@ public class Controller2 {
      * Affiche un Graphe
      */
     protected void displayGraphe() {
-        AVNode viewNode;
+        VNode viewNode;
         for (Node node : getGraph().getAllNodes()) {
-            if (node.getIntensity() == 0)
-                viewNode = new VNodeNormal(window.getSheetDisplay(), node);
-            else
-                viewNode = new VNodeFire(window.getSheetDisplay(), node);
+                viewNode = new VNode(window.getSheetDisplay(), node);
             window.getSheetDisplay().addNode(viewNode);
         }
         AVEdge viewEdge = null;

@@ -8,7 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-public abstract class AVNode implements Observer {
+public class VNode implements Observer {
 
     protected final SheetDisplay sheetDisplay;
 
@@ -23,7 +23,7 @@ public abstract class AVNode implements Observer {
      */
     private final int rayon = 7;
 
-    public AVNode(SheetDisplay sheetDisplay, Node node) {
+    public VNode(SheetDisplay sheetDisplay, Node node) {
         this.sheetDisplay = sheetDisplay;
         this.node = node;
         this.node.addObserver(this);
@@ -31,6 +31,7 @@ public abstract class AVNode implements Observer {
 
     /**
      * Mise à jour du Noeud
+     *
      * @param arg0
      * @param arg1
      */
@@ -41,11 +42,16 @@ public abstract class AVNode implements Observer {
 
     /**
      * Dessine le Noeud
+     *
      * @param graph
      */
     public void drawNode(Graphics graph) {
-        //Graphics2D g2d;
 
+        if (node.getIntensity() == 0) {
+            graph.setColor(Color.white);
+        } else {
+            graph.setColor(Color.RED);
+        }
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
         graph.setColor(Color.BLACK);
@@ -55,5 +61,4 @@ public abstract class AVNode implements Observer {
             graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
         }
     }
-
 }
