@@ -40,13 +40,13 @@ public class ControllerActionRobot implements ActionListener {
         viewRobot = null;
         bot = null;
         if (terrain) {
-            bot = new AllTerrainRobot(type, _capacity, control.getGraph(), currentNode);
+            bot = new AllTerrainRobot( _capacity, control.getGraph(), currentNode);
             viewRobot = new VRobotAllTerain(control.getWindow().getSheetDisplay(), bot);
         } else if (chenille) {
-            bot = new CaterpillarRobot(type, _capacity, control.getGraph(), currentNode);
+            bot = new CaterpillarRobot(_capacity, control.getGraph(), currentNode);
             viewRobot = new VRobotChenille(control.getWindow().getSheetDisplay(), bot);
         } else if (patte) {
-            bot = new LeggedRobot(type, _capacity, control.getGraph(), currentNode);
+            bot = new LeggedRobot( _capacity, control.getGraph(), currentNode);
             viewRobot = new VRobotPate(control.getWindow().getSheetDisplay(), bot);
 
         }

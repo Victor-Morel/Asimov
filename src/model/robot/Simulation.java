@@ -23,7 +23,7 @@ public class Simulation extends Observable implements Runnable {
         int tempsPause = 1000;
         while (true) {
             try {
-                Thread.sleep(tempsPause);
+                Thread.sleep(0);
                 compteurTemps += tempsPause;
                 System.out.println("test");
                 manager.decide();

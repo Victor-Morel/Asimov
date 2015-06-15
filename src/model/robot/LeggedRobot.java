@@ -8,8 +8,8 @@ import model.graph.Node;
  */
 public class LeggedRobot extends Robot {
 
-	public LeggedRobot(ResearchType _type, int _capacity, Graph _g, Node _node) {
-		super(_type, _capacity);
+	public LeggedRobot(int _capacity, Graph _g, Node _node) {
+		super(_capacity);
 		this.g = _g.getSubGraph(3);
 		this.node = _node;
 		// TODO Auto-generated constructor stub

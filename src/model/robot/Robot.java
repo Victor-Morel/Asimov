@@ -43,7 +43,7 @@ public abstract class Robot extends Observable implements Runnable {
 
 
 
-    private ResearchType researchType;
+    private static ResearchType researchType = ResearchType.ASTAR;
     private int id;
     protected Node node;
     private boolean busy;
@@ -58,8 +58,7 @@ public abstract class Robot extends Observable implements Runnable {
         this.distance = _distance;
     }
 
-    public Robot (ResearchType _type, double _capacity){
-        this.researchType = _type;
+    public Robot (double _capacity){
         this.setBusy(false);
         this.capacity = _capacity;
     }
@@ -97,7 +96,6 @@ public abstract class Robot extends Observable implements Runnable {
         System.out.println("fin incendie");
         inFlames.setIntensity(0);
         this.setBusy(false);
-
     }
 
     public void goTo(Node inFlames, int distance){
