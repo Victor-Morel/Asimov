@@ -1,1 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><osm><node id="14" type="NORMAL" x="353.0" y="180.0"/><node id="16" type="INCENDIE" x="218.0" y="219.0"/><node id="15" type="NORMAL" x="159.0" y="324.0"/><node id="6" type="NORMAL" x="93.0" y="232.0"/><node id="7" type="INCENDIE" x="275.0" y="112.0"/><node id="3" type="INCENDIE" x="117.0" y="150.0"/><node id="5" type="INCENDIE" x="184.0" y="313.0"/><node id="12" type="NORMAL" x="88.0" y="183.0"/><node id="4" type="NORMAL" x="38.0" y="74.0"/><node id="11" type="NORMAL" x="218.0" y="93.0"/><node id="1" type="NORMAL" x="360.0" y="146.0"/><node id="8" type="INCENDIE" x="302.0" y="168.0"/><node id="9" type="NORMAL" x="309.0" y="270.0"/><node id="2" type="NORMAL" x="200.0" y="186.0"/><node id="0" type="NORMAL" x="198.0" y="128.0"/><node id="10" type="NORMAL" x="186.0" y="380.0"/><node id="13" type="NORMAL" x="247.0" y="275.0"/><edge nd1="0" nd2="3" type="INONDE"/><edge nd1="9" nd2="2" type="PLAT"/><edge nd1="10" nd2="7" type="PLAT"/><edge nd1="13" nd2="15" type="PLAT"/><edge nd1="2" nd2="5" type="PLAT"/><edge nd1="7" nd2="0" type="INONDE"/><edge nd1="5" nd2="8" type="ESCARPE"/><edge nd1="12" nd2="14" type="ESCARPE"/><edge nd1="3" nd2="6" type="ESCARPE"/><edge nd1="16" nd2="14" type="PLAT"/><edge nd1="11" nd2="12" type="ESCARPE"/><edge nd1="13" nd2="16" type="ESCARPE"/><edge nd1="12" nd2="16" type="PLAT"/><edge nd1="14" nd2="11" type="PLAT"/><edge nd1="5" nd2="10" type="PLAT"/><edge nd1="1" nd2="3" type="PLAT"/><edge nd1="10" nd2="3" type="ESCARPE"/><edge nd1="15" nd2="16" type="PLAT"/><edge nd1="4" nd2="5" type="ESCARPE"/><edge nd1="5" nd2="1" type="PLAT"/><edge nd1="11" nd2="16" type="PLAT"/><edge nd1="0" nd2="2" type="PLAT"/></osm>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<osm>
+    <node id="14" type="NORMAL" x="353.0" y="180.0"/>
+    <node id="16" type="INCENDIE" x="218.0" y="219.0"/>
+    <node id="15" type="NORMAL" x="159.0" y="324.0"/>
+    <node id="6" type="NORMAL" x="93.0" y="232.0"/>
+    <node id="7" type="INCENDIE" x="275.0" y="112.0"/>
+    <node id="3" type="INCENDIE" x="117.0" y="150.0"/>
+    <node id="5" type="INCENDIE" x="184.0" y="313.0"/>
+    <node id="12" type="NORMAL" x="88.0" y="183.0"/>
+    <node id="4" type="NORMAL" x="38.0" y="74.0"/>
+    <node id="11" type="NORMAL" x="218.0" y="93.0"/>
+    <node id="1" type="NORMAL" x="360.0" y="146.0"/>
+    <node id="8" type="INCENDIE" x="302.0" y="168.0"/>
+    <node id="9" type="NORMAL" x="309.0" y="270.0"/>
+    <node id="2" type="NORMAL" x="200.0" y="186.0"/>
+    <node id="0" type="NORMAL" x="198.0" y="128.0"/>
+    <node id="10" type="NORMAL" x="186.0" y="380.0"/>
+    <node id="13" type="NORMAL" x="247.0" y="275.0"/>
+    <edge nd1="0" nd2="3" type="INONDE"/>
+    <edge nd1="9" nd2="2" type="PLAT"/>
+    <edge nd1="10" nd2="7" type="PLAT"/>
+    <edge nd1="13" nd2="15" type="PLAT"/>
+    <edge nd1="2" nd2="5" type="PLAT"/>
+    <edge nd1="7" nd2="0" type="INONDE"/>
+    <edge nd1="5" nd2="8" type="ESCARPE"/>
+    <edge nd1="12" nd2="14" type="ESCARPE"/>
+    <edge nd1="3" nd2="6" type="ESCARPE"/>
+    <edge nd1="16" nd2="14" type="PLAT"/>
+    <edge nd1="11" nd2="12" type="ESCARPE"/>
+    <edge nd1="13" nd2="16" type="ESCARPE"/>
+    <edge nd1="12" nd2="16" type="PLAT"/>
+    <edge nd1="14" nd2="11" type="PLAT"/>
+    <edge nd1="5" nd2="10" type="PLAT"/>
+    <edge nd1="1" nd2="3" type="PLAT"/>
+    <edge nd1="10" nd2="3" type="ESCARPE"/>
+    <edge nd1="15" nd2="16" type="PLAT"/>
+    <edge nd1="4" nd2="5" type="ESCARPE"/>
+    <edge nd1="5" nd2="1" type="PLAT"/>
+    <edge nd1="11" nd2="16" type="PLAT"/>
+    <edge nd1="0" nd2="2" type="PLAT"/>
+</osm>
