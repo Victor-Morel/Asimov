@@ -49,7 +49,7 @@ public class SheetDisplay extends JPanel {
     }
 
     /**
-     * Réinitialise les listes et redessine le JPanel vide
+     * RÃ©initialise les listes et redessine le JPanel vide
      *
      */
     public void reset(){

@@ -30,7 +30,7 @@ public abstract class AVNode implements Observer {
     }
 
     /**
-     * Mise à jour du Noeud
+     * Mise Ã  jour du Noeud
      * @param arg0
      * @param arg1
      */

@@ -4,6 +4,7 @@ import java.util.Observable;
 
 public class Node extends Observable {
 
+
     /**
      * Constante correspondant à la tempérture par défaut d'un noeud en feu
      */
@@ -35,6 +36,8 @@ public class Node extends Observable {
      */
     protected int uniqueID;
 
+    private boolean supported;
+
 
     /**
      * Construit un noeud enflammé avec un id donné
@@ -52,6 +55,7 @@ public class Node extends Observable {
         if(maxId < _id) {
             maxId = _id + 1;
         }
+        this.supported = false;
     }
 
     /**
@@ -171,5 +175,16 @@ public class Node extends Observable {
      */
     public void reset() throws Throwable {
         this.finalize();
+    }
+
+    /**
+     * Indique si le noeud est pris en charge
+     */
+    public boolean isSupported() {
+        return supported;
+    }
+
+    public void setSupported(boolean supported) {
+        this.supported = supported;
     }
 }
