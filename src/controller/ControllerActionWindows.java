@@ -11,9 +11,9 @@ import java.io.File;
 
 public class ControllerActionWindows implements ActionListener {
 
-    private Controller control;
+    private Controller2 control;
 
-    public ControllerActionWindows(Controller control) {
+    public ControllerActionWindows(Controller2 control) {
         this.control = control;
     }
 

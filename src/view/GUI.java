@@ -1,7 +1,7 @@
 package view;
 
 
-import controller.Controller;
+import controller.Controller2;
 import controller.ControllerMouse;
 
 import javax.swing.*;
@@ -37,7 +37,7 @@ public class GUI extends JFrame {
 	 * @param controlAction Controlleur des actions
 	 * @param controlMouse Controlleur de la souris
 	 */
-	public GUI(Controller controlAction, ControllerMouse controlMouse) {
+	public GUI(Controller2 controlAction, ControllerMouse controlMouse) {
 
 		super("Asimov");
 

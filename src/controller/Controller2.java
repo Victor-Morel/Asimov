@@ -15,7 +15,7 @@ import view.Node.AVNode;
 import view.Node.VNodeFire;
 import view.Node.VNodeNormal;
 
-public class Controller {
+public class Controller2 {
 
     private Graph graph;
     private Manager manager;
@@ -33,7 +33,7 @@ public class Controller {
     /**
      * Consctruit un controlleur des actions
      */
-    public Controller() {
+    public Controller2() {
         super();
         this.controlNode = new ControllerActionNode(this);
         this.controlEdge = new ControllerActionEdge(this);

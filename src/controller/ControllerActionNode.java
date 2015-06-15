@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 public class ControllerActionNode implements ActionListener {
 
     protected Boolean node, fire;
-    private Controller control;
+    private Controller2 control;
 
-    public ControllerActionNode(Controller control) {
+    public ControllerActionNode(Controller2 control) {
         super();
         this.control = control;
         initialization();
