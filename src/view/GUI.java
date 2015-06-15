@@ -50,10 +50,12 @@ public class GUI extends JFrame {
 
 		JMenu file = new JMenu("File");
 		menuBar.add(file);
-		JMenuItem save = new JMenuItem("Save");
-		JMenuItem LoadXml = new JMenuItem("Load XML");
-		JMenuItem LoadImage = new JMenuItem("Load Image");
-		file.add(save);
+		JMenuItem New = new JMenuItem("Nouveau");
+		JMenuItem Save = new JMenuItem("Sauvegarder");
+		JMenuItem LoadXml = new JMenuItem("Charger XML");
+		JMenuItem LoadImage = new JMenuItem("Charger Image");
+		file.add(New);
+		file.add(Save);
 		file.add(LoadXml);
 		file.add(LoadImage);
 
@@ -67,7 +69,8 @@ public class GUI extends JFrame {
 		addRobotPates.addActionListener(controlAction);
 		addRobotToutTerrain.addActionListener(controlAction);
 		launchSimulation.addActionListener(controlAction);
-		save.addActionListener(controlAction);
+		Save.addActionListener(controlAction);
+		New.addActionListener(controlAction);
 		LoadXml.addActionListener(controlAction);
 		LoadImage.addActionListener(controlAction);
 

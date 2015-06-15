@@ -88,9 +88,9 @@ public class ControllerAction implements ActionListener {
         } else if (e.getActionCommand().matches("Pates")) {
             this.initialization();
             patte = true;
-        } else if (e.getActionCommand().matches("Save")) {
+        } else if (e.getActionCommand().matches("Sauvegarder")) {
             saveFile();
-        } else if (e.getActionCommand().matches("Load XML")) {
+        } else if (e.getActionCommand().matches("Charger XML")) {
             if (0 == control.getGraph().getNbNodes()) {
                 loadFileXML();
             } else {
@@ -110,8 +110,21 @@ public class ControllerAction implements ActionListener {
                 }
 
             }
-        } else if (e.getActionCommand().matches("Load IMAGE")) {
+        } else if (e.getActionCommand().matches("Charger IMAGE")) {
 
+        } else if (e.getActionCommand().matches("Nouveau")) {
+            JDialog jdialog = new JDialog();
+            switch (jdialog.getElementChoose()) {
+                case 0:
+                    saveFile();
+                    control.reset();
+                    break;
+                case 1:
+                    control.reset();
+                    break;
+                default:
+                    break;
+            }
         } else if (e.getActionCommand().matches("Lancer Simulation")) {
             control.launchSimulation();
         }
