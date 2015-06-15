@@ -37,7 +37,7 @@ public class ControllerActionRobot implements ActionListener {
     public void addRobot(Node currentNode) {
         int _capacity = 10;
         Robot bot;
-        TypeRecherche type = TypeRecherche.ASTAR;
+        ResearchType type = ResearchType.ASTAR;
         AVRobot viewRobot;
 
         viewRobot = null;

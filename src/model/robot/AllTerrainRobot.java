@@ -8,7 +8,7 @@ import model.graph.Node;
  */
 public class AllTerrainRobot extends Robot {
 
-	public AllTerrainRobot(TypeRecherche _type, int _capacity, Graph _g, Node _node) {
+	public AllTerrainRobot(ResearchType _type, int _capacity, Graph _g, Node _node) {
 		super(_type, _capacity);
 		this.g = _g.getSubGraph(1);
 		this.node = _node;

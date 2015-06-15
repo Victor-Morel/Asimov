@@ -14,7 +14,6 @@ public class Manager implements Runnable {
 
     public List<Robot> bots;
     private Graph graph;
-    public HashMap<Integer, HashMap<Integer, Double>> listDistance = new HashMap<>();
     public HashMap<Node, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(); //key idFireNode, value : idBot/distance
 
     public Manager() {
@@ -50,15 +49,15 @@ public class Manager implements Runnable {
     //ça peut être pas mal de retourner pour chaque robot sa distance aux noeuds en feu (car plus simple), mais pour choisir
     //c'est peut être plus judicieux de savoir pour chaque feu quel robot est le plus proche
 
-    public void setAction(Robot bot, Node inFlames) { //envoie le robot sur le noeud
-        bot.goTo(inFlames);
+    public void setAction(Robot bot, Node inFlames, int distance) { //envoie le robot sur le noeud
+        bot.goTo(inFlames, distance);
     }
 
     public void chooseRobot() {//décide quel robot fait quoi
         for (Node inFlames : graph.getAllFireNodes()) {
             getBestDistance();
             if ((!bestBotForFire.isEmpty())&&(!bestBotForFire.get(inFlames).getFirst().isBusy())) {
-                setAction(bestBotForFire.get(inFlames).getFirst(), inFlames);
+                setAction(bestBotForFire.get(inFlames).getFirst(), inFlames, bestBotForFire.get(inFlames).getSecond());
                 bestBotForFire.get(inFlames).getFirst().setBusy(true);
                 inFlames.setSupported(true);
                 clearList(inFlames, bestBotForFire.get(inFlames).getFirst());
