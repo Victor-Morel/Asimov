@@ -6,6 +6,7 @@ import controller.ControllerMouse;
 
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
+import java.awt.*;
 
 
 public class GUI extends JFrame {
@@ -96,6 +97,16 @@ public class GUI extends JFrame {
 		Dijkstra.addActionListener(controlAction.getControlWindows());
 		AStar.addActionListener(controlAction.getControlWindows());
 		Pyromano.addActionListener(controlAction.getControlWindows());
+
+
+		addEdgePlat.setForeground(Color.black);
+		addEdgeEscarpe.setForeground(Color.CYAN);
+		addEdgeInonde.setForeground(Color.MAGENTA);
+
+		addRobotPates.setForeground(Color.GREEN);
+		addRobotChenille.setForeground(Color.RED);
+		addRobotToutTerrain.setForeground(Color.BLACK);
+
 
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
