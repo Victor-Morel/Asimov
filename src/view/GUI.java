@@ -54,8 +54,10 @@ public class GUI extends JFrame {
 
 		JMenu file = new JMenu("File");
 		JMenu run = new JMenu("Run");
+		JMenu option = new JMenu("Options");
 		menuBar.add(file);
 		menuBar.add(run);
+		menuBar.add(option);
 
 		JMenuItem New = new JMenuItem("Nouveau");
 		JMenuItem Save = new JMenuItem("Sauvegarder");
@@ -74,9 +76,10 @@ public class GUI extends JFrame {
 		file.add(LoadImage);
 		run.add(RunAlgo);
 		run.add(StopAlgo);
-		run.add(AStar);
-		run.add(Dijkstra);
 		run.add(Pyromano);
+		option.add(AStar);
+		option.add(Dijkstra);
+
 
 
 		addNodeFire.addActionListener(controlAction.getControlNode());
