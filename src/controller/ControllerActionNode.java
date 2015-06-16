@@ -47,7 +47,7 @@ public class ControllerActionNode implements ActionListener {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            VNode.findVNode(currentNode).setColorBorder(2);
+            VNode.findVNode(currentNode).setColorBorder(1);
             //currentNode.setTypeBorder(TypeBorder.CURRENT);
             checkOnlyNode(currentNode.getID());
         }
@@ -65,7 +65,7 @@ public class ControllerActionNode implements ActionListener {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            VNode.findVNode(currentNode).setColorBorder(1);
+            VNode.findVNode(currentNode).setColorBorder(2);
             //currentNode.setTypeBorder(TypeBorder.CURRENT_ADD_ARC);
             checkOnlyNode(currentNode.getID());
         }

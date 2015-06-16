@@ -15,9 +15,6 @@ public class SheetDisplay extends JPanel {
 
     private BackgroundImage image;
 
-    /**
-     * Liste des diffentes vues des noeuds
-     */
     private ArrayList<VNode> nodes; // la liste des nodes enregistrees
     /**
      * Liste des diffentes vues des arcs
@@ -84,7 +81,7 @@ public class SheetDisplay extends JPanel {
      * @param g
      */
     private void showNodes(Graphics g) {
-        for (VNode avNode : nodes) {
+        for (VNode avNode : getNodes()) {
             avNode.drawNode(g);
         }
     }
@@ -112,7 +109,7 @@ public class SheetDisplay extends JPanel {
      * @param node
      */
     public void addNode(VNode node) {
-        nodes.add(node);
+        getNodes().add(node);
     }
 
     /**
@@ -128,4 +125,10 @@ public class SheetDisplay extends JPanel {
     }
 
 
+    /**
+     * Liste des diffentes vues des noeuds
+     */
+    public ArrayList<VNode> getNodes() {
+        return nodes;
+    }
 }

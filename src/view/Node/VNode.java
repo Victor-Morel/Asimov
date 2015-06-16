@@ -33,6 +33,7 @@ public class VNode implements Observer {
         this.node = node;
         this.node.addObserver(this);
         VNode.allNodes.add(this);
+        setColorBorder(0);
     }
 
     /**
@@ -57,7 +58,6 @@ public class VNode implements Observer {
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - radius, (int) node.getY() - radius, 2 * radius, 2 * radius);
 
-        setColorBorder(0);
         graph.setColor(colorBorder);
         ((Graphics2D) graph).setStroke(new BasicStroke(2));
         graph.drawOval((int) node.getX() - radius, (int) node.getY() - radius, 2 * radius, 2 * radius);
@@ -92,7 +92,7 @@ public class VNode implements Observer {
             case 2:
                 colorBorder = Color.GREEN;
                 break;
-            default : colorBorder = Color.BLACK;
+            default : colorBorder = Color.WHITE;
         }
     }
 
