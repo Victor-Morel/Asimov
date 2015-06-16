@@ -17,6 +17,7 @@ public class Controller {
 
     private Graph graph;
     private Manager manager;
+    private boolean pyroman;
 
     private ControllerActionNode controlNode;
     private ControllerActionEdge controlEdge;
@@ -43,6 +44,8 @@ public class Controller {
 
         this.setGraph(new Graph());
         this.manager = new Manager();
+
+        this.pyroman = false;
     }
 
 
@@ -92,7 +95,7 @@ public class Controller {
 
     public void launchSimulation() {
         manager.setGraph(graph);
-        Simulation simulation = new Simulation(manager, graph);
+        Simulation simulation = new Simulation(manager, graph, pyroman);
         new Thread(simulation).start();
     }
 
@@ -126,5 +129,13 @@ public class Controller {
 
     public Manager getManager() {
         return manager;
+    }
+
+    public boolean getPyroman() {
+        return pyroman;
+    }
+
+    public void setPyroman(boolean pyroman) {
+        this.pyroman = pyroman;
     }
 }

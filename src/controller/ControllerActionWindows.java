@@ -97,7 +97,7 @@ public class ControllerActionWindows implements ActionListener {
         } else if (e.getActionCommand().matches("Stop Simulation")) {
 
         } else if (e.getActionCommand().matches("Mode Pyromane")) {
-
+            control.setPyroman(!control.getPyroman());
         } else if (e.getActionCommand().matches("Strategie AStar")) {
             control.getWindow().getDijkstra().setSelected(false);
             for (Robot bot : control.getManager().getBots()) {

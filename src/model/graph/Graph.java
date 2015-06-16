@@ -213,6 +213,22 @@ public class Graph {
         this.edges = edges;
     }
 
+
+    /**
+     * Fonction permettant d'embrasser les noeuds non-enflammes
+     */
+    public void igniteNodes() {
+        Set<Node> allNodes = this.getAllNodes();
+        allNodes.removeAll(this.getAllFireNodes());
+        for(Node n : allNodes) {
+            double rand = Math.random();
+            if(rand < Node.IGNITE_PROBABILITY) {
+                n.setIntensity(Node.FIRE_DEFAULT_TEMPERATURE);
+                System.out.println("New fire in " + n.toString());
+            }
+        }
+    }
+
     /**
      * Methode qui genere le sous-graphe d'un robot. Le sous-graphe est identique au graphe de base, mais on y a retire les aretes que le robot ne pouvais pas emprunter, en fonction du type de robot
      *
