@@ -49,8 +49,12 @@ public class VNode implements Observer {
 
         if (node.getIntensity() == 0) {
             graph.setColor(Color.white);
-        } else {
+        }
+        else if (node.getIntensity() == Node.FIRE_DEFAULT_TEMPERATURE){
             graph.setColor(Color.RED);
+        }
+        else{
+            graph.setColor(Color.orange);
         }
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);

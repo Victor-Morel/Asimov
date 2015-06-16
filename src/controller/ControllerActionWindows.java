@@ -94,6 +94,13 @@ public class ControllerActionWindows implements ActionListener {
             control.launchSimulation();
         } else if (e.getActionCommand().matches("Stop Simulation")){
 
+        } else if (e.getActionCommand().matches("Mode Pyromane")){
+
+        }else if (e.getActionCommand().matches("Strategie AStar")){
+            control.getWindow().getDijkstra().setSelected(false);
+
+        }else if (e.getActionCommand().matches("Strategie Dijkstra")){
+            control.getWindow().getAStar().setSelected(false);
         }
     }
 

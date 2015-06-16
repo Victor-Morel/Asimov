@@ -22,6 +22,8 @@ public class GUI extends JFrame {
 			addRobotToutTerrain, addRobotChenille, addRobotPates,
 			addEdgeEscarpe, addEdgePlat, addEdgeInonde;
 
+	JCheckBoxMenuItem AStar, Dijkstra;
+
 	/**
 	 *  SheetDisplay
 	 */
@@ -58,6 +60,10 @@ public class GUI extends JFrame {
 		JMenuItem LoadImage = new JMenuItem("Charger Image");
 		JMenuItem RunAlgo = new JMenuItem("Lancer Simulation");
 		JMenuItem StopAlgo = new JMenuItem("Stop Simulation");
+		JCheckBoxMenuItem Pyromano = new JCheckBoxMenuItem("Mode Pyromane");
+		AStar = new JCheckBoxMenuItem("Strategie AStar");
+		Dijkstra = new JCheckBoxMenuItem("Strategie Dijkstra");
+		Dijkstra.setSelected(true);
 
 		file.add(New);
 		file.add(Save);
@@ -65,6 +71,9 @@ public class GUI extends JFrame {
 		file.add(LoadImage);
 		run.add(RunAlgo);
 		run.add(StopAlgo);
+		run.add(AStar);
+		run.add(Dijkstra);
+		run.add(Pyromano);
 
 
 		addNodeFire.addActionListener(controlAction.getControlNode());
@@ -84,6 +93,9 @@ public class GUI extends JFrame {
 		New.addActionListener(controlAction.getControlWindows());
 		LoadXml.addActionListener(controlAction.getControlWindows());
 		LoadImage.addActionListener(controlAction.getControlWindows());
+		Dijkstra.addActionListener(controlAction.getControlWindows());
+		AStar.addActionListener(controlAction.getControlWindows());
+		Pyromano.addActionListener(controlAction.getControlWindows());
 
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -107,5 +119,14 @@ public class GUI extends JFrame {
 	 */
 	public SheetDisplay getSheetDisplay() {
 		return sheetDisplay;
+	}
+
+
+	public JCheckBoxMenuItem getDijkstra() {
+		return Dijkstra;
+	}
+
+	public JCheckBoxMenuItem getAStar() {
+		return AStar;
 	}
 }
