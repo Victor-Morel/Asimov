@@ -111,8 +111,8 @@ public class GUI extends JFrame {
 		addEdgeInonde.setForeground(new Color(0, 29,255));
 		addEdgeEscarpe.setForeground(new Color(0, 136, 32));
 
-		addRobotPates.setForeground(Color.GREEN);
-		addRobotChenille.setForeground(new Color(0, 99,255));
+		addRobotPates.setForeground(new Color(0, 136, 32));
+		addRobotChenille.setForeground(new Color(0, 29,255));
 		addRobotToutTerrain.setForeground(Color.BLACK);
 
 

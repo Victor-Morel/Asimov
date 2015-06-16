@@ -15,7 +15,7 @@ public class VRobotChenille extends AVRobot {
 
     @Override
     public void drawRobot(Graphics graph) {
-        graph.setColor(new Color(0, 99,255));
+        graph.setColor(new Color(0, 29,255));
         super.drawRobot(graph);
     }
 }

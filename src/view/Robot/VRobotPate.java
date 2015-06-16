@@ -14,7 +14,7 @@ public class VRobotPate extends AVRobot {
 
     @Override
     public void drawRobot(Graphics graph) {
-        graph.setColor(Color.GREEN);
+        graph.setColor(new Color(0, 136, 32));
         super.drawRobot(graph);
     }
 }
