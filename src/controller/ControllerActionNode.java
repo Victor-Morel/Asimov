@@ -2,7 +2,6 @@ package controller;
 
 
 import model.graph.Node;
-import model.graph.TypeBorder;
 import view.Node.VNode;
 
 import java.awt.event.ActionEvent;
@@ -47,9 +46,9 @@ public class ControllerActionNode implements ActionListener {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            VNode.findVNode(currentNode).setColorBorder(1);
-            //currentNode.setTypeBorder(TypeBorder.CURRENT);
+            control.getWindow().getSheetDisplay().findVNode(currentNode).setColorBorder(1);
             checkOnlyNode(currentNode.getID());
+            control.repaint();
         }
         return currentNode;
     }
@@ -61,13 +60,13 @@ public class ControllerActionNode implements ActionListener {
      * @param y parametre y de la souris
      * @return nouveau noeud courant ou null
      */
-    protected Node checkCurrentNodeAndAddArc(int x, int y) {
+    protected Node checkCurrentNodeAndAddEdge(int x, int y) {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            VNode.findVNode(currentNode).setColorBorder(2);
-            //currentNode.setTypeBorder(TypeBorder.CURRENT_ADD_ARC);
+            control.getWindow().getSheetDisplay().findVNode(currentNode).setColorBorder(2);
             checkOnlyNode(currentNode.getID());
+            control.repaint();
         }
         return currentNode;
     }
@@ -127,8 +126,7 @@ public class ControllerActionNode implements ActionListener {
     public void checkOnlyNode(int idCurrentNode) {
         for (Node n : control.getGraph().getAllNodes()) {
             if (n.getID() != idCurrentNode) {
-                VNode.findVNode(n).setColorBorder(0);
-                //n.setTypeBorder(TypeBorder.NORMAL);
+                control.getWindow().getSheetDisplay().findVNode(n).setColorBorder(0);
             }
         }
     }

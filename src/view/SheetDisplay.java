@@ -1,6 +1,7 @@
 package view;
 
 import controller.ControllerMouse;
+import model.graph.Node;
 import view.Edge.AVEdge;
 import view.Image.BackgroundImage;
 import view.Node.VNode;
@@ -131,4 +132,14 @@ public class SheetDisplay extends JPanel {
     public ArrayList<VNode> getNodes() {
         return nodes;
     }
+
+    public VNode findVNode(Node _node) {
+        for(VNode vn : getNodes()) {
+            if(vn.getNode().equals(_node)) {
+                return vn;
+            }
+        }
+        return null;
+    }
+
 }

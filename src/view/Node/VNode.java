@@ -4,7 +4,6 @@ import model.graph.Node;
 import view.SheetDisplay;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,7 +11,6 @@ import java.util.Observer;
 public class VNode implements Observer {
 
     protected final SheetDisplay sheetDisplay;
-    public static ArrayList<VNode> allNodes = new ArrayList<VNode>();
 
     /**
      * Noeud correspondant a la vue
@@ -32,13 +30,11 @@ public class VNode implements Observer {
         this.sheetDisplay = sheetDisplay;
         this.node = node;
         this.node.addObserver(this);
-        VNode.allNodes.add(this);
         setColorBorder(0);
     }
 
     /**
      * Mise à jour du Noeud
-     *
      * @param arg0
      * @param arg1
      */
@@ -96,13 +92,8 @@ public class VNode implements Observer {
         }
     }
 
-    public static VNode findVNode(Node _node) {
-        for(VNode vn : allNodes) {
-            if(vn.node.equals(_node)) {
-                return vn;
-            }
-        }
-        return null;
+    public Node getNode() {
+        return node;
     }
 }
 

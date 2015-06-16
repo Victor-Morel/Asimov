@@ -43,7 +43,7 @@ public class ControllerMouse implements MouseListener {
 
         }
         if (checkAddEdge()) {
-            currentNode = controlAction.getControlNode().checkCurrentNodeAndAddArc(e.getX(), e.getY());
+            currentNode = controlAction.getControlNode().checkCurrentNodeAndAddEdge(e.getX(), e.getY());
             if (null != currentNode && node1 == null) {
                 node1 = currentNode;
             } else if (null != currentNode && node2 == null) {
