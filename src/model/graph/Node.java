@@ -13,7 +13,7 @@ public class Node extends Observable {
     /**
      * Constante correspondant à la probabilité qu'un noeud normal s'enflamme de lui-même
      */
-    public static final double IGNITE_PROBABILITY = 0.0001;
+    public static final double IGNITE_PROBABILITY = 0.00005;
 
     /**
      * plus grand id parmi tous les ids des noeuds instanciés
