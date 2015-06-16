@@ -110,7 +110,7 @@ public class Node extends Observable {
      * @param capacity correspond à l'efficacité de refroidissement [0;1]
      */
     public void cooling(double capacity) {
-        this.intensity = (int) (this.intensity * (1 - capacity));
+        setIntensity ((int) (this.intensity * (1 - capacity)));
     }
 
     /**
