@@ -219,10 +219,9 @@ public class Graph {
      */
     public void igniteNodes() {
         Set<Node> allNodes = this.getAllNodes();
-        //allNodes.removeAll(this.getAllFireNodes());
         for(Node n : allNodes) {
             double rand = Math.random();
-            if(rand < Node.IGNITE_PROBABILITY) {
+            if(rand < Node.IGNITE_PROBABILITY && 0 == n.getIntensity()) {
                 n.setIntensity(Node.FIRE_DEFAULT_TEMPERATURE);
                 System.out.println("New fire in " + n.toString());
             }
