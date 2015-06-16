@@ -15,15 +15,15 @@ public class SearchNode {
     private SearchNode parent;
 
     /**
-     * Valeur donnée au noeud
+     * Valeur donnï¿½e au noeud
      */
     private double value;
 
     /**
-     * Construit un noeud de recherche à partir d'un noeud, de son parent, et d'une valeur donnée
-     * @param node noeud à transformer en noeud de recherche
-     * @param parent parent du noeud à transformer
-     * @param value valeur à donner au noeud
+     * Construit un noeud de recherche a partir d'un noeud, de son parent, et d'une valeur donnee
+     * @param node noeud a transformer en noeud de recherche
+     * @param parent parent du noeud a transformer
+     * @param value valeur a donner au noeud
      */
     public SearchNode(Node node, SearchNode parent, double value) {
         this.setNode(node);
@@ -32,7 +32,7 @@ public class SearchNode {
     }
 
     /**
-     * Permet de récupérer le noeud
+     * Permet de recuperer le noeud
      * @return le noeud
      */
     public Node getNode() {
@@ -41,14 +41,14 @@ public class SearchNode {
 
     /**
      * Permet de setter le noeud
-     * @param node noeud à setter
+     * @param node noeud a setter
      */
     public void setNode(Node node) {
         this.node = node;
     }
 
     /**
-     * Permet de récupérer le noeud parent
+     * Permet de recuperer le noeud parent
      * @return le noeud parent
      */
     public SearchNode getParent() {
@@ -57,14 +57,14 @@ public class SearchNode {
 
     /**
      * Permet de setter le noeud parent
-     * @param parent le noeud parent à setter
+     * @param parent le noeud parent a setter
      */
     public void setParent(SearchNode parent) {
         this.parent = parent;
     }
 
     /**
-     * Permet de récupérer la valeur du noeud
+     * Permet de recuperer la valeur du noeud
      * @return la valeur du noeud
      */
     public double getValue() {
@@ -73,14 +73,14 @@ public class SearchNode {
 
     /**
      * Permet de setter la valeur du noeud
-     * @param value valeur à setter au noeud
+     * @param value valeur a setter au noeud
      */
     public void setValue(double value) {
         this.value = value;
     }
 
     /**
-     * @param o le noeud à comparer à this
+     * @param o le noeud a comparer a this
      * @return true si les noeuds sont identiques, false sinon
      */
     @Override

@@ -36,7 +36,7 @@ public class ControllerActionNode implements ActionListener {
 
 
     /**
-     * Affiche si nouveau noeud courant selectionné
+     * Affiche si nouveau noeud courant selectionne
      *
      * @param x parametre x de la souris
      * @param y parametre y de la souris
@@ -54,7 +54,7 @@ public class ControllerActionNode implements ActionListener {
     }
 
     /**
-     * Affiche si nouveau noeud courant selectionné
+     * Affiche si nouveau noeud courant selectionne
      *
      * @param x parametre x de la souris
      * @param y parametre y de la souris

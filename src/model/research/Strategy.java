@@ -15,8 +15,8 @@ public abstract class Strategy {
 	protected int distanceValue;
 
 	/**
-	 * Méthode de calcul de la distance totale à parcourir à travers le meilleur chemin
-	 * @return la distance à parcourir, soit la somme des valeurs des arètes à parcourir
+	 * Methode de calcul de la distance totale a parcourir a travers le meilleur chemin
+	 * @return la distance a parcourir, soit la somme des valeurs des aretes a parcourir
 	 */
 	public int getDistanceValue() {
 		distanceValue = 0;
@@ -27,9 +27,9 @@ public abstract class Strategy {
 	}
 
 	/**
-	 * Génère un sous-graphe contenant le meilleur chemin trouvé entre le noeud source et le noeud destination
-	 * Le sous-graphe ne contient que les arètes et les noeuds empruntés par le meilleur chemin
-	 * Le sous-graphe généré est stocké dans resultGraph
+	 * Genere un sous-graphe contenant le meilleur chemin trouve entre le noeud source et le noeud destination
+	 * Le sous-graphe ne contient que les aretes et les noeuds empruntes par le meilleur chemin
+	 * Le sous-graphe genere est stocke dans resultGraph
 	 */
 	public abstract void generateBestPath();
 
