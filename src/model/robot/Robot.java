@@ -11,10 +11,6 @@ import java.util.Observable;
 
 public abstract class Robot extends Observable implements Runnable {
 
-    public int getId() {
-        return id;
-    }
-
     public Strategy getStrat() {
         return strat;
     }
@@ -48,10 +44,9 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
 
-    private static final int ROBOT_MOBILITY_SPEED = 30;
+    private static final int ROBOT_MOBILITY_SPEED = 15;
     private static final int ROBOT_EXTINGUISH_SPEED = 300;
     private ResearchType researchType;
-    private int id;
     protected Node node;
     private boolean busy;
     private double capacity;
@@ -64,7 +59,6 @@ public abstract class Robot extends Observable implements Runnable {
 
     public Robot(Node _node, ResearchType _researchType) {
         this.setBusy(false);
-        //TODO Calculate _capacity
         double capacity = ((Math.random() * 3.0) + 2.0)/10.0;
         this.capacity = capacity;
         this.node = _node;
