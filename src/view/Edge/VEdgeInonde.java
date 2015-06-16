@@ -12,7 +12,7 @@ public class VEdgeInonde extends AVEdge {
 
     @Override
     public void drawEdge(Graphics graph) {
-        graph.setColor(Color.CYAN);
+        graph.setColor(new Color(0,255, 65));
         super.drawEdge(graph);
     }
 }

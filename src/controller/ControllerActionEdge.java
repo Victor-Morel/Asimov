@@ -45,10 +45,10 @@ public class ControllerActionEdge implements ActionListener {
             viewEdge = new VEdgePlat(edge);
         } else if (escarpe) {
             edge = new Edge(node1, node2, TypeEdge.ESCARPE);
-            viewEdge = new VEdgeInonde(edge);
+            viewEdge = new VEdgeEscarpe(edge);
         } else if (inonde) {
             edge = new Edge(node1, node2, TypeEdge.INONDE);
-            viewEdge = new VEdgeEscarpe(edge);
+            viewEdge = new VEdgeInonde(edge);
         }
 
         control.getGraph().addEdge(edge);
