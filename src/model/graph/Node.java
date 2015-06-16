@@ -6,7 +6,7 @@ public class Node extends Observable {
 
 
     /**
-     * Constante correspondant à la tempérture par défaut d'un noeud en feu
+     * Constante correspondant à la température par défaut d'un noeud en feu
      */
     public static final int FIRE_DEFAULT_TEMPERATURE = 100;
 
@@ -104,7 +104,7 @@ public class Node extends Observable {
      * @param capacity correspond à l'efficacité de refroidissement [0;1]
      */
     public void cooling(double capacity) {
-        setIntensity ((int) (this.intensity * (1 - capacity)));
+        setIntensity((int) (this.intensity * (1 - capacity)));
     }
 
     /**

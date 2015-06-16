@@ -74,21 +74,21 @@ public class ControllerActionNode implements ActionListener {
     /**
      * Ajouter noeud
      *
-     * @param x cordonnee x du noeud
-     * @param y cordonnee y du noeud
+     * @param x coordonnee x du noeud
+     * @param y coordonnee y du noeud
      */
     public void addNode(int x, int y) {
         VNode viewNode;
         Node n;
 
-        viewNode =null;
+        viewNode = null;
         n = null;
 
         if (node) {
             n = (new Node(x, y));
             viewNode = new VNode(control.getWindow().getSheetDisplay(), n);
         } else if (fire) {
-            n = new Node((double)x, (double)y, Node.FIRE_DEFAULT_TEMPERATURE);
+            n = new Node((double) x, (double) y, Node.FIRE_DEFAULT_TEMPERATURE);
             viewNode = new VNode(control.getWindow().getSheetDisplay(), n);
         }
 
@@ -103,8 +103,8 @@ public class ControllerActionNode implements ActionListener {
      * Verifie si dans il existe un noeud au coordonnee x et y
      *
      * @param x coordonnee x de la souris
-     * @param y coordonnee y
-     * @return Node selectioner ou null
+     * @param y coordonnee y de la souris
+     * @return Node selectionne ou null
      */
     protected Node clickOnNode(int x, int y) {
         for (Node n : control.getGraph().getAllNodes()) {
@@ -121,6 +121,7 @@ public class ControllerActionNode implements ActionListener {
 
     /**
      * Verifie qu'il y a un seul noeud courant
+     *
      * @param idCurrentNode
      */
     public void checkOnlyNode(int idCurrentNode) {

@@ -36,7 +36,7 @@ public class Graph {
     }
 
     /**
-     * M�thode pour trouver un noeud dans le graphe a partir de son id
+     * Methode pour trouver un noeud dans le graphe a partir de son id
      *
      * @param id id du noeud recherche
      * @return le noeud avec l'id correspondant, null s'il n'y en a pas
@@ -144,11 +144,11 @@ public class Graph {
     }
 
     /**
-     * Methode qui renvoie l'ar�te entre 2 noeuds pass�s en param�tre
+     * Methode qui renvoie l'arete entre 2 noeuds passes en parametre
      *
-     * @param _n1 premi�re extr�mit� de l'ar�te
-     * @param _n2 deuxi�me extr�mit� de l'ar�te
-     * @return l'ar�te entre _n1 et _n2 s'il existe, null sinon
+     * @param _n1 premiere extremite de l'arete
+     * @param _n2 deuxieme extremite de l'arete
+     * @return l'arete entre _n1 et _n2 s'il existe, null sinon
      */
     public Edge getEdge(Node _n1, Node _n2) {
         if (hasEdge(_n1, _n2)) {
@@ -163,9 +163,9 @@ public class Graph {
     }
 
     /**
-     * Retire du graphe l'ar�te pass�e en param�tre
+     * Retire du graphe l'arete passee en parametre
      *
-     * @param e arr�te � retirer du graphe
+     * @param e arrete a retirer du graphe
      */
     public void removeEdge(Edge e) {
         if (this.getAllEdges().contains(e)) {
@@ -174,7 +174,7 @@ public class Graph {
     }
 
     /**
-     * @return un String corresponfant au graphe
+     * @return un String correspondant au graphe
      */
     public String toString() {
         String s = "";
@@ -189,35 +189,35 @@ public class Graph {
     /**
      * Permet de setter la liste des noeuds du graphe
      *
-     * @param nodes liste des noeuds � setter
+     * @param nodes liste des noeuds a setter
      */
     public void setNodes(Set<Node> nodes) {
         this.nodes = nodes;
     }
 
     /**
-     * M�thode qui s�lectionne la liste compl�te des ar�tes du graphe
+     * Methode qui selectionne la liste complete des aretes du graphe
      *
-     * @return la liste des ar�tes du graphe
+     * @return la liste des aretes du graphe
      */
     public Set<Edge> getAllEdges() {
         return edges;
     }
 
     /**
-     * Permet de setter la liste des ar�tes du graphe
+     * Permet de setter la liste des aretes du graphe
      *
-     * @param edges liste des ar�tes � setter
+     * @param edges liste des aretes a setter
      */
     public void setEdges(Set<Edge> edges) {
         this.edges = edges;
     }
 
     /**
-     * M�thode qui g�n�re le sous-graphe d'un robot. Le sous-graphe est identique au graphe de base, mais on y a retir� les ar�tes que le robot ne pouvais pas emprunter, en fonction du type de robot
+     * Methode qui genere le sous-graphe d'un robot. Le sous-graphe est identique au graphe de base, mais on y a retire les aretes que le robot ne pouvais pas emprunter, en fonction du type de robot
      *
-     * @param robotType le type de robot utilis�
-     * @return le sous-graphe dans lequel le robot peut se d�placer
+     * @param robotType le type de robot utilise
+     * @return le sous-graphe dans lequel le robot peut se deplacer
      */
     public Graph getSubGraph(int robotType) {
         /**
@@ -236,11 +236,11 @@ public class Graph {
     }
 
     /**
-     * M�thode qui indique si l'ar�te pass� en param�tre est accessible au type de robot donn�
+     * Methode qui indique si l'arete passe en parametre est accessible au type de robot donne
      *
-     * @param e         ar�te � tester
-     * @param robotType type de robot voulant emprunter l'ar�te
-     * @return true si le robot donn� peut emprunter l'ar�te donn�e, false sinon
+     * @param e         arete a tester
+     * @param robotType type de robot voulant emprunter l'arete
+     * @return true si le robot donne peut emprunter l'arete donnee, false sinon
      */
     public Boolean edgeAuthorized(Edge e, int robotType) {
         switch (robotType) {
@@ -264,7 +264,7 @@ public class Graph {
     }
 
     /**
-     * @param o le graphe a comparer � this
+     * @param o le graphe a comparer a this
      * @return true si les graphes sont identiques, false sinon
      */
     @Override

@@ -28,10 +28,10 @@ public class Edge {
     /**
      * Construit une arete entre 2 noeuds, avec un poids et un type
      *
-     * @param _n1 premier noeud de l'arete
-     * @param _n2 deuxieme noeud de l'arete
+     * @param _n1        premier noeud de l'arete
+     * @param _n2        deuxieme noeud de l'arete
      * @param _valuation poids de l'arete
-     * @param type type d'arete
+     * @param type       type d'arete
      */
     public Edge(Node _n1, Node _n2, double _valuation, TypeEdge type) {
         this.valuation = _valuation;
@@ -43,8 +43,8 @@ public class Edge {
     /**
      * Construit une arete entre 2 noeuds, avec un poids correspondant a la distance entre les noeuds, et un type
      *
-     * @param _n1 premier noeud de l'arete
-     * @param _n2 deuxieme noeud de l'arete
+     * @param _n1  premier noeud de l'arete
+     * @param _n2  deuxieme noeud de l'arete
      * @param type type d'arete
      */
     public Edge(Node _n1, Node _n2, TypeEdge type) {
@@ -60,6 +60,7 @@ public class Edge {
 
     /**
      * Set la valeur d'une arete
+     *
      * @param valuation valeur de l'arete
      */
     public void setValuation(int valuation) {
@@ -75,6 +76,7 @@ public class Edge {
 
     /**
      * Set le noeud source de l'arete
+     *
      * @param _n noeud source
      */
     public void setSource(Node _n) {
@@ -90,6 +92,7 @@ public class Edge {
 
     /**
      * Set le noeud destination de l'arete
+     *
      * @param _n noeud destination
      */
     public void setDestination(Node _n) {
@@ -106,19 +109,25 @@ public class Edge {
     }
 
     /**
-     * @return le type d'arete     */
+     * @return le type d'arete
+     */
     public TypeEdge getType() {
         return type;
     }
 
     /**
-     *  Set le type d'arete     * @param type type d'arete     */
+     * Set le type d'arete
+     *
+     * @param type type d'arete
+     */
     public void setType(TypeEdge type) {
         this.type = type;
     }
 
     /**
-     * Destructeur d'arete     * @throws Throwable
+     * Destructeur d'arete
+     *
+     * @throws Throwable
      */
     public void reset() throws Throwable {
         this.finalize();

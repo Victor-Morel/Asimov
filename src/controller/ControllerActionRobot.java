@@ -29,7 +29,7 @@ public class ControllerActionRobot implements ActionListener {
     /**
      * Ajouter un robot
      *
-     * @param currentNode noeud ou le robot sera instanci?
+     * @param currentNode noeud ou le robot sera instancie
      */
     public void addRobot(Node currentNode) {
 
@@ -40,10 +40,9 @@ public class ControllerActionRobot implements ActionListener {
 
         viewRobot = null;
         bot = null;
-        if(control.getWindow().getAStar().isSelected()){
+        if (control.getWindow().getAStar().isSelected()) {
             typeSearch = ResearchType.ASTAR;
-        }
-        else{
+        } else {
             typeSearch = ResearchType.DIJKSTRA;
         }
 
@@ -55,7 +54,7 @@ public class ControllerActionRobot implements ActionListener {
             bot = new CaterpillarRobot(currentNode, typeSearch);
             viewRobot = new VRobotChenille(control.getWindow().getSheetDisplay(), bot);
         } else if (leg) {
-            bot = new LeggedRobot( currentNode, typeSearch);
+            bot = new LeggedRobot(currentNode, typeSearch);
             viewRobot = new VRobotPate(control.getWindow().getSheetDisplay(), bot);
         }
 

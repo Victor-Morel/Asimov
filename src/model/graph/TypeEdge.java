@@ -12,10 +12,6 @@ public enum TypeEdge {
         this.text = text;
     }
 
-    public String getText() {
-        return this.text;
-    }
-
     public static TypeEdge fromString(String text) {
         if (text != null) {
             for (TypeEdge t : TypeEdge.values()) {

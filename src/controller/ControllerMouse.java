@@ -12,9 +12,9 @@ public class ControllerMouse implements MouseListener {
     private Node node1, node2, currentNode;
 
     /**
-     * Conscruit un controllerMouse
+     * Construit un controleur pour la souris
      *
-     * @param _controlAction controller des actions sur la fenetre
+     * @param _controlAction controleur des actions sur la fenetre
      */
     public ControllerMouse(Controller _controlAction) {
         super();
@@ -29,7 +29,7 @@ public class ControllerMouse implements MouseListener {
     }
 
     /**
-     * Si la souris a click�
+     * Si la souris a clique
      *
      * @param e
      */
@@ -60,8 +60,6 @@ public class ControllerMouse implements MouseListener {
                 initialization();
             }
         }
-
-
     }
 
 
@@ -86,32 +84,35 @@ public class ControllerMouse implements MouseListener {
     }
 
     /**
-     * Verifi� si button Node ou Fire actionn�
-     * @return si button noeud actionner VRAI sinon FAUX
+     * Verifie si button Node ou Fire actionne
+     *
+     * @return si button noeud actionne VRAI sinon FAUX
      */
     private boolean checkAddNode() {
         return controlAction.getControlNode().fire ||
-               controlAction.getControlNode().node;
+                controlAction.getControlNode().node;
     }
 
     /**
-     * Verifi� si button Escarpe ou Inonde ou Plat actionner
-     * @return si button arc actionner VRAI sinon FAUX
+     * Verifie si button Escarpe ou Inonde ou Plat actionner
+     *
+     * @return si button arc actionne VRAI sinon FAUX
      */
     private boolean checkAddEdge() {
         return controlAction.getControlEdge().escarpe ||
-               controlAction.getControlEdge().inonde ||
-               controlAction.getControlEdge().plat;
+                controlAction.getControlEdge().inonde ||
+                controlAction.getControlEdge().plat;
     }
 
     /**
-     * Verifi� si button Pate ou Chenille ou  Terrain actionner
-     * @return si button robot actionner VRAI sinon FAUX
+     * Verifie si button Pate ou Chenille ou  Terrain actionner
+     *
+     * @return si button robot actionne VRAI sinon FAUX
      */
     private boolean checkAddRobot() {
         return controlAction.getControlRobot().leg ||
-               controlAction.getControlRobot().caterpillar ||
-               controlAction.getControlRobot().allTerrain;
+                controlAction.getControlRobot().caterpillar ||
+                controlAction.getControlRobot().allTerrain;
     }
 
 

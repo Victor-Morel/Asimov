@@ -41,7 +41,7 @@ public class ControllerActionEdge implements ActionListener {
         viewEdge = null;
 
         if (plat) {
-            edge = new Edge(node1, node2,TypeEdge.PLAT);
+            edge = new Edge(node1, node2, TypeEdge.PLAT);
             viewEdge = new VEdgePlat(edge);
         } else if (escarpe) {
             edge = new Edge(node1, node2, TypeEdge.ESCARPE);

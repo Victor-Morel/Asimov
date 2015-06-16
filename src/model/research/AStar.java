@@ -26,67 +26,58 @@ public class AStar extends Strategy {
 
     @Override
     public void generateBestPath() {
-        SearchNode currentSearchNode = new SearchNode(source,null,0);
+        SearchNode currentSearchNode = new SearchNode(source, null, 0);
         SearchNode bestSn = null;
         do {
-            //System.out.println("\nCurrent children : " + graph.getNextNodes(currentSearchNode.getNode()));
-            for(Node n : graph.getNextNodes(currentSearchNode.getNode())) {
-                SearchNode sn = new SearchNode(n,currentSearchNode,EuclidianDistance.getDistance(n,destination));
-                //System.out.println("Current node : " + sn);
+            for (Node n : graph.getNextNodes(currentSearchNode.getNode())) {
+                SearchNode sn = new SearchNode(n, currentSearchNode, EuclidianDistance.getDistance(n, destination));
                 int id = -1;
-                for(int i = 0; i < closedList.size(); i++) {
-                    if(closedList.get(i).getNode().equals(sn.getNode())) {
+                for (int i = 0; i < closedList.size(); i++) {
+                    if (closedList.get(i).getNode().equals(sn.getNode())) {
                         id = i;
-                        //System.out.println("Break1");
                         break;
                     }
                 }
-                if(id >= 0) {
+                if (id >= 0) {
                     continue;
                 }
-                for(int i = 0; i < openedList.size(); i++) {
-                    if(openedList.get(i).getNode().equals(sn.getNode())) {
+                for (int i = 0; i < openedList.size(); i++) {
+                    if (openedList.get(i).getNode().equals(sn.getNode())) {
                         id = i;
-                        //System.out.println("Break2");
                         break;
                     }
                 }
-                if(id >= 0) {
-                    if(sn.getValue() < openedList.get(id).getValue()) {
+                if (id >= 0) {
+                    if (sn.getValue() < openedList.get(id).getValue()) {
                         openedList.remove(id);
-                        closedList.add(id,sn);
+                        closedList.add(id, sn);
                     }
-                }
-                else {
+                } else {
                     openedList.add(sn);
                 }
             }
 
-            //System.out.println("OpenedList : " + openedList);
-            //System.out.println("ClosedList : " + closedList);
-            if(openedList.isEmpty()) {
+            if (openedList.isEmpty()) {
                 this.resultGraph = new Graph();
-                //System.out.println("Break3");
                 break;
             }
             bestSn = openedList.get(0);
-            for(SearchNode sn : openedList) {
+            for (SearchNode sn : openedList) {
                 if (sn.getValue() < bestSn.getValue()) {
                     bestSn = sn;
                 }
             }
-            //System.out.println("BestNode : " + bestSn);
             openedList.remove(bestSn);
             closedList.add(bestSn);
 
             currentSearchNode = bestSn;
-        }while(!bestSn.getNode().equals(destination));
+        } while (!bestSn.getNode().equals(destination));
 
-        if(null != bestSn && bestSn.getNode().equals(destination)) {
+        if (null != bestSn && bestSn.getNode().equals(destination)) {
             this.resultGraph = new Graph();
             getResultGraph().addNode(bestSn.getNode());
             SearchNode currentNode = bestSn;
-            while(null != currentNode.getParent()) {
+            while (null != currentNode.getParent()) {
                 getResultGraph().addEdge(graph.getEdge(currentNode.getNode(), currentNode.getParent().getNode()));
                 getResultGraph().addNode(currentNode.getNode());
                 currentNode = currentNode.getParent();

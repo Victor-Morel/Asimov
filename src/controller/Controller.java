@@ -73,17 +73,18 @@ public class Controller {
     protected void displayGraph() {
         VNode viewNode;
         for (Node node : getGraph().getAllNodes()) {
-                viewNode = new VNode(window.getSheetDisplay(), node);
+            viewNode = new VNode(window.getSheetDisplay(), node);
             window.getSheetDisplay().addNode(viewNode);
         }
         AVEdge viewEdge = null;
         for (Edge edge : getGraph().getAllEdges()) {
-            if (edge.getType().equals(TypeEdge.PLAT))
+            if (edge.getType().equals(TypeEdge.PLAT)) {
                 viewEdge = new VEdgePlat(edge);
-            if (edge.getType().equals(TypeEdge.ESCARPE))
+            } else if (edge.getType().equals(TypeEdge.ESCARPE)) {
                 viewEdge = new VEdgeEscarpe(edge);
-            if (edge.getType().equals(TypeEdge.INONDE))
+            } else if (edge.getType().equals(TypeEdge.INONDE)) {
                 viewEdge = new VEdgeInonde(edge);
+            }
             window.getSheetDisplay().addEdge(viewEdge);
         }
         this.repaint();

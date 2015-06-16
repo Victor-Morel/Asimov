@@ -15,15 +15,16 @@ public class SearchNode {
     private SearchNode parent;
 
     /**
-     * Valeur donn�e au noeud
+     * Valeur donnee au noeud
      */
     private double value;
 
     /**
      * Construit un noeud de recherche a partir d'un noeud, de son parent, et d'une valeur donnee
-     * @param node noeud a transformer en noeud de recherche
+     *
+     * @param node   noeud a transformer en noeud de recherche
      * @param parent parent du noeud a transformer
-     * @param value valeur a donner au noeud
+     * @param value  valeur a donner au noeud
      */
     public SearchNode(Node node, SearchNode parent, double value) {
         this.setNode(node);
@@ -33,6 +34,7 @@ public class SearchNode {
 
     /**
      * Permet de recuperer le noeud
+     *
      * @return le noeud
      */
     public Node getNode() {
@@ -41,6 +43,7 @@ public class SearchNode {
 
     /**
      * Permet de setter le noeud
+     *
      * @param node noeud a setter
      */
     public void setNode(Node node) {
@@ -49,6 +52,7 @@ public class SearchNode {
 
     /**
      * Permet de recuperer le noeud parent
+     *
      * @return le noeud parent
      */
     public SearchNode getParent() {
@@ -57,6 +61,7 @@ public class SearchNode {
 
     /**
      * Permet de setter le noeud parent
+     *
      * @param parent le noeud parent a setter
      */
     public void setParent(SearchNode parent) {
@@ -65,6 +70,7 @@ public class SearchNode {
 
     /**
      * Permet de recuperer la valeur du noeud
+     *
      * @return la valeur du noeud
      */
     public double getValue() {
@@ -73,6 +79,7 @@ public class SearchNode {
 
     /**
      * Permet de setter la valeur du noeud
+     *
      * @param value valeur a setter au noeud
      */
     public void setValue(double value) {

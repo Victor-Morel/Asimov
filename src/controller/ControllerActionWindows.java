@@ -20,7 +20,7 @@ public class ControllerActionWindows implements ActionListener {
     }
 
     /**
-     * Save File
+     * Sauvegarde un fichier xml
      */
     private void saveFile() {
         ChooseFileXml chooseFile = new ChooseFileXml("Sauvegarder");
@@ -31,7 +31,7 @@ public class ControllerActionWindows implements ActionListener {
     }
 
     /**
-     * Load File XML
+     * Charge un fichier xml
      */
     private void loadFileXML() {
         ChooseFileXml chooseFile = new ChooseFileXml("Charger");
@@ -43,7 +43,7 @@ public class ControllerActionWindows implements ActionListener {
     }
 
     /**
-     * Load File JPG
+     * Charge une image
      */
     private void loadFileImage() {
         ChooseFileImage chooseFile = new ChooseFileImage();
@@ -94,18 +94,18 @@ public class ControllerActionWindows implements ActionListener {
             }
         } else if (e.getActionCommand().matches("Lancer Simulation")) {
             control.launchSimulation();
-        } else if (e.getActionCommand().matches("Stop Simulation")){
+        } else if (e.getActionCommand().matches("Stop Simulation")) {
 
-        } else if (e.getActionCommand().matches("Mode Pyromane")){
+        } else if (e.getActionCommand().matches("Mode Pyromane")) {
 
-        }else if (e.getActionCommand().matches("Strategie AStar")){
+        } else if (e.getActionCommand().matches("Strategie AStar")) {
             control.getWindow().getDijkstra().setSelected(false);
-            for(Robot bot : control.getManager().getBots()){
+            for (Robot bot : control.getManager().getBots()) {
                 bot.setResearchType(ResearchType.ASTAR);
             }
-        }else if (e.getActionCommand().matches("Strategie Dijkstra")){
+        } else if (e.getActionCommand().matches("Strategie Dijkstra")) {
             control.getWindow().getAStar().setSelected(false);
-            for(Robot bot : control.getManager().getBots()){
+            for (Robot bot : control.getManager().getBots()) {
                 bot.setResearchType(ResearchType.DIJKSTRA);
             }
         }
