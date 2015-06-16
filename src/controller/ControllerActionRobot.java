@@ -60,6 +60,7 @@ public class ControllerActionRobot implements ActionListener {
 
         control.getManager().getBots().add(bot);
         control.getWindow().getSheetDisplay().addRobot(viewRobot);
+        control.getManager().setGraph(control.getGraph());
         control.repaint();
 
         this.initialization();
