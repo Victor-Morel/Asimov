@@ -30,7 +30,7 @@ public class Node extends Observable {
      */
     private double y;
 
-    private boolean currentNode;
+    private TypeBorder typeBorder;
 
     /**
      * l'intensite du noeud en feu. 0 correspond a un noeud non-enflammé
@@ -61,6 +61,8 @@ public class Node extends Observable {
             maxId = _id + 1;
         }
         this.supported = false;
+
+        this.typeBorder = TypeBorder.NORMAL;
     }
 
     /**
@@ -87,6 +89,8 @@ public class Node extends Observable {
         this.y = _y;
         this.intensity = _intensity;
         Node.maxId++;
+
+        this.typeBorder = TypeBorder.NORMAL;
     }
 
     /**
@@ -165,15 +169,17 @@ public class Node extends Observable {
         return y;
     }
 
-    public boolean isCurrentNode() {
-        return currentNode;
-    }
 
-    public void setCurrentNode(boolean currentNode) {
-        this.currentNode = currentNode;
+    public void setTypeBorder(TypeBorder typeBorder) {
+        this.typeBorder = typeBorder;
         setChanged();
         notifyObservers();
     }
+
+    public TypeBorder getTypeBorder() {
+        return typeBorder;
+    }
+
 
     /**
      * Destructeur de noeud

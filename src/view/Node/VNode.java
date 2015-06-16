@@ -17,6 +17,9 @@ public class VNode implements Observer {
      */
     protected Node node;
     Graphics2D g2d;
+    Color colorInside;
+    Color colorBorder;
+
 
     /**
      * Rayon du cercle
@@ -46,23 +49,39 @@ public class VNode implements Observer {
      * @param graph
      */
     public void drawNode(Graphics graph) {
-
-        if (node.getIntensity() == 0) {
-            graph.setColor(Color.white);
-        }
-        else if (node.getIntensity() == Node.FIRE_DEFAULT_TEMPERATURE){
-            graph.setColor(Color.RED);
-        }
-        else{
-            graph.setColor(Color.orange);
-        }
+        setColorInside();
+        graph.setColor(colorInside);
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
-        graph.setColor(Color.BLACK);
+
+        setColorBorder();
+        graph.setColor(colorBorder);
+        ((Graphics2D) graph).setStroke(new BasicStroke(2));
         graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
-        if (node.isCurrentNode()) {
-            graph.setColor(Color.blue);
-            graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
+    }
+
+    private void setColorInside() {
+        if(node.getIntensity()>0) {
+            colorInside = Color.RED;
+        }
+        else{
+            colorInside= Color.WHITE;
+        }
+    }
+
+    public void setColorBorder() {
+        switch(node.getTypeBorder()){
+            case NORMAL :
+                colorBorder = Color.BLACK;
+                break;
+            case CURRENT:
+                colorBorder = Color.BLUE;
+                break;
+            case CURRENT_ADD_ARC:
+                colorBorder = Color.GREEN;
+                break;
+
         }
     }
 }
+

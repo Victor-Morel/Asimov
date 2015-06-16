@@ -2,6 +2,7 @@ package controller;
 
 
 import model.graph.Node;
+import model.graph.TypeBorder;
 import view.Node.VNode;
 
 import java.awt.event.ActionEvent;
@@ -46,7 +47,24 @@ public class ControllerActionNode implements ActionListener {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            currentNode.setCurrentNode(true);
+            currentNode.setTypeBorder(TypeBorder.CURRENT);
+            checkOnlyNode(currentNode.getID());
+        }
+        return currentNode;
+    }
+
+    /**
+     * Affiche si nouveau noeud courant selectionner
+     *
+     * @param x parametre x de la souris
+     * @param y parametre y de la souris
+     * @return nouveau noeud courant ou null
+     */
+    protected Node checkCurrentNodeAndAddArc(int x, int y) {
+        Node currentNode;
+        currentNode = clickOnNode(x, y);
+        if (null != currentNode) {
+            currentNode.setTypeBorder(TypeBorder.CURRENT_ADD_ARC);
             checkOnlyNode(currentNode.getID());
         }
         return currentNode;
@@ -102,13 +120,12 @@ public class ControllerActionNode implements ActionListener {
 
     /**
      * Verifie qu'il y a un seul noeud courant
-     *
      * @param currentNode
      */
     public void checkOnlyNode(int currentNode) {
         for (Node n : control.getGraph().getAllNodes()) {
-            if (n.getID() != currentNode && n.isCurrentNode()) {
-                n.setCurrentNode(false);
+            if (n.getID() != currentNode) {
+                n.setTypeBorder(TypeBorder.NORMAL);
             }
         }
     }

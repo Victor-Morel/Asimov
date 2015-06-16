@@ -64,8 +64,8 @@ public class SheetDisplay extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         image.drawImage(g);
-        showNodes(g);
         showEdges(g);
+        showNodes(g);
         showRobots(g);
     }
 
