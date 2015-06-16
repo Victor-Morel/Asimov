@@ -96,7 +96,6 @@ public class DijkstraTest {
         gRes.addEdge(e3);
         gRes.addEdge(e4);
         Strategy s = new Dijkstra(g,n0,n4);
-        System.out.println(s.getResultGraph());
         assertTrue(gRes.equals(s.getResultGraph()));
 
         s = new Dijkstra(g,n2,n5);
