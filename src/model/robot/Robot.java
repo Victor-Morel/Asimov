@@ -91,13 +91,13 @@ public abstract class Robot extends Observable implements Runnable {
         return this.getStrat().getDistanceValue();
     }
 
-    public synchronized int extinguish (Node inFlames){
-        int timeNeeded = 0;
+    public synchronized void extinguish (Node inFlames) throws InterruptedException {
+
         while(inFlames.getIntensity() > 0) {
             inFlames.cooling(capacity);
-            timeNeeded += ROBOT_EXTINGUISH_SPEED;
+            Thread.sleep(ROBOT_EXTINGUISH_SPEED);
         }
-        return timeNeeded;
+
     }
 
     @Override
@@ -126,7 +126,7 @@ public abstract class Robot extends Observable implements Runnable {
         System.out.println("fin trajet");
         //this.setNode(inFlames);
         try {
-            Thread.sleep( (long)(extinguish(node)) );
+            extinguish(node);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
