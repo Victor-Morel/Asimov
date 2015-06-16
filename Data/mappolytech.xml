@@ -1,0 +1,30 @@
+<osm>
+<node id="6" type="INCENDIE" x="162.0" y="183.0"/>
+<node id="1" type="NORMAL" x="432.0" y="71.0"/>
+<node id="9" type="INCENDIE" x="173.0" y="18.0"/>
+<node id="8" type="NORMAL" x="63.0" y="339.0"/>
+<node id="7" type="NORMAL" x="25.0" y="209.0"/>
+<node id="10" type="INCENDIE" x="75.0" y="67.0"/>
+<node id="4" type="NORMAL" x="245.0" y="347.0"/>
+<node id="0" type="NORMAL" x="265.0" y="126.0"/>
+<node id="2" type="NORMAL" x="308.0" y="279.0"/>
+<node id="11" type="NORMAL" x="432.0" y="244.0"/>
+<node id="5" type="INCENDIE" x="140.0" y="361.0"/>
+<node id="3" type="INCENDIE" x="330.0" y="349.0"/>
+<edge nd1="10" nd2="9" type="ESCARPE"/>
+<edge nd1="2" nd2="0" type="PLAT"/>
+<edge nd1="10" nd2="6" type="INONDE"/>
+<edge nd1="2" nd2="3" type="PLAT"/>
+<edge nd1="7" nd2="8" type="ESCARPE"/>
+<edge nd1="11" nd2="2" type="PLAT"/>
+<edge nd1="4" nd2="5" type="ESCARPE"/>
+<edge nd1="2" nd2="4" type="ESCARPE"/>
+<edge nd1="8" nd2="5" type="ESCARPE"/>
+<edge nd1="11" nd2="3" type="ESCARPE"/>
+<edge nd1="4" nd2="8" type="PLAT"/>
+<edge nd1="0" nd2="9" type="ESCARPE"/>
+<edge nd1="7" nd2="10" type="INONDE"/>
+<edge nd1="0" nd2="7" type="PLAT"/>
+<edge nd1="3" nd2="4" type="PLAT"/>
+<edge nd1="1" nd2="0" type="PLAT"/>
+</osm>
