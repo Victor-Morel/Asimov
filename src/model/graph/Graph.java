@@ -19,7 +19,7 @@ public class Graph {
     private Set<Edge> edges;
 
     /**
-     * Constructeur par default d'un graphe
+     * Constructeur par defaut d'un graphe
      */
     public Graph() {
         this.setNodes(new HashSet<Node>());

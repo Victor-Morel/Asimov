@@ -11,20 +11,28 @@ import java.util.List;
  */
 public class Manager implements Runnable {
 
-    private List<Robot> bots;
-    private Graph graph;
     /**
-     * Key : un noeud enflamme
-     * Value : une paire robot/distance entre le noeud enflamme et le noeud du robot
+     * liste des robots geres par le manageur
      */
-    private Boolean allRobotsBusy;
+    private List<Robot> bots;
+    /**
+     * le graphe sur lequel le manageur travaille
+     */
+    private Graph graph;
 
+    /**
+     * Constructeur par defaut d'un Manager
+     */
     public Manager() {
         this.bots = new ArrayList<>();
         this.graph = new Graph();
-        this.allRobotsBusy = false;
     }
 
+    /**
+     * Méthode qui retourne le noeud en feu le plus proche du robot passe en parametre
+     * @param r le robot dont on cherche le noeud en feu le plus proche
+     * @return le noeud en feu le plus proche du robot passe en parametre
+     */
     public Node bestFire(Robot r) {
         int bestDistance = Integer.MAX_VALUE;
         Node bestFire = null;
@@ -40,6 +48,9 @@ public class Manager implements Runnable {
         return bestFire;
     }
 
+    /**
+     * Affecte a chaque robot oisif un feu a traiter
+     */
     public void decide() {
         for (Robot r : bots) {
             if (r.isBusy()) {
@@ -56,15 +67,25 @@ public class Manager implements Runnable {
         }
     }
 
+    /**
+     * Methode pour lancer le manageur
+     */
     @Override
     public void run() {
         decide();
     }
 
+    /**
+     * @return le graphe sur lequel le manageur travaille
+     */
     public Graph getGraph() {
         return graph;
     }
 
+    /**
+     * Set un nouveau graphe sur lequel le manageur doit travailler
+     * @param graph le nouveau graphe de travaille
+     */
     public void setGraph(Graph graph) {
         this.graph = graph;
         for (Robot r : this.bots) {
@@ -72,6 +93,9 @@ public class Manager implements Runnable {
         }
     }
 
+    /**
+     * @return la liste des robots geres par le manageur
+     */
     public List<Robot> getBots() {
         return bots;
     }
