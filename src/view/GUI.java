@@ -63,7 +63,7 @@ public class GUI extends JFrame {
 		JCheckBoxMenuItem Pyromano = new JCheckBoxMenuItem("Mode Pyromane");
 		AStar = new JCheckBoxMenuItem("Strategie AStar");
 		Dijkstra = new JCheckBoxMenuItem("Strategie Dijkstra");
-		Dijkstra.setSelected(true);
+		AStar.setSelected(true);
 
 		file.add(New);
 		file.add(Save);

@@ -6,8 +6,8 @@ import model.graph.Node;
 
 public class AllTerrainRobot extends Robot {
 
-	public AllTerrainRobot(double _capacity, Node _node) {
-		super(_capacity, _node);
+	public AllTerrainRobot(Node _node, ResearchType _researchType) {
+		super(_node, _researchType);
 	}
 
 	public void generateSubGraph(Graph _g) {

@@ -32,21 +32,30 @@ public class ControllerActionRobot implements ActionListener {
      * @param currentNode noeud ou le robot sera instanci?
      */
     public void addRobot(Node currentNode) {
-        double _capacity = 0.3;
+
         Robot bot;
-        ResearchType type = ResearchType.ASTAR;
+        ResearchType typeSearch;
         AVRobot viewRobot;
+
 
         viewRobot = null;
         bot = null;
+        if(control.getWindow().getAStar().isSelected()){
+            typeSearch = ResearchType.ASTAR;
+        }
+        else{
+            typeSearch = ResearchType.DIJKSTRA;
+        }
+
+
         if (allTerrain) {
-            bot = new AllTerrainRobot( _capacity, currentNode);
+            bot = new AllTerrainRobot(currentNode, typeSearch);
             viewRobot = new VRobotAllTerain(control.getWindow().getSheetDisplay(), bot);
         } else if (caterpillar) {
-            bot = new CaterpillarRobot(_capacity, currentNode);
+            bot = new CaterpillarRobot(currentNode, typeSearch);
             viewRobot = new VRobotChenille(control.getWindow().getSheetDisplay(), bot);
         } else if (leg) {
-            bot = new LeggedRobot( _capacity, currentNode);
+            bot = new LeggedRobot( currentNode, typeSearch);
             viewRobot = new VRobotPate(control.getWindow().getSheetDisplay(), bot);
         }
 

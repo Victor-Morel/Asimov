@@ -50,7 +50,7 @@ public abstract class Robot extends Observable implements Runnable {
 
     private static final int ROBOT_MOBILITY_SPEED = 30;
     private static final int ROBOT_EXTINGUISH_SPEED = 3;
-    private static ResearchType researchType = ResearchType.ASTAR;
+    private ResearchType researchType;
     private int id;
     protected Node node;
     private boolean busy;
@@ -61,16 +61,22 @@ public abstract class Robot extends Observable implements Runnable {
     private Node inFlames;
     private int distance;
 
+
+    public Robot(Node _node, ResearchType _researchType){
+        this.setBusy(false);
+        //TODO Calculate _capacity
+        double capacity = 0.3;
+        this.capacity = capacity;
+        this.node = _node;
+        this.researchType = _researchType;
+    }
+
     public void setExtinction(Node _inFlames, int _distance){
         this.inFlames = _inFlames;
         this.distance = _distance;
     }
 
-    public Robot (double _capacity, Node _node){
-        this.setBusy(false);
-        this.capacity = _capacity;
-        this.node = _node;
-    }
+
 
     public int getDistance(Node inFlames) {
         switch (researchType) {
