@@ -42,8 +42,8 @@ public class VNode implements Observer {
      */
     @Override
     public void update(Observable arg0, Object arg1) {
-        setColorBorder();
-        setColorInside();
+
+
         sheetDisplay.repaint();
     }
 
@@ -53,11 +53,12 @@ public class VNode implements Observer {
      * @param graph
      */
     public void drawNode(Graphics graph) {
-
+        setColorInside();
         graph.setColor(colorInside);
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
 
+        setColorBorder();
         graph.setColor(colorBorder);
         ((Graphics2D) graph).setStroke(new BasicStroke(2));
         graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
@@ -67,11 +68,14 @@ public class VNode implements Observer {
         if(node.getIntensity()==Node.FIRE_DEFAULT_TEMPERATURE) {
             colorInside = Color.RED;
         }
-        else if(node.getIntensity() > Node.FIRE_DEFAULT_TEMPERATURE / 2){
-            colorInside = Color.ORANGE;
+        else if(node.getIntensity() > ( 2 * Node.FIRE_DEFAULT_TEMPERATURE / 3) ){
+            colorInside = new Color(255, 121, 4);
+        }
+        else if(node.getIntensity() > (Node.FIRE_DEFAULT_TEMPERATURE / 3) ) {
+            colorInside = new Color(255, 223, 42);
         }
         else if(node.getIntensity() > 0){
-            colorInside = Color.YELLOW;
+            colorInside =  new Color(255, 253, 152);
         }
         else{
             colorInside= Color.WHITE;

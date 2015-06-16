@@ -49,7 +49,7 @@ public abstract class Robot extends Observable implements Runnable {
 
 
     private static final int ROBOT_MOBILITY_SPEED = 30;
-    private static final int ROBOT_EXTINGUISH_SPEED = 5;
+    private static final int ROBOT_EXTINGUISH_SPEED = 300;
     private ResearchType researchType;
     private int id;
     protected Node node;
@@ -75,6 +75,8 @@ public abstract class Robot extends Observable implements Runnable {
         this.inFlames = _inFlames;
         this.distance = _distance;
     }
+
+
 
     public synchronized int getDistance(Node inFlames) {
         switch (researchType) {
@@ -103,7 +105,7 @@ public abstract class Robot extends Observable implements Runnable {
         while(!path.getAllEdges().isEmpty()) {
             try {
                 Thread.sleep((int)(path.getEdges(node).get(0).getValuation() + 1) * ROBOT_MOBILITY_SPEED);
-                System.out.println("Robot n° "+ id + "\n Noeud actuel " + node);
+                System.out.println("Noeud actuel " + node);
                 Node previousNode = this.node;
                 if(path.getEdges(node).get(0).getDestination().equals(node)) {
                     this.node = path.getEdges(node).get(0).getSource();
@@ -121,14 +123,14 @@ public abstract class Robot extends Observable implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("Robot n° "+ id + "\n fin trajet");
+        System.out.println("fin trajet");
         //this.setNode(inFlames);
         try {
             Thread.sleep( (long)(extinguish(node)) );
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Robot n° "+ id + " \n fin incendie du noeud " + inFlames.getID());
+        System.out.println("fin incendie");
         this.setBusy(false);
     }
 
