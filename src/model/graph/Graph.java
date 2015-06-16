@@ -219,7 +219,7 @@ public class Graph {
      */
     public void igniteNodes() {
         Set<Node> allNodes = this.getAllNodes();
-        allNodes.removeAll(this.getAllFireNodes());
+        //allNodes.removeAll(this.getAllFireNodes());
         for(Node n : allNodes) {
             double rand = Math.random();
             if(rand < Node.IGNITE_PROBABILITY) {
