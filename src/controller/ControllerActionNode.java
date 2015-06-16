@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class ControllerActionNode implements ActionListener {
 
-    protected Boolean node, fire;
+    protected Boolean node, fire, ignite;
     private Controller control;
 
     public ControllerActionNode(Controller control) {
@@ -18,9 +18,10 @@ public class ControllerActionNode implements ActionListener {
         initialization();
     }
 
-    private void initialization() {
+    public void initialization() {
         node = false;
         fire = false;
+        ignite = false;
     }
 
     @Override
@@ -31,6 +32,9 @@ public class ControllerActionNode implements ActionListener {
         } else if (e.getActionCommand().matches("Feu")) {
             this.initialization();
             fire = true;
+        } else if (e.getActionCommand().matches("Enflammer")){
+            this.initialization();
+            ignite = true;
         }
     }
 
@@ -132,4 +136,8 @@ public class ControllerActionNode implements ActionListener {
         }
     }
 
+    public void setIgnite(Node ignite) {
+        ignite.setIntensity(Node.FIRE_DEFAULT_TEMPERATURE);
+        this.initialization();
+    }
 }

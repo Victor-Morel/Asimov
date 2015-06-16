@@ -36,29 +36,34 @@ public class ControllerMouse implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
-        if (checkAddNode()) {
-            controlAction.getControlNode().addNode(e.getX(), e.getY());
-            initialization();
+        currentNode =controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
 
+        if (checkAddRobot()) {
+
+            this.currentNode = controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
+            if (null != this.currentNode) {
+                controlAction.getControlRobot().addRobot(this.currentNode);
+                initialization();
+            }
         }
-        if (checkAddEdge()) {
-            currentNode = controlAction.getControlNode().checkCurrentNodeAndAddEdge(e.getX(), e.getY());
-            if (null != currentNode && node1 == null) {
-                node1 = currentNode;
-            } else if (null != currentNode && node2 == null) {
-                node2 = currentNode;
+        else if (checkAddEdge()) {
+            this.currentNode = controlAction.getControlNode().checkCurrentNodeAndAddEdge(e.getX(), e.getY());
+            if (null != this.currentNode && node1 == null) {
+                node1 = this.currentNode;
+            } else if (null != this.currentNode && node2 == null) {
+                node2 = this.currentNode;
                 controlAction.getControlEdge().addEdge(node1, node2);
                 initialization();
             }
         }
+        else if(checkAddIgnite() && currentNode != null){
+            controlAction.getControlNode().setIgnite(currentNode);
+            initialization();
+        }
+        else if (checkAddNode()) {
+            controlAction.getControlNode().addNode(e.getX(), e.getY());
+            initialization();
 
-        if (checkAddRobot()) {
-            currentNode = controlAction.getControlNode().checkCurrentNode(e.getX(), e.getY());
-            if (null != currentNode) {
-                controlAction.getControlRobot().addRobot(currentNode);
-                initialization();
-            }
         }
     }
 
@@ -81,6 +86,11 @@ public class ControllerMouse implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+
+    private boolean checkAddIgnite(){
+        return controlAction.getControlNode().ignite;
     }
 
     /**
