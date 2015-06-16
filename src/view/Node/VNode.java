@@ -4,6 +4,7 @@ import model.graph.Node;
 import view.SheetDisplay;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,6 +12,7 @@ import java.util.Observer;
 public class VNode implements Observer {
 
     protected final SheetDisplay sheetDisplay;
+    public static ArrayList<VNode> allNodes = new ArrayList<VNode>();
 
     /**
      * Noeud correspondant a la vue
@@ -24,14 +26,13 @@ public class VNode implements Observer {
     /**
      * Rayon du cercle
      */
-    private final int rayon = 7;
+    private final int radius = 7;
 
     public VNode(SheetDisplay sheetDisplay, Node node) {
         this.sheetDisplay = sheetDisplay;
         this.node = node;
         this.node.addObserver(this);
-        setColorBorder();
-        setColorInside();
+        VNode.allNodes.add(this);
     }
 
     /**
@@ -42,8 +43,6 @@ public class VNode implements Observer {
      */
     @Override
     public void update(Observable arg0, Object arg1) {
-
-
         sheetDisplay.repaint();
     }
 
@@ -56,16 +55,16 @@ public class VNode implements Observer {
         setColorInside();
         graph.setColor(colorInside);
         g2d = (Graphics2D) graph;
-        g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
+        g2d.fillOval((int) node.getX() - radius, (int) node.getY() - radius, 2 * radius, 2 * radius);
 
-        setColorBorder();
+        setColorBorder(0);
         graph.setColor(colorBorder);
         ((Graphics2D) graph).setStroke(new BasicStroke(2));
-        graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
+        graph.drawOval((int) node.getX() - radius, (int) node.getY() - radius, 2 * radius, 2 * radius);
     }
 
     private void setColorInside() {
-        if(node.getIntensity()==Node.FIRE_DEFAULT_TEMPERATURE) {
+        if(node.getIntensity() >= Node.FIRE_DEFAULT_TEMPERATURE) {
             colorInside = Color.RED;
         }
         else if(node.getIntensity() > ( 2 * Node.FIRE_DEFAULT_TEMPERATURE / 3) ){
@@ -78,23 +77,32 @@ public class VNode implements Observer {
             colorInside =  new Color(255, 253, 152);
         }
         else{
-            colorInside= Color.WHITE;
+            colorInside = Color.WHITE;
         }
     }
 
-    public void setColorBorder() {
-        switch(node.getTypeBorder()){
-            case NORMAL :
+    public void setColorBorder(int ind) {
+        switch (ind) {
+            case 0 :
                 colorBorder = Color.BLACK;
                 break;
-            case CURRENT:
+            case 1:
                 colorBorder = Color.BLUE;
                 break;
-            case CURRENT_ADD_ARC:
+            case 2:
                 colorBorder = Color.GREEN;
                 break;
-
+            default : colorBorder = Color.BLACK;
         }
+    }
+
+    public static VNode findVNode(Node _node) {
+        for(VNode vn : allNodes) {
+            if(vn.node.equals(_node)) {
+                return vn;
+            }
+        }
+        return null;
     }
 }
 

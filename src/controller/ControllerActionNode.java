@@ -37,7 +37,7 @@ public class ControllerActionNode implements ActionListener {
 
 
     /**
-     * Affiche si nouveau noeud courant selectionner
+     * Affiche si nouveau noeud courant selectionné
      *
      * @param x parametre x de la souris
      * @param y parametre y de la souris
@@ -47,14 +47,15 @@ public class ControllerActionNode implements ActionListener {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            currentNode.setTypeBorder(TypeBorder.CURRENT);
+            VNode.findVNode(currentNode).setColorBorder(2);
+            //currentNode.setTypeBorder(TypeBorder.CURRENT);
             checkOnlyNode(currentNode.getID());
         }
         return currentNode;
     }
 
     /**
-     * Affiche si nouveau noeud courant selectionner
+     * Affiche si nouveau noeud courant selectionné
      *
      * @param x parametre x de la souris
      * @param y parametre y de la souris
@@ -64,7 +65,8 @@ public class ControllerActionNode implements ActionListener {
         Node currentNode;
         currentNode = clickOnNode(x, y);
         if (null != currentNode) {
-            currentNode.setTypeBorder(TypeBorder.CURRENT_ADD_ARC);
+            VNode.findVNode(currentNode).setColorBorder(1);
+            //currentNode.setTypeBorder(TypeBorder.CURRENT_ADD_ARC);
             checkOnlyNode(currentNode.getID());
         }
         return currentNode;
@@ -120,12 +122,13 @@ public class ControllerActionNode implements ActionListener {
 
     /**
      * Verifie qu'il y a un seul noeud courant
-     * @param currentNode
+     * @param idCurrentNode
      */
-    public void checkOnlyNode(int currentNode) {
+    public void checkOnlyNode(int idCurrentNode) {
         for (Node n : control.getGraph().getAllNodes()) {
-            if (n.getID() != currentNode) {
-                n.setTypeBorder(TypeBorder.NORMAL);
+            if (n.getID() != idCurrentNode) {
+                VNode.findVNode(n).setColorBorder(0);
+                //n.setTypeBorder(TypeBorder.NORMAL);
             }
         }
     }
