@@ -28,6 +28,7 @@ public abstract class AVEdge {
      */
     public void drawEdge(Graphics graph) {
         Graphics2D graph2 = (Graphics2D) graph;
+        graph2.setStroke(new BasicStroke(2));
         graph2.draw(
                 new Line2D.Double(
                         edge.getSource().getX(),
