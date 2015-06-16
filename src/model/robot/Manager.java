@@ -25,7 +25,7 @@ public class Manager implements Runnable {
     /**
      * La méthode getBestDistance va regarder pour chaque noeud enflammé quel robot non occupé il serait judicieux de placer
      */
-    public void getBestDistance() {
+    public synchronized void getBestDistance() {
         for (Node inFlames : graph.getAllFireNodes()) {
             if (!inFlames.isSupported()) {
                 for (Robot bot : bots) {
@@ -49,24 +49,29 @@ public class Manager implements Runnable {
     //ça peut être pas mal de retourner pour chaque robot sa distance aux noeuds en feu (car plus simple), mais pour choisir
     //c'est peut être plus judicieux de savoir pour chaque feu quel robot est le plus proche
 
-    public void setAction(Robot bot, Node inFlames, int distance) { //envoie le robot sur le noeud
+    public synchronized void setAction(Robot bot, Node inFlames, int distance) { //envoie le robot sur le noeud
         bot.setExtinction(inFlames, distance);
         new Thread(bot).start();
     }
 
-    public void chooseRobot() {//décide quel robot fait quoi
+    public synchronized void chooseRobot() {//décide quel robot fait quoi
         for (Node inFlames : graph.getAllFireNodes()) {
             getBestDistance();
-            if ((!bestBotForFire.isEmpty()) && (!bestBotForFire.get(inFlames).getFirst().isBusy())) {
-                setAction(bestBotForFire.get(inFlames).getFirst(), inFlames, bestBotForFire.get(inFlames).getSecond());
-                bestBotForFire.get(inFlames).getFirst().setBusy(true);
-                inFlames.setSupported(true);
-                clearList(inFlames, bestBotForFire.get(inFlames).getFirst());
+            try {
+                if ((!bestBotForFire.isEmpty()) && (!bestBotForFire.get(inFlames).getFirst().isBusy())) {
+                    setAction(bestBotForFire.get(inFlames).getFirst(), inFlames, bestBotForFire.get(inFlames).getSecond());
+                    bestBotForFire.get(inFlames).getFirst().setBusy(true);
+                    inFlames.setSupported(true);
+                    clearList(inFlames, bestBotForFire.get(inFlames).getFirst());
+                }
+            }catch (NullPointerException e) {
+                System.out.print("Caught the NullPointerException");
             }
+
         }
     }
 
-    public void clearList(Node inFlames, Robot bot){
+    public synchronized void clearList(Node inFlames, Robot bot){
         bestBotForFire.remove(inFlames);
         for (Node fire : graph.getAllFireNodes()){
             if ((bestBotForFire.get(fire) != null)&&(bot==bestBotForFire.get(fire).getFirst())){

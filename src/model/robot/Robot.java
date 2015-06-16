@@ -78,7 +78,7 @@ public abstract class Robot extends Observable implements Runnable {
 
 
 
-    public int getDistance(Node inFlames) {
+    public synchronized int getDistance(Node inFlames) {
         switch (researchType) {
             case DIJKSTRA:
                 this.setStrat(new Dijkstra(g, this.getNode(), inFlames));
@@ -91,7 +91,7 @@ public abstract class Robot extends Observable implements Runnable {
         return this.getStrat().getDistanceValue();
     }
 
-    public int extinguish (Node inFlames){
+    public synchronized int extinguish (Node inFlames){
         int timeNeeded = 0;
         while(inFlames.getIntensity() > 0) {
             inFlames.cooling(capacity);
@@ -132,25 +132,6 @@ public abstract class Robot extends Observable implements Runnable {
         }
         System.out.println("fin incendie");
         this.setBusy(false);
-    }
-
-    public void goTo(Node inFlames, int distance){
-        //envoie un robot sur le noeud en question
-        Thread waiting = new Thread();
-        try {
-            waiting.sleep(distance * ROBOT_MOBILITY_SPEED);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.setNode(inFlames);
-        try {
-            waiting.sleep((long) (this.capacity * inFlames.getIntensity()));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        inFlames.setIntensity(0);
-        this.setBusy(false);
-
     }
 
     public ResearchType getType() {
