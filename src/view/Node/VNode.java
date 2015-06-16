@@ -61,8 +61,14 @@ public class VNode implements Observer {
     }
 
     private void setColorInside() {
-        if(node.getIntensity()>0) {
+        if(node.getIntensity()==Node.FIRE_DEFAULT_TEMPERATURE) {
             colorInside = Color.RED;
+        }
+        else if(node.getIntensity() > Node.FIRE_DEFAULT_TEMPERATURE / 2){
+            colorInside = Color.ORANGE;
+        }
+        else if(node.getIntensity() > 0){
+            colorInside = Color.YELLOW;
         }
         else{
             colorInside= Color.WHITE;
