@@ -8,12 +8,11 @@ import model.graph.Node;
  */
 public class CaterpillarRobot extends Robot {
 
-	public CaterpillarRobot(Node _node, ResearchType _researchType) {
-		super(_node, _researchType);
-		// TODO Auto-generated constructor stub
-	}
+    public CaterpillarRobot(Node _node, ResearchType _researchType) {
+        super(_node, _researchType);
+    }
 
-	public void generateSubGraph(Graph _g) {
-		this.g = _g.getSubGraph(2);
-	}
+    public void generateSubGraph(Graph _g) {
+        this.g = _g.getSubGraph(2);
+    }
 }

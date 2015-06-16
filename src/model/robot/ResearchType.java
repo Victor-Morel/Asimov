@@ -13,10 +13,6 @@ public enum ResearchType {
         this.text = text;
     }
 
-    public String getText() {
-        return this.text;
-    }
-
     public static ResearchType fromString(String text) {
         if (text != null) {
             for (ResearchType t : ResearchType.values()) {

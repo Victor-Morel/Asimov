@@ -2,7 +2,6 @@ package model.robot;
 
 import model.graph.Graph;
 import model.graph.Node;
-import utils.EuclidianDistance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +14,11 @@ public class Manager implements Runnable {
 
     private List<Robot> bots;
     private Graph graph;
-    public HashMap<Node, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(); //key idFireNode, value : idBot/distance
+    /**
+     * Key : un noeud enflamme
+     * Value : une paire robot/distance entre le noeud enflamme et le noeud du robot
+     */
+    public HashMap<Node, Pair<Robot, Integer>> bestBotForFire = new HashMap<>();
     private Boolean allRobotsBusy;
 
     public Manager() {
@@ -32,7 +35,7 @@ public class Manager implements Runnable {
             if (inFlames.isSupported()) {
                 continue;
             }
-            if(r.getDistance(inFlames) < bestDistance) {
+            if (r.getDistance(inFlames) < bestDistance) {
                 bestFire = inFlames;
                 bestDistance = r.getDistance(bestFire);
             }
@@ -40,14 +43,13 @@ public class Manager implements Runnable {
         return bestFire;
     }
 
-    //à appeler pour que le manager gère les robots
     public void decide() {
-        for(Robot r : bots) {
-            if(r.isBusy()) {
+        for (Robot r : bots) {
+            if (r.isBusy()) {
                 continue;
             }
             Node inFlames = bestFire(r);
-            if(null == inFlames) {
+            if (null == inFlames) {
                 break;
             }
             r.setExtinction(inFlames, r.getDistance(inFlames));

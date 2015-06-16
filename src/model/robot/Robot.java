@@ -62,7 +62,7 @@ public abstract class Robot extends Observable implements Runnable {
     private int distance;
 
 
-    public Robot(Node _node, ResearchType _researchType){
+    public Robot(Node _node, ResearchType _researchType) {
         this.setBusy(false);
         //TODO Calculate _capacity
         double capacity = 0.3;
@@ -71,15 +71,16 @@ public abstract class Robot extends Observable implements Runnable {
         this.researchType = _researchType;
     }
 
-    public void setExtinction(Node _inFlames, int _distance){
+    public void setExtinction(Node _inFlames, int _distance) {
         this.inFlames = _inFlames;
         this.distance = _distance;
     }
 
 
     /**
-     * Fonction qui appelle l'algorithme de recherche choisi, afin de calculer le plus court chemin entre le noeud courant et un noeud en paramètres
-     * @param inFlames le noeud passé en paramètres (a priori en feu)
+     * Fonction qui appelle l'algorithme de recherche choisi, afin de calculer le plus court chemin entre le noeud courant et un noeud en parametres
+     *
+     * @param inFlames le noeud passe en parametres (a priori en feu)
      * @return
      */
     public synchronized int getDistance(Node inFlames) {
@@ -96,13 +97,14 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
     /**
-     * Fonction qui éteint un noeud enflammé, et fait attendre le Thread du robot le temps adéquat
-     * @param inFlames noeud à éteindre
+     * Fonction qui eteint un noeud enflamme, et fait attendre le Thread du robot le temps adequat
+     *
+     * @param inFlames noeud a eteindre
      * @throws InterruptedException
      */
-    public synchronized void extinguish (Node inFlames) throws InterruptedException {
+    public synchronized void extinguish(Node inFlames) throws InterruptedException {
 
-        while(inFlames.getIntensity() > 0) {
+        while (inFlames.getIntensity() > 0) {
             inFlames.cooling(capacity);
             Thread.sleep(ROBOT_EXTINGUISH_SPEED);
         }
@@ -110,20 +112,19 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
     /**
-     * Fonction du robot qui lui permet de se déplacer de noeud en noeud jusqu'à sa destination
-     * Le Thread du robot dors proportionnellement à la distance à parcourir
+     * Fonction du robot qui lui permet de se deplacer de noeud en noeud jusqu'a sa destination
+     * Le Thread du robot dors proportionnellement a la distance a parcourir
      */
     @Override
-    public void run(){
-        while(!path.getAllEdges().isEmpty()) {
+    public void run() {
+        while (!path.getAllEdges().isEmpty()) {
             try {
-                Thread.sleep((int)(path.getEdges(node).get(0).getValuation() + 1) * ROBOT_MOBILITY_SPEED);
+                Thread.sleep((int) (path.getEdges(node).get(0).getValuation() + 1) * ROBOT_MOBILITY_SPEED);
                 System.out.println("Noeud actuel " + node);
                 Node previousNode = this.node;
-                if(path.getEdges(node).get(0).getDestination().equals(node)) {
+                if (path.getEdges(node).get(0).getDestination().equals(node)) {
                     this.node = path.getEdges(node).get(0).getSource();
-                }
-                else {
+                } else {
                     this.node = path.getEdges(node).get(0).getDestination();
                 }
                 path.removeEdge(path.getEdges(previousNode).get(0));
@@ -136,7 +137,6 @@ public abstract class Robot extends Observable implements Runnable {
             }
         }
         System.out.println("fin trajet");
-        //this.setNode(inFlames);
         try {
             extinguish(node);
         } catch (InterruptedException e) {
