@@ -12,7 +12,7 @@ public class VEdgeEscarpe extends AVEdge {
 
     @Override
     public void drawEdge(Graphics graph) {
-        graph.setColor(new Color(0, 29,255));
+        graph.setColor(new Color(0, 136, 32));
         super.drawEdge(graph);
     }
 }

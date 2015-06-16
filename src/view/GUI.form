@@ -133,20 +133,20 @@
               <vspacer id="fe30b">
                 <constraints/>
               </vspacer>
-              <component id="67d82" class="javax.swing.JButton" binding="addRobotChenille">
-                <constraints/>
-                <properties>
-                  <text value="Chenille"/>
-                </properties>
-              </component>
-              <vspacer id="62c1d">
-                <constraints/>
-              </vspacer>
               <component id="2c28d" class="javax.swing.JButton" binding="addRobotPates">
                 <constraints/>
                 <properties>
                   <horizontalTextPosition value="0"/>
                   <text value="Pattes"/>
+                </properties>
+              </component>
+              <vspacer id="62c1d">
+                <constraints/>
+              </vspacer>
+              <component id="67d82" class="javax.swing.JButton" binding="addRobotChenille">
+                <constraints/>
+                <properties>
+                  <text value="Chenille"/>
                 </properties>
               </component>
               <vspacer id="9b4c9">
