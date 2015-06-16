@@ -27,10 +27,6 @@ public abstract class Robot extends Observable implements Runnable {
         this.node = node;
     }
 
-    public Graph getPath() {
-        return path;
-    }
-
     public void setPath(Graph path) {
         this.path = path;
     }
@@ -114,7 +110,6 @@ public abstract class Robot extends Observable implements Runnable {
         while (!path.getAllEdges().isEmpty()) {
             try {
                 Thread.sleep((int) (path.getEdges(node).get(0).getValuation() + 1) * ROBOT_MOBILITY_SPEED);
-                System.out.println("Noeud actuel " + node);
                 Node previousNode = this.node;
                 if (path.getEdges(node).get(0).getDestination().equals(node)) {
                     this.node = path.getEdges(node).get(0).getSource();
@@ -130,13 +125,11 @@ public abstract class Robot extends Observable implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("fin trajet");
         try {
             extinguish(node);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("fin incendie");
         this.node.setSupported(false);
         this.setBusy(false);
     }
