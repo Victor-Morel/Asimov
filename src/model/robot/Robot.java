@@ -77,7 +77,11 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
 
-
+    /**
+     * Fonction qui appelle l'algorithme de recherche choisi, afin de calculer le plus court chemin entre le noeud courant et un noeud en paramètres
+     * @param inFlames le noeud passé en paramètres (a priori en feu)
+     * @return
+     */
     public synchronized int getDistance(Node inFlames) {
         switch (researchType) {
             case DIJKSTRA:
@@ -91,6 +95,11 @@ public abstract class Robot extends Observable implements Runnable {
         return this.getStrat().getDistanceValue();
     }
 
+    /**
+     * Fonction qui éteint un noeud enflammé, et fait attendre le Thread du robot le temps adéquat
+     * @param inFlames noeud à éteindre
+     * @throws InterruptedException
+     */
     public synchronized void extinguish (Node inFlames) throws InterruptedException {
 
         while(inFlames.getIntensity() > 0) {
@@ -100,6 +109,10 @@ public abstract class Robot extends Observable implements Runnable {
 
     }
 
+    /**
+     * Fonction du robot qui lui permet de se déplacer de noeud en noeud jusqu'à sa destination
+     * Le Thread du robot dors proportionnellement à la distance à parcourir
+     */
     @Override
     public void run(){
         while(!path.getAllEdges().isEmpty()) {

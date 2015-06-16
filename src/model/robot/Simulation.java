@@ -5,7 +5,7 @@ import model.graph.Graph;
 import java.util.Observable;
 
 /**
- * Created by victor on 15/06/15.
+ * Classe qui lance une simulation d'extinction d'incendie par des robots pompiers
  */
 public class Simulation extends Observable implements Runnable {
 

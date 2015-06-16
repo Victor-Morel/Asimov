@@ -66,7 +66,7 @@ public class Manager implements Runnable {
                 }
             }
         } catch (NullPointerException e) {
-            System.out.print("Caught the NullPointerException");
+           System.out.print("Caught the NullPointerException");
         }
 
 

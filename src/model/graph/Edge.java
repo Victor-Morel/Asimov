@@ -6,32 +6,32 @@ public class Edge {
 
 
     /**
-     * Poids de l'arête
+     * Poids de l'arete
      */
     private double valuation;
 
     /**
-     * Noeud source de l'arête (équivalent a destination car graphe non-orienté)
+     * Noeud source de l'arete (equivalent a destination car graphe non-oriente)
      */
     private Node source;
 
     /**
-     * Noeud destination de l'arête  (équivalent à source car graphe non-orienté)
+     * Noeud destination de l'arete  (equivalent a source car graphe non-oriente)
      */
     private Node destination;
 
     /**
-     * Type d'arête (PLAT, INONDE, ESCARPE)
+     * Type d'arete (PLAT, INONDE, ESCARPE)
      */
     private TypeEdge type;
 
     /**
-     * Construit une arête entre 2 noeuds, avec un poids et un type
+     * Construit une arete entre 2 noeuds, avec un poids et un type
      *
-     * @param _n1 premier noeud de l'arête
-     * @param _n2 deuxième noeud de l'arête
-     * @param _valuation poids de l'arête
-     * @param type type d'arête
+     * @param _n1 premier noeud de l'arete
+     * @param _n2 deuxieme noeud de l'arete
+     * @param _valuation poids de l'arete
+     * @param type type d'arete
      */
     public Edge(Node _n1, Node _n2, double _valuation, TypeEdge type) {
         this.valuation = _valuation;
@@ -41,11 +41,11 @@ public class Edge {
     }
 
     /**
-     * Construit une arête entre 2 noeuds, avec un poids correspondant à la distance entre les noeuds, et un type
+     * Construit une arete entre 2 noeuds, avec un poids correspondant a la distance entre les noeuds, et un type
      *
-     * @param _n1 premier noeud de l'arête
-     * @param _n2 deuxième noeud de l'arête
-     * @param type type d'arête
+     * @param _n1 premier noeud de l'arete
+     * @param _n2 deuxieme noeud de l'arete
+     * @param type type d'arete
      */
     public Edge(Node _n1, Node _n2, TypeEdge type) {
         this(_n1, _n2, EuclidianDistance.getDistance(_n1, _n2), type);
@@ -59,22 +59,22 @@ public class Edge {
     }
 
     /**
-     * Set la valeur d'une arête
-     * @param valuation valeur de l'arête
+     * Set la valeur d'une arete
+     * @param valuation valeur de l'arete
      */
     public void setValuation(int valuation) {
         this.valuation = valuation;
     }
 
     /**
-     * @return le noeud source de l'arête
+     * @return le noeud source de l'arete
      */
     public Node getSource() {
         return source;
     }
 
     /**
-     * Set le noeud source de l'arête
+     * Set le noeud source de l'arete
      * @param _n noeud source
      */
     public void setSource(Node _n) {
@@ -82,14 +82,14 @@ public class Edge {
     }
 
     /**
-     * @return le noeud destination de l'arête
+     * @return le noeud destination de l'arete
      */
     public Node getDestination() {
         return destination;
     }
 
     /**
-     * Set le noeud destination de l'arête
+     * Set le noeud destination de l'arete
      * @param _n noeud destination
      */
     public void setDestination(Node _n) {
@@ -97,7 +97,7 @@ public class Edge {
     }
 
     /**
-     * @return un String correspondant à l'arète
+     * @return un String correspondant a l'arete
      */
     @Override
     public String toString() {
@@ -106,19 +106,19 @@ public class Edge {
     }
 
     /**
-     * @return le type d'arète     */
+     * @return le type d'arete     */
     public TypeEdge getType() {
         return type;
     }
 
     /**
-     *  Set le type d'arète     * @param type type d'arète     */
+     *  Set le type d'arete     * @param type type d'arete     */
     public void setType(TypeEdge type) {
         this.type = type;
     }
 
     /**
-     * Destructeur d'arète     * @throws Throwable
+     * Destructeur d'arete     * @throws Throwable
      */
     public void reset() throws Throwable {
         this.finalize();

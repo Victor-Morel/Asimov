@@ -29,7 +29,7 @@ public class Controller {
 
 
     /**
-     * Consctruit un controlleur des actions
+     * Construit un controleur des actions
      */
     public Controller() {
         super();

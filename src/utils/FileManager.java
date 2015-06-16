@@ -19,6 +19,11 @@ import java.io.File;
 
 public class FileManager {
 
+    /**
+     * Charge un fichier xml dans le modèle
+     * @param file xml
+     * @return un graphe
+     */
     public static Graph loadFileManager(File file) {
 
         Graph graph;
@@ -88,6 +93,11 @@ public class FileManager {
         return graph;
     }
 
+    /**
+     * Sauvegarde un fichier xml à partir du modèle
+     * @param file xml
+     * @param g un graphe
+     */
     public static void saveFileManager(File file, Graph g) {
 
         try {

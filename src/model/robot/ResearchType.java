@@ -1,5 +1,8 @@
 package model.robot;
 
+/**
+ * Type enum pour le type de recherche du robot
+ */
 public enum ResearchType {
     DIJKSTRA("DIJKSTRA"),
     ASTAR("ASTAR");

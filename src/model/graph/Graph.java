@@ -14,12 +14,12 @@ public class Graph {
     private Set<Node> nodes;
 
     /**
-     * liste des arètes du graphe
+     * liste des aretes du graphe
      */
     private Set<Edge> edges;
 
     /**
-     * Constructeur par défault d'un graphe
+     * Constructeur par default d'un graphe
      */
     public Graph() {
         this.setNodes(new HashSet<Node>());
@@ -27,16 +27,18 @@ public class Graph {
     }
 
     /**
-     * Méthode d'ajout de noeud
-     * @param _node le noeud à ajouter au graphe
+     * Methode d'ajout de noeud
+     *
+     * @param _node le noeud a ajouter au graphe
      */
     public void addNode(Node _node) {
         this.nodes.add(_node);
     }
 
     /**
-     * Méthode pour trouver un noeud dans le graphe à partir de son id
-     * @param id id du noeud recherché
+     * Mï¿½thode pour trouver un noeud dans le graphe a partir de son id
+     *
+     * @param id id du noeud recherche
      * @return le noeud avec l'id correspondant, null s'il n'y en a pas
      */
     public Node findNode(int id) {
@@ -49,7 +51,8 @@ public class Graph {
     }
 
     /**
-     * Méthode pour sélectionner tous les noeuds du graphe
+     * Methode pour selectionner tous les noeuds du graphe
+     *
      * @return tous les noeuds du graphe
      */
     public Set<Node> getAllNodes() {
@@ -57,7 +60,8 @@ public class Graph {
     }
 
     /**
-     * Méthode pour sélectionner uniquement les noeuds en feu du graphe
+     * Methode pour selectionner uniquement les noeuds en feu du graphe
+     *
      * @return tous les noeuds en feu du graphe
      */
     public Set<Node> getAllFireNodes() {
@@ -71,7 +75,8 @@ public class Graph {
     }
 
     /**
-     * Méthode qui compte le nombre de noeuds dans le graphe
+     * Methode qui compte le nombre de noeuds dans le graphe
+     *
      * @return le nombre de noeuds du graphe
      */
     public int getNbNodes() {
@@ -79,7 +84,8 @@ public class Graph {
     }
 
     /**
-     * Méthode qui génère la liste des noeuds liés au noeud passé en paramètre
+     * Methode qui genere la liste des noeuds lies au noeud passe en parametre
+     *
      * @param _n le noeud dont on souhaite connaitre les voisins
      * @return la liste des voisins
      */
@@ -96,15 +102,16 @@ public class Graph {
     }
 
     /**
-     * Méthode indiquant s'il y a un arète entre 2 noeuds donnés
-     * @param _n1 première extrémité de l'arète
-     * @param _n2 deuxième extrémité de l'arète
-     * @return true s'il y a un arète entre _n1 et _n2, false sinon
+     * Methode indiquant s'il y a un arete entre 2 noeuds donnes
+     *
+     * @param _n1 premiere extremite de l'arete
+     * @param _n2 deuxieme extremite de l'arete
+     * @return true s'il y a un arete entre _n1 et _n2, false sinon
      */
     public boolean hasEdge(Node _n1, Node _n2) {
         for (Edge e : this.getAllEdges()) {
             if ((e.getSource().equals(_n1) && e.getDestination().equals(_n2)) ||
-                    (e.getSource().equals(_n2) && e.getDestination().equals(_n1)) ) {
+                    (e.getSource().equals(_n2) && e.getDestination().equals(_n1))) {
                 return true;
             }
         }
@@ -112,17 +119,19 @@ public class Graph {
     }
 
     /**
-     * Méthode d'ajout d'arète dans le graphe
-     * @param _edge arète à ajouter au graphe
+     * Methode d'ajout d'arete dans le graphe
+     *
+     * @param _edge arete a ajouter au graphe
      */
     public void addEdge(Edge _edge) {
         this.getAllEdges().add(_edge);
     }
 
     /**
-     * Méthode qui retourne la liste des arètes du graphe issus du noeud passé en paramètre
-     * @param _n noeud dont on veut connaitre les arètes liés
-     * @return les arètes liés au noeud passé en paramètre
+     * Methode qui retourne la liste des aretes du graphe issus du noeud passe en parametre
+     *
+     * @param _n noeud dont on veut connaitre les aretes lies
+     * @return les aretes lies au noeud passe en parametre
      */
     public List<Edge> getEdges(Node _n) {
         List<Edge> requiredEdges = new ArrayList<Edge>();
@@ -135,10 +144,11 @@ public class Graph {
     }
 
     /**
-     * Methode qui renvoie l'arète entre 2 noeuds passés en paramètre
-     * @param _n1 première extrémité de l'arète
-     * @param _n2 deuxième extrémité de l'arète
-     * @return l'arète entre _n1 et _n2 s'il existe, null sinon
+     * Methode qui renvoie l'arï¿½te entre 2 noeuds passï¿½s en paramï¿½tre
+     *
+     * @param _n1 premiï¿½re extrï¿½mitï¿½ de l'arï¿½te
+     * @param _n2 deuxiï¿½me extrï¿½mitï¿½ de l'arï¿½te
+     * @return l'arï¿½te entre _n1 et _n2 s'il existe, null sinon
      */
     public Edge getEdge(Node _n1, Node _n2) {
         if (hasEdge(_n1, _n2)) {
@@ -153,11 +163,12 @@ public class Graph {
     }
 
     /**
-     * Retire du graphe l'arète passée en paramètre
-     * @param e arrète à retirer du graphe
+     * Retire du graphe l'arï¿½te passï¿½e en paramï¿½tre
+     *
+     * @param e arrï¿½te ï¿½ retirer du graphe
      */
     public void removeEdge(Edge e) {
-        if(this.getAllEdges().contains(e)) {
+        if (this.getAllEdges().contains(e)) {
             this.getAllEdges().remove(e);
         }
     }
@@ -177,32 +188,36 @@ public class Graph {
 
     /**
      * Permet de setter la liste des noeuds du graphe
-     * @param nodes liste des noeuds à setter
+     *
+     * @param nodes liste des noeuds ï¿½ setter
      */
     public void setNodes(Set<Node> nodes) {
         this.nodes = nodes;
     }
 
     /**
-     * Méthode qui sélectionne la liste complète des arètes du graphe
-     * @return la liste des arètes du graphe
+     * Mï¿½thode qui sï¿½lectionne la liste complï¿½te des arï¿½tes du graphe
+     *
+     * @return la liste des arï¿½tes du graphe
      */
     public Set<Edge> getAllEdges() {
         return edges;
     }
 
     /**
-     * Permet de setter la liste des arètes du graphe
-     * @param edges liste des arètes à setter
+     * Permet de setter la liste des arï¿½tes du graphe
+     *
+     * @param edges liste des arï¿½tes ï¿½ setter
      */
     public void setEdges(Set<Edge> edges) {
         this.edges = edges;
     }
 
     /**
-     * Méthode qui génère le sous-graphe d'un robot. Le sous-graphe est identique au graphe de base, mais on y a retiré les arètes que le robot ne pouvais pas emprunter, en fonction du type de robot
-     * @param robotType le type de robot utilisé
-     * @return le sous-graphe dans lequel le robot peut se déplacer
+     * Mï¿½thode qui gï¿½nï¿½re le sous-graphe d'un robot. Le sous-graphe est identique au graphe de base, mais on y a retirï¿½ les arï¿½tes que le robot ne pouvais pas emprunter, en fonction du type de robot
+     *
+     * @param robotType le type de robot utilisï¿½
+     * @return le sous-graphe dans lequel le robot peut se dï¿½placer
      */
     public Graph getSubGraph(int robotType) {
         /**
@@ -221,10 +236,11 @@ public class Graph {
     }
 
     /**
-     * Méthode qui indique si l'arète passé en paramètre est accessible au type de robot donné
-     * @param e arète à tester
-     * @param robotType type de robot voulant emprunter l'arète
-     * @return true si le robot donné peut emprunter l'arète donnée, false sinon
+     * Mï¿½thode qui indique si l'arï¿½te passï¿½ en paramï¿½tre est accessible au type de robot donnï¿½
+     *
+     * @param e         arï¿½te ï¿½ tester
+     * @param robotType type de robot voulant emprunter l'arï¿½te
+     * @return true si le robot donnï¿½ peut emprunter l'arï¿½te donnï¿½e, false sinon
      */
     public Boolean edgeAuthorized(Edge e, int robotType) {
         switch (robotType) {
@@ -248,7 +264,7 @@ public class Graph {
     }
 
     /**
-     * @param o le graphe a comparer à this
+     * @param o le graphe a comparer ï¿½ this
      * @return true si les graphes sont identiques, false sinon
      */
     @Override
@@ -258,8 +274,7 @@ public class Graph {
 
         Graph graph = (Graph) o;
 
-        if (nodes != null ? !nodes.equals(graph.nodes) : graph.nodes != null) return false;
-        return !(edges != null ? !edges.equals(graph.edges) : graph.edges != null);
+        return !(nodes != null ? !nodes.equals(graph.nodes) : graph.nodes != null) && !(edges != null ? !edges.equals(graph.edges) : graph.edges != null);
     }
 
     @Override
@@ -271,14 +286,15 @@ public class Graph {
 
     /**
      * Destructeur de graphe
+     *
      * @throws Throwable
      */
     @Override
-    public void finalize() throws Throwable{
-        for(Node n : this.getAllNodes()) {
+    public void finalize() throws Throwable {
+        for (Node n : this.getAllNodes()) {
             n.reset();
         }
-        for(Edge e : this.getAllEdges()) {
+        for (Edge e : this.getAllEdges()) {
             e.reset();
         }
     }

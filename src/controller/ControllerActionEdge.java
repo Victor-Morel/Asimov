@@ -28,10 +28,10 @@ public class ControllerActionEdge implements ActionListener {
     }
 
     /**
-     * Ajouter une arète
+     * Ajouter une arete
      *
-     * @param node1 noeud 1 de la nouvelle arète
-     * @param node2 noeud 2 de la nouvelle arète
+     * @param node1 noeud 1 de la nouvelle arete
+     * @param node2 noeud 2 de la nouvelle arete
      */
     public void addEdge(Node node1, Node node2) {
         Edge edge;

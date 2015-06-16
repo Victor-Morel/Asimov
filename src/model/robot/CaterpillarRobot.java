@@ -4,7 +4,7 @@ import model.graph.Graph;
 import model.graph.Node;
 
 /**
- * Created by victor on 20/05/15.
+ * Sous classe de robot
  */
 public class CaterpillarRobot extends Robot {
 
