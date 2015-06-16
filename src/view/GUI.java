@@ -77,6 +77,7 @@ public class GUI extends JFrame {
 		run.add(RunAlgo);
 		run.add(StopAlgo);
 		run.add(Pyromano);
+
 		option.add(AStar);
 		option.add(Dijkstra);
 
@@ -103,8 +104,8 @@ public class GUI extends JFrame {
 		AStar.addActionListener(controlAction.getControlWindows());
 		Pyromano.addActionListener(controlAction.getControlWindows());
 
-		JLabelEdge.setForeground(Color.GREEN);
-		JLabelNode.setForeground(Color.BLACK.BLUE);
+
+		addNodeFire.setForeground(Color.RED);
 
 		addEdgePlat.setForeground(Color.black);
 		addEdgeEscarpe.setForeground(Color.CYAN);
