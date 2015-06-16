@@ -33,6 +33,14 @@ public abstract class Robot extends Observable implements Runnable {
         notifyObservers();
     }
 
+    public Graph getPath() {
+        return path;
+    }
+
+    public void setPath(Graph path) {
+        this.path = path;
+    }
+
     public boolean isBusy() {
         return busy;
     }
@@ -42,7 +50,7 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
 
-    private static final int ROBOT_MOBILITY_SPEED = 50;
+    private static final int ROBOT_MOBILITY_SPEED = 30;
     private static final int ROBOT_EXTINGUISH_SPEED = 3;
     private static ResearchType researchType = ResearchType.ASTAR;
     private int id;
@@ -50,6 +58,7 @@ public abstract class Robot extends Observable implements Runnable {
     private boolean busy;
     private double capacity;
     private Strategy strat;
+    private Graph path;
     protected Graph g;
     private Node inFlames;
     private int distance;
@@ -74,6 +83,7 @@ public abstract class Robot extends Observable implements Runnable {
                 this.setStrat(new AStar(g, this.getNode(), inFlames));
                 break;
         }
+        this.setPath(strat.getResultGraph());
         return this.getStrat().getDistanceValue();
     }
 
@@ -88,20 +98,31 @@ public abstract class Robot extends Observable implements Runnable {
 
     @Override
     public void run(){
-        try {
-            Thread.sleep(distance * ROBOT_MOBILITY_SPEED);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while(!path.getAllEdges().isEmpty()) {
+            try {
+                Thread.sleep((int)(path.getEdges(node).get(0).getValuation() + 1) * ROBOT_MOBILITY_SPEED);
+                System.out.println("Noeud actuel " + node);
+                Node previousNode = this.node;
+                if(path.getEdges(node).get(0).getDestination().equals(node)) {
+                    this.node = path.getEdges(node).get(0).getSource();
+                }
+                else {
+                    this.node = path.getEdges(node).get(0).getDestination();
+                }
+                path.removeEdge(path.getEdges(previousNode).get(0));
+                //FORCER LA VUE A RAFRAICHIR L'AFFICHAGE ICI
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("fin trajet");
-        this.setNode(inFlames);
+        //this.setNode(inFlames);
         try {
-            Thread.sleep( (long)(extinguish(inFlames)) );
+            Thread.sleep( (long)(extinguish(node)) );
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("fin incendie : " + inFlames.getIntensity());
-        //inFlames.setIntensity(0);
+        System.out.println("fin incendie");
         this.setBusy(false);
     }
 
@@ -129,5 +150,4 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
     public abstract void generateSubGraph(Graph _g);
-
 }

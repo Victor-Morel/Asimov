@@ -75,7 +75,6 @@ public class Manager implements Runnable {
         }
     }
 
-
     //à appeler pour que le manager gère les robots
     public void decide() {
         chooseRobot();

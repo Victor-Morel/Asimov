@@ -128,7 +128,6 @@ public class Graph {
         List<Edge> requiredEdges = new ArrayList<Edge>();
         for (Edge e : this.getAllEdges()) {
             if (e.getSource().equals(_n) || e.getDestination().equals(_n)) {
-                //System.out.println(e.getSource().toString()+"   ____________    "+e.getDestination().toString());
                 requiredEdges.add(e);
             }
         }
@@ -151,6 +150,16 @@ public class Graph {
             }
         }
         return null;
+    }
+
+    /**
+     * Retire du graphe l'arète passée en paramètre
+     * @param e arrète à retirer du graphe
+     */
+    public void removeEdge(Edge e) {
+        if(this.getAllEdges().contains(e)) {
+            this.getAllEdges().remove(e);
+        }
     }
 
     /**
