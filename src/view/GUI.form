@@ -37,7 +37,7 @@
               <vspacer id="aea7a">
                 <constraints/>
               </vspacer>
-              <component id="47945" class="javax.swing.JLabel">
+              <component id="47945" class="javax.swing.JLabel" binding="JLabelNode">
                 <constraints/>
                 <properties>
                   <horizontalAlignment value="0"/>
@@ -73,7 +73,7 @@
                   <background color="-5098452"/>
                 </properties>
               </component>
-              <component id="f23c" class="javax.swing.JLabel">
+              <component id="f23c" class="javax.swing.JLabel" binding="JLabelEdge">
                 <constraints/>
                 <properties>
                   <text value="Arc"/>

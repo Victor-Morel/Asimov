@@ -29,6 +29,8 @@ public class GUI extends JFrame {
 	 *  SheetDisplay
 	 */
 	private SheetDisplay sheetDisplay;
+	private JLabel JLabelEdge;
+	private JLabel JLabelNode;
 
 	/**
 	 * Controlleur de la souris
@@ -98,6 +100,8 @@ public class GUI extends JFrame {
 		AStar.addActionListener(controlAction.getControlWindows());
 		Pyromano.addActionListener(controlAction.getControlWindows());
 
+		JLabelEdge.setForeground(Color.GREEN);
+		JLabelNode.setForeground(Color.BLACK.BLUE);
 
 		addEdgePlat.setForeground(Color.black);
 		addEdgeEscarpe.setForeground(Color.CYAN);
