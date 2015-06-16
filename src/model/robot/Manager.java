@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Manager implements Runnable {
 
-    public List<Robot> bots;
+    private List<Robot> bots;
     private Graph graph;
     public HashMap<Node, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(); //key idFireNode, value : idBot/distance
 
@@ -94,6 +94,10 @@ public class Manager implements Runnable {
         for(Robot r : this.bots) {
             r.generateSubGraph(graph);
         }
+    }
+
+    public List<Robot> getBots() {
+        return bots;
     }
 }
 

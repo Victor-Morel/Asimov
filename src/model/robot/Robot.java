@@ -158,4 +158,8 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
     public abstract void generateSubGraph(Graph _g);
+
+    public void setResearchType(ResearchType researchType) {
+        this.researchType = researchType;
+    }
 }

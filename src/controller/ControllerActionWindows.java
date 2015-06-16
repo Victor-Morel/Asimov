@@ -1,5 +1,7 @@
 package controller;
 
+import model.robot.ResearchType;
+import model.robot.Robot;
 import utils.FileManager;
 import view.Dialog.ChooseFileImage;
 import view.Dialog.ChooseFileXml;
@@ -98,9 +100,14 @@ public class ControllerActionWindows implements ActionListener {
 
         }else if (e.getActionCommand().matches("Strategie AStar")){
             control.getWindow().getDijkstra().setSelected(false);
-
+            for(Robot bot : control.getManager().getBots()){
+                bot.setResearchType(ResearchType.ASTAR);
+            }
         }else if (e.getActionCommand().matches("Strategie Dijkstra")){
             control.getWindow().getAStar().setSelected(false);
+            for(Robot bot : control.getManager().getBots()){
+                bot.setResearchType(ResearchType.DIJKSTRA);
+            }
         }
     }
 

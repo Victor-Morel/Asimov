@@ -59,7 +59,7 @@ public class ControllerActionRobot implements ActionListener {
             viewRobot = new VRobotPate(control.getWindow().getSheetDisplay(), bot);
         }
 
-        control.getManager().bots.add(bot);
+        control.getManager().getBots().add(bot);
         control.getWindow().getSheetDisplay().addRobot(viewRobot);
         control.repaint();
 
