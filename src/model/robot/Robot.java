@@ -128,7 +128,6 @@ public abstract class Robot extends Observable implements Runnable {
                 }
                 path.removeEdge(path.getEdges(previousNode).get(0));
 
-                //FORCER LA VUE A RAFRAICHIR L'AFFICHAGE ICI
                 setChanged();
                 notifyObservers();
 
