@@ -1,12 +1,10 @@
-package test.robot;
+package test.model.robot;
 
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.robot.AllTerrainRobot;
-import model.robot.ResearchType;
-import model.robot.Robot;
+import model.robot.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +13,7 @@ import utils.EuclidianDistance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllTerrainRobotTest extends RobotTest {
+public class ManagerTest {
     Graph g;
     Node n0;
     Node n1;
@@ -40,7 +38,7 @@ public class AllTerrainRobotTest extends RobotTest {
         g = new Graph();
         n0 = new Node(0,0);
         n1 = new Node(1.0,0.0);
-        n2 = new Node(2.0,3.0,0);
+        n2 = new Node(2.0,3.0,100);
         n3 = new Node(2.5,3.5,120);
         n4 = new Node(3.0,3.0,0);
         n5 = new Node(6.0,5.0,1);
@@ -79,18 +77,17 @@ public class AllTerrainRobotTest extends RobotTest {
     }
 
     @Test
-    public void testGetSubGraph() {
-        Graph subGraph = new Graph();
-        for(Node n : g.getAllNodes()) {
-            subGraph.addNode(n);
-        }
-        for(Edge e : g.getAllEdges()) {
-            subGraph.addEdge(e);
-        }
-
-        Robot r = new AllTerrainRobot(n1, ResearchType.ASTAR);
-        r.generateSubGraph(g);
-
-        Assert.assertTrue(r.getGraph().equals(subGraph));
+    public void testBestFire() {
+        Robot r1 = new AllTerrainRobot(n1, ResearchType.ASTAR);
+        Robot r2 = new CaterpillarRobot(n6, ResearchType.ASTAR);
+        Robot r3 = new CaterpillarRobot(n1, ResearchType.ASTAR);
+        Manager m = new Manager();
+        m.getBots().add(r1);
+        m.getBots().add(r2);
+        m.getBots().add(r3);
+        m.setGraph(g);
+        Assert.assertTrue(m.bestFire(r1).equals(n2));
+        Assert.assertTrue(m.bestFire(r2).equals(n6));
+        Assert.assertTrue(m.bestFire(r3).equals(n6));
     }
 }

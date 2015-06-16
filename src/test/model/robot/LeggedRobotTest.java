@@ -1,11 +1,13 @@
-package test.research;
+package test.model.robot;
 
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.research.AStar;
-import model.research.Strategy;
+import model.robot.CaterpillarRobot;
+import model.robot.ResearchType;
+import model.robot.Robot;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.EuclidianDistance;
@@ -13,12 +15,7 @@ import utils.EuclidianDistance;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
-/**
- * Created by Logan Paul on 13/06/2015.
- */
-public class StrategyTest {
+public class LeggedRobotTest extends RobotTest {
     Graph g;
     Node n0;
     Node n1;
@@ -27,6 +24,7 @@ public class StrategyTest {
     Node n4;
     Node n5;
     Node n6;
+    Node n7;
     Edge e1;
     Edge e2;
     Edge e3;
@@ -46,7 +44,8 @@ public class StrategyTest {
         n3 = new Node(2.5,3.5,120);
         n4 = new Node(3.0,3.0,0);
         n5 = new Node(6.0,5.0,1);
-        n6 = new Node(0.0,1.0,Integer.MAX_VALUE);
+        n6 = new Node(0.0,1.0,Integer.MAX_VALUE - 1);
+        n7 = new Node(1.0,0.0);
         e1 = new Edge(n0, n1, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
         e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);
@@ -63,6 +62,7 @@ public class StrategyTest {
         ln.add(n4);
         ln.add(n5);
         ln.add(n6);
+        ln.add(n7);
         le.add(e1);
         le.add(e2);
         le.add(e3);
@@ -79,9 +79,20 @@ public class StrategyTest {
     }
 
     @Test
-    public void testGenerateBestPath() {
-        Strategy s = new AStar(g,n0,n1);
-        assertEquals(s.getDistanceValue(), (int)EuclidianDistance.getDistance(n1,n2));
-        assertNotEquals(s.getDistanceValue(),29);
+    public void testGetSubGraph() {
+        Graph subGraph = new Graph();
+        for(Node n : g.getAllNodes()) {
+            subGraph.addNode(n);
+        }
+        for(Edge e : g.getAllEdges()) {
+            if(!e.getType().equals(TypeEdge.INONDE)) {
+                subGraph.addEdge(e);
+            }
+        }
+
+        Robot r = new CaterpillarRobot(n1, ResearchType.ASTAR);
+        r.generateSubGraph(g);
+
+        Assert.assertTrue(r.getGraph().equals(subGraph));
     }
 }

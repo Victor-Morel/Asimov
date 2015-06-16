@@ -1,14 +1,11 @@
-package test.robot;
+package test.model.research;
 
-
-import junit.framework.Assert;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.robot.AllTerrainRobot;
-import model.robot.ResearchType;
-import model.robot.Robot;
+import model.research.Dijkstra;
+import model.research.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 import utils.EuclidianDistance;
@@ -16,7 +13,13 @@ import utils.EuclidianDistance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RobotTest {
+import static org.junit.Assert.*;
+
+/**
+ * Created by Logan Paul on 13/06/2015.
+ */
+public class DijkstraTest {
+
     Graph g;
     Node n0;
     Node n1;
@@ -39,14 +42,14 @@ public class RobotTest {
     @Before
     public void setUp() {
         g = new Graph();
-        n0 = new Node(0, 0);
-        n1 = new Node(1.0, 0.0);
-        n2 = new Node(2.0, 3.0, 100);
-        n3 = new Node(2.5, 3.5, 120);
-        n4 = new Node(3.0, 3.0, 0);
-        n5 = new Node(6.0, 5.0, 1);
-        n6 = new Node(0.0, 1.0, Integer.MAX_VALUE - 1);
-        n7 = new Node(1.0, 0.0);
+        n0 = new Node(0,0);
+        n1 = new Node(1.0,0.0);
+        n2 = new Node(2.0,3.0,0);
+        n3 = new Node(2.5,3.5,120);
+        n4 = new Node(3.0,3.0,0);
+        n5 = new Node(6.0,5.0,1);
+        n6 = new Node(0.0,1.0,Integer.MAX_VALUE - 1);
+        n7 = new Node(1.0,0.0);
         e1 = new Edge(n0, n1, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
         e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);
@@ -71,23 +74,33 @@ public class RobotTest {
         le.add(e5);
         le.add(e6);
         le.add(e7);
-        for (Node n : ln) {
+        for(Node n : ln) {
             g.addNode(n);
         }
-        for (Edge e : le) {
+        for(Edge e : le) {
             g.addEdge(e);
         }
     }
 
     @Test
-    public void testExtinguish() throws InterruptedException {
-        Robot r1 = new AllTerrainRobot(n1, ResearchType.ASTAR);
-        int saveTemp = n2.getIntensity();
-        r1.extinguish(n2);
-        Assert.assertTrue(saveTemp > n2.getIntensity() && n2.getIntensity() >= 0);
+    public void testGenerateBestPath() {
+        Graph gRes = new Graph();
+        gRes.addNode(n0);
+        gRes.addNode(n1);
+        gRes.addNode(n2);
+        gRes.addNode(n3);
+        gRes.addNode(n4);
+        gRes.addEdge(e1);
+        gRes.addEdge(e2);
+        gRes.addEdge(e3);
+        gRes.addEdge(e4);
+        Strategy s = new Dijkstra(g,n0,n4);
+        assertTrue(gRes.equals(s.getResultGraph()));
 
-        saveTemp = n1.getIntensity();
-        r1.extinguish(n1);
-        Assert.assertTrue(saveTemp == n1.getIntensity() && n1.getIntensity() == 0);
+        s = new Dijkstra(g,n2,n5);
+        assertFalse(gRes.equals(s.getResultGraph()));
+
+        s = new Dijkstra(g,n1,n7);
+        assertTrue(s.getResultGraph().equals(new Graph()));
     }
 }

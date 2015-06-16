@@ -1,11 +1,10 @@
-package test.robot;
+package test.model.robot;
 
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
 import model.robot.AllTerrainRobot;
-import model.robot.CaterpillarRobot;
 import model.robot.ResearchType;
 import model.robot.Robot;
 import org.junit.Assert;
@@ -16,7 +15,7 @@ import utils.EuclidianDistance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaterpillarRobotTest extends RobotTest {
+public class AllTerrainRobotTest extends RobotTest {
     Graph g;
     Node n0;
     Node n1;
@@ -86,15 +85,12 @@ public class CaterpillarRobotTest extends RobotTest {
             subGraph.addNode(n);
         }
         for(Edge e : g.getAllEdges()) {
-            if(!e.getType().equals(TypeEdge.ESCARPE)) {
-                subGraph.addEdge(e);
-            }
+            subGraph.addEdge(e);
         }
 
-        Robot r = new CaterpillarRobot(n1, ResearchType.ASTAR);
+        Robot r = new AllTerrainRobot(n1, ResearchType.ASTAR);
         r.generateSubGraph(g);
 
         Assert.assertTrue(r.getGraph().equals(subGraph));
     }
 }
-

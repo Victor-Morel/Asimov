@@ -1,13 +1,11 @@
-package test.robot;
+package test.model.research;
 
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.robot.CaterpillarRobot;
-import model.robot.ResearchType;
-import model.robot.Robot;
-import org.junit.Assert;
+import model.research.AStar;
+import model.research.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 import utils.EuclidianDistance;
@@ -15,7 +13,13 @@ import utils.EuclidianDistance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeggedRobotTest extends RobotTest {
+import static org.junit.Assert.*;
+
+/**
+ * Created by Logan Paul on 13/06/2015.
+ */
+public class AStarTest {
+
     Graph g;
     Node n0;
     Node n1;
@@ -44,7 +48,7 @@ public class LeggedRobotTest extends RobotTest {
         n3 = new Node(2.5,3.5,120);
         n4 = new Node(3.0,3.0,0);
         n5 = new Node(6.0,5.0,1);
-        n6 = new Node(0.0,1.0,Integer.MAX_VALUE - 1);
+        n6 = new Node(0.0,1.0,Integer.MAX_VALUE);
         n7 = new Node(1.0,0.0);
         e1 = new Edge(n0, n1, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
@@ -79,20 +83,25 @@ public class LeggedRobotTest extends RobotTest {
     }
 
     @Test
-    public void testGetSubGraph() {
-        Graph subGraph = new Graph();
-        for(Node n : g.getAllNodes()) {
-            subGraph.addNode(n);
-        }
-        for(Edge e : g.getAllEdges()) {
-            if(!e.getType().equals(TypeEdge.INONDE)) {
-                subGraph.addEdge(e);
-            }
-        }
+    public void testGenerateBestPath() {
+        Graph gRes = new Graph();
+        gRes.addNode(n0);
+        gRes.addNode(n1);
+        gRes.addNode(n2);
+        gRes.addNode(n3);
+        gRes.addNode(n4);
+        gRes.addEdge(e1);
+        gRes.addEdge(e2);
+        gRes.addEdge(e3);
+        gRes.addEdge(e4);
+        Strategy s = new AStar(g,n0,n4);
+        assertTrue(gRes.equals(s.getResultGraph()));
 
-        Robot r = new CaterpillarRobot(n1, ResearchType.ASTAR);
-        r.generateSubGraph(g);
+        s = new AStar(g,n2,n5);
+        assertFalse(gRes.equals(s.getResultGraph()));
 
-        Assert.assertTrue(r.getGraph().equals(subGraph));
+        s = new AStar(g,n1,n7);
+        assertTrue(s.getResultGraph().equals(new Graph()));
     }
+
 }

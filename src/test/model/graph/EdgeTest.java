@@ -1,4 +1,4 @@
-package test.graph;
+package test.model.graph;
 
 public class EdgeTest {
 

@@ -1,4 +1,4 @@
-package test.graph;
+package test.model.graph;
 
 import model.graph.Node;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package test.graph;
+package test.model.graph;
 
 import junit.framework.Assert;
 import model.graph.Edge;
