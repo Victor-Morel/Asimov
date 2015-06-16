@@ -12,6 +12,7 @@ public class ChooseFileXml extends JFileChooser {
 
     /**
      * Construit un ChooseFile avec un nom et un chemin
+     *
      * @param _name nom de la windows
      */
     public ChooseFileXml(String _name) {
@@ -20,8 +21,9 @@ public class ChooseFileXml extends JFileChooser {
     }
 
     /**
-     * selectionner le fichier
-     * @return fichier selectionner ou null si aucun fichier selectionner
+     * Selectionne le fichier
+     *
+     * @return fichier selectionne ou null si aucun fichier selectionne
      */
     public File selectFile() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("XML", "xml");

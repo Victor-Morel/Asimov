@@ -27,7 +27,8 @@ public class SheetDisplay extends JPanel {
     private ArrayList<AVRobot> robots; // la liste des nodes enregistrees
 
     /**
-     * Conscruit un sheetDisplay
+     * Construit un sheetDisplay
+     *
      * @param controlMouse Controle de la souris
      */
     public SheetDisplay(ControllerMouse controlMouse) {
@@ -47,16 +48,16 @@ public class SheetDisplay extends JPanel {
     }
 
     /**
-     * Réinitialise les listes et redessine le JPanel vide
-     *
+     * Reinitialise les listes et redessine le JPanel vide
      */
-    public void reset(){
+    public void reset() {
         initialization();
         repaint();
     }
 
     /**
      * Dessine les elements du JPanel
+     *
      * @param g
      */
     public void paintComponent(Graphics g) {
@@ -69,6 +70,7 @@ public class SheetDisplay extends JPanel {
 
     /**
      * Dessine les robots
+     *
      * @param g
      */
     private void showRobots(Graphics g) {
@@ -79,6 +81,7 @@ public class SheetDisplay extends JPanel {
 
     /**
      * Dessine les Noeuds
+     *
      * @param g
      */
     private void showNodes(Graphics g) {
@@ -89,6 +92,7 @@ public class SheetDisplay extends JPanel {
 
     /**
      * Dessine les arcs
+     *
      * @param graphics
      */
     private void showEdges(Graphics graphics) {
@@ -99,6 +103,7 @@ public class SheetDisplay extends JPanel {
 
     /**
      * Ajouter un arc
+     *
      * @param edge
      */
     public void addEdge(AVEdge edge) {
@@ -107,6 +112,7 @@ public class SheetDisplay extends JPanel {
 
     /**
      * Ajouter un noeud
+     *
      * @param node
      */
     public void addNode(VNode node) {
@@ -115,6 +121,7 @@ public class SheetDisplay extends JPanel {
 
     /**
      * Ajouter un robot
+     *
      * @param robot
      */
     public void addRobot(AVRobot robot) {
@@ -134,8 +141,8 @@ public class SheetDisplay extends JPanel {
     }
 
     public VNode findVNode(Node _node) {
-        for(VNode vn : getNodes()) {
-            if(vn.getNode().equals(_node)) {
+        for (VNode vn : getNodes()) {
+            if (vn.getNode().equals(_node)) {
                 return vn;
             }
         }

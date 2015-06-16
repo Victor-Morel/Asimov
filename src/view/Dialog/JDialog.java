@@ -5,13 +5,12 @@ import javax.swing.*;
 public class JDialog extends JOptionPane {
 
     /**
-     * entier correspondant au choix Oui : 0 | Non : 1 | Annuler : 2
-     *
+     * Entier correspondant au choix Oui : 0 | Non : 1 | Annuler : 2
      */
     private int elementChoose;
 
     /**
-     * construit un JDialog
+     * Construit un JDialog
      */
     public JDialog() {
         super();
@@ -28,6 +27,7 @@ public class JDialog extends JOptionPane {
 
     /**
      * Acceder a la variable elementChoose
+     *
      * @return element choose
      */
     public int getElementChoose() {

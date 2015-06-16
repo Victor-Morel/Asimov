@@ -16,6 +16,7 @@ public abstract class AVEdge {
 
     /**
      * Construit un AVEdge avec un sheetDisplay et un edge
+     *
      * @param edge Arc de la vue
      */
     public AVEdge(Edge edge) {
@@ -24,6 +25,7 @@ public abstract class AVEdge {
 
     /**
      * Dessine un arc
+     *
      * @param graph graphics
      */
     public void drawEdge(Graphics graph) {
@@ -38,7 +40,4 @@ public abstract class AVEdge {
                 )
         );
     }
-
-
-
 }

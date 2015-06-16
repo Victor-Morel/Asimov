@@ -34,7 +34,8 @@ public class VNode implements Observer {
     }
 
     /**
-     * Mise à jour du Noeud
+     * Mise à jour du noeud
+     *
      * @param arg0
      * @param arg1
      */
@@ -44,7 +45,7 @@ public class VNode implements Observer {
     }
 
     /**
-     * Dessine le Noeud
+     * Dessine le noeud
      *
      * @param graph
      */
@@ -60,26 +61,22 @@ public class VNode implements Observer {
     }
 
     private void setColorInside() {
-        if(node.getIntensity() >= Node.FIRE_DEFAULT_TEMPERATURE) {
+        if (node.getIntensity() >= Node.FIRE_DEFAULT_TEMPERATURE) {
             colorInside = Color.RED;
-        }
-        else if(node.getIntensity() > ( 2 * Node.FIRE_DEFAULT_TEMPERATURE / 3) ){
+        } else if (node.getIntensity() > (2 * Node.FIRE_DEFAULT_TEMPERATURE / 3)) {
             colorInside = new Color(255, 121, 4);
-        }
-        else if(node.getIntensity() > (Node.FIRE_DEFAULT_TEMPERATURE / 3) ) {
+        } else if (node.getIntensity() > (Node.FIRE_DEFAULT_TEMPERATURE / 3)) {
             colorInside = new Color(255, 223, 42);
-        }
-        else if(node.getIntensity() > 0){
-            colorInside =  new Color(255, 253, 152);
-        }
-        else{
+        } else if (node.getIntensity() > 0) {
+            colorInside = new Color(255, 253, 152);
+        } else {
             colorInside = Color.WHITE;
         }
     }
 
     public void setColorBorder(int ind) {
         switch (ind) {
-            case 0 :
+            case 0:
                 colorBorder = Color.BLACK;
                 break;
             case 1:
@@ -88,7 +85,8 @@ public class VNode implements Observer {
             case 2:
                 colorBorder = Color.GREEN;
                 break;
-            default : colorBorder = Color.WHITE;
+            default:
+                colorBorder = Color.WHITE;
         }
     }
 

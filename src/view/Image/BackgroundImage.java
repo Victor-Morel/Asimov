@@ -13,7 +13,7 @@ public class BackgroundImage {
 
     private BufferedImage image;
 
-    public BackgroundImage(){
+    public BackgroundImage() {
         try {
             image = ImageIO.read(new File(config.pathStyleImage));
         } catch (IOException e) {
@@ -21,7 +21,7 @@ public class BackgroundImage {
         }
     }
 
-    public void drawImage(Graphics g){
+    public void drawImage(Graphics g) {
         g.drawImage(image, 0, 0, null);
     }
 

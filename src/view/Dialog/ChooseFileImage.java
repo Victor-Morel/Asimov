@@ -9,12 +9,10 @@ import java.io.File;
 /**
  * Created by TD on 6/15/2015.
  */
-public class ChooseFileImage extends JFileChooser{
-
+public class ChooseFileImage extends JFileChooser {
 
     /**
      * Construit un ChooseFileImage
-     *
      */
     public ChooseFileImage() {
         super(config.pathData);
@@ -22,9 +20,9 @@ public class ChooseFileImage extends JFileChooser{
     }
 
     /**
-     * selectionner le fichier
+     * Selectionner le fichier
      *
-     * @return fichier selectionner ou null si aucun fichier selectionner
+     * @return fichier selectionne ou null si aucun fichier selectionne
      */
     public File selectFile() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier Image", "jpg");
