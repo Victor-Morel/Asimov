@@ -1,4 +1,4 @@
-package test.model.research;
+package test.research;
 
 import model.graph.Edge;
 import model.graph.Graph;
@@ -18,8 +18,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Logan Paul on 13/06/2015.
  */
-public class AStarTest {
-
+public class StrategyTest {
     Graph g;
     Node n0;
     Node n1;
@@ -28,7 +27,6 @@ public class AStarTest {
     Node n4;
     Node n5;
     Node n6;
-    Node n7;
     Edge e1;
     Edge e2;
     Edge e3;
@@ -49,7 +47,6 @@ public class AStarTest {
         n4 = new Node(3.0,3.0,0);
         n5 = new Node(6.0,5.0,1);
         n6 = new Node(0.0,1.0,Integer.MAX_VALUE);
-        n7 = new Node(1.0,0.0);
         e1 = new Edge(n0, n1, EuclidianDistance.getDistance(n1, n2), TypeEdge.PLAT);
         e2 = new Edge(n1, n2, EuclidianDistance.getDistance(n1, n3), TypeEdge.ESCARPE);
         e3 = new Edge(n2, n3, EuclidianDistance.getDistance(n2, n3), TypeEdge.PLAT);
@@ -66,7 +63,6 @@ public class AStarTest {
         ln.add(n4);
         ln.add(n5);
         ln.add(n6);
-        ln.add(n7);
         le.add(e1);
         le.add(e2);
         le.add(e3);
@@ -84,24 +80,8 @@ public class AStarTest {
 
     @Test
     public void testGenerateBestPath() {
-        Graph gRes = new Graph();
-        gRes.addNode(n0);
-        gRes.addNode(n1);
-        gRes.addNode(n2);
-        gRes.addNode(n3);
-        gRes.addNode(n4);
-        gRes.addEdge(e1);
-        gRes.addEdge(e2);
-        gRes.addEdge(e3);
-        gRes.addEdge(e4);
-        Strategy s = new AStar(g,n0,n4);
-        assertTrue(gRes.equals(s.getResultGraph()));
-
-        s = new AStar(g,n2,n5);
-        assertFalse(gRes.equals(s.getResultGraph()));
-
-        s = new AStar(g,n1,n7);
-        assertTrue(s.getResultGraph().equals(new Graph()));
+        Strategy s = new AStar(g,n0,n5);
+        assertEquals(s.getDistanceValue(), 20);
+        assertNotEquals(s.getDistanceValue(),29);
     }
-
 }

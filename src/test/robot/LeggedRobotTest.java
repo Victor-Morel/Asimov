@@ -1,4 +1,4 @@
-package test.model.robot;
+package test.robot;
 
 public class LeggedRobotTest extends RobotTest {
 }

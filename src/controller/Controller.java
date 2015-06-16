@@ -18,6 +18,7 @@ public class Controller {
     private Graph graph;
     private Manager manager;
     private boolean pyroman;
+    private Simulation simulation;
 
     private ControllerActionNode controlNode;
     private ControllerActionEdge controlEdge;
@@ -95,7 +96,7 @@ public class Controller {
 
     public void launchSimulation() {
         manager.setGraph(graph);
-        Simulation simulation = new Simulation(manager, graph, pyroman);
+        simulation = new Simulation(manager, graph, pyroman);
         new Thread(simulation).start();
     }
 

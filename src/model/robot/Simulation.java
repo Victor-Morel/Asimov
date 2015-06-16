@@ -34,4 +34,12 @@ public class Simulation extends Observable implements Runnable {
         }
 
     }
+
+    public void sleep() throws InterruptedException {
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
