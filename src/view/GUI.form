@@ -67,6 +67,12 @@
               <vspacer id="ff0da">
                 <constraints/>
               </vspacer>
+              <component id="3d737" class="javax.swing.JSeparator">
+                <constraints/>
+                <properties>
+                  <background color="-5098452"/>
+                </properties>
+              </component>
               <component id="f23c" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
@@ -100,9 +106,15 @@
                   <text value="Inonde"/>
                 </properties>
               </component>
-              <vspacer id="120bf">
+              <vspacer id="d0296">
                 <constraints/>
               </vspacer>
+              <component id="b7fd9" class="javax.swing.JSeparator">
+                <constraints/>
+                <properties>
+                  <background color="-5098452"/>
+                </properties>
+              </component>
               <component id="d384c" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
