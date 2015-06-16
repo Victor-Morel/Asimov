@@ -16,9 +16,9 @@ public class NodeTest {
 
     @Test
     public void testCooling() throws Exception {
-      /*  n1 = new Node(5,3,100);
-        n2 = new Node(2,2);
-        n3 = new Node(6,8,Integer.MAX_VALUE);
+        n1 = new Node(5.0,3.0,100);
+        n2 = new Node(2.0,2.0);
+        n3 = new Node(6.0,8.0,Integer.MAX_VALUE);
 
 
         assertNotEquals(90,n1.getIntensity());
@@ -34,7 +34,6 @@ public class NodeTest {
         assertNotEquals(100,n3.getIntensity());
         n3.cooling(0.9);
         assertEquals((int)(Integer.MAX_VALUE * 0.1),n3.getIntensity());
-*/
     }
 
 }

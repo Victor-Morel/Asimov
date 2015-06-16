@@ -80,8 +80,8 @@ public class StrategyTest {
 
     @Test
     public void testGenerateBestPath() {
-        Strategy s = new AStar(g,n0,n5);
-        assertEquals(s.getDistanceValue(), 20);
+        Strategy s = new AStar(g,n0,n1);
+        assertEquals(s.getDistanceValue(), (int)EuclidianDistance.getDistance(n1,n2));
         assertNotEquals(s.getDistanceValue(),29);
     }
 }

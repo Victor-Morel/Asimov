@@ -23,6 +23,10 @@ public abstract class Robot extends Observable implements Runnable {
         return node;
     }
 
+    public Graph getGraph() {
+        return g;
+    }
+
     public void setNode(Node node) {
         this.node = node;
     }
