@@ -11,10 +11,6 @@ import java.util.Observable;
 
 public abstract class Robot extends Observable implements Runnable {
 
-    public int getId() {
-        return id;
-    }
-
     public Strategy getStrat() {
         return strat;
     }
@@ -31,10 +27,6 @@ public abstract class Robot extends Observable implements Runnable {
         this.node = node;
     }
 
-    public Graph getPath() {
-        return path;
-    }
-
     public void setPath(Graph path) {
         this.path = path;
     }
@@ -48,10 +40,9 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
 
-    private static final int ROBOT_MOBILITY_SPEED = 30;
+    private static final int ROBOT_MOBILITY_SPEED = 15;
     private static final int ROBOT_EXTINGUISH_SPEED = 300;
     private ResearchType researchType;
-    private int id;
     protected Node node;
     private boolean busy;
     private double capacity;
@@ -64,7 +55,6 @@ public abstract class Robot extends Observable implements Runnable {
 
     public Robot(Node _node, ResearchType _researchType) {
         this.setBusy(false);
-        //TODO Calculate _capacity
         double capacity = ((Math.random() * 3.0) + 2.0)/10.0;
         this.capacity = capacity;
         this.node = _node;
@@ -120,7 +110,6 @@ public abstract class Robot extends Observable implements Runnable {
         while (!path.getAllEdges().isEmpty()) {
             try {
                 Thread.sleep((int) (path.getEdges(node).get(0).getValuation() + 1) * ROBOT_MOBILITY_SPEED);
-                System.out.println("Noeud actuel " + node);
                 Node previousNode = this.node;
                 if (path.getEdges(node).get(0).getDestination().equals(node)) {
                     this.node = path.getEdges(node).get(0).getSource();
@@ -136,13 +125,11 @@ public abstract class Robot extends Observable implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("fin trajet");
         try {
             extinguish(node);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("fin incendie");
         this.node.setSupported(false);
         this.setBusy(false);
     }

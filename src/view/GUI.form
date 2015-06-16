@@ -85,7 +85,7 @@
               <component id="f23c" class="javax.swing.JLabel" binding="JLabelEdge">
                 <constraints/>
                 <properties>
-                  <text value="Arète"/>
+                  <text value="Arête"/>
                 </properties>
               </component>
               <vspacer id="49f84">
