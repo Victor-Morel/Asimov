@@ -65,7 +65,7 @@ public abstract class Robot extends Observable implements Runnable {
     public Robot(Node _node, ResearchType _researchType) {
         this.setBusy(false);
         //TODO Calculate _capacity
-        double capacity = 0.3;
+        double capacity = ((Math.random() * 3.0) + 2.0)/10.0;
         this.capacity = capacity;
         this.node = _node;
         this.researchType = _researchType;
