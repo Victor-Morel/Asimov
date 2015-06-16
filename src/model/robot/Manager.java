@@ -4,7 +4,6 @@ import model.graph.Graph;
 import model.graph.Node;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,12 +17,10 @@ public class Manager implements Runnable {
      * Key : un noeud enflamme
      * Value : une paire robot/distance entre le noeud enflamme et le noeud du robot
      */
-    public HashMap<Node, Pair<Robot, Integer>> bestBotForFire = new HashMap<>();
     private Boolean allRobotsBusy;
 
     public Manager() {
         this.bots = new ArrayList<>();
-        this.bestBotForFire = new HashMap<>();
         this.graph = new Graph();
         this.allRobotsBusy = false;
     }
