@@ -93,8 +93,6 @@ public class Controller {
         manager.setGraph(graph);
         Simulation simulation = new Simulation(manager, graph);
         new Thread(simulation).start();
-
-
     }
 
     public void setGraph(Graph graph) {

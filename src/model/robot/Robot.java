@@ -78,8 +78,8 @@ public abstract class Robot extends Observable implements Runnable {
 
 
     /**
-     * Fonction qui appelle l'algorithme de recherche choisi, afin de calculer le plus court chemin entre le noeud courant et un noeud en paramÃ¨tres
-     * @param inFlames le noeud passÃ© en paramÃ¨tres (a priori en feu)
+     * Fonction qui appelle l'algorithme de recherche choisi, afin de calculer le plus court chemin entre le noeud courant et un noeud en paramètres
+     * @param inFlames le noeud passé en paramètres (a priori en feu)
      * @return
      */
     public synchronized int getDistance(Node inFlames) {
@@ -96,8 +96,8 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
     /**
-     * Fonction qui Ã©teint un noeud enflammÃ©, et fait attendre le Thread du robot le temps adÃ©quat
-     * @param inFlames noeud Ã  Ã©teindre
+     * Fonction qui éteint un noeud enflammé, et fait attendre le Thread du robot le temps adéquat
+     * @param inFlames noeud à éteindre
      * @throws InterruptedException
      */
     public synchronized void extinguish (Node inFlames) throws InterruptedException {
@@ -110,8 +110,8 @@ public abstract class Robot extends Observable implements Runnable {
     }
 
     /**
-     * Fonction du robot qui lui permet de se dÃ©placer de noeud en noeud jusqu'Ã  sa destination
-     * Le Thread du robot dors proportionnellement Ã  la distance Ã  parcourir
+     * Fonction du robot qui lui permet de se déplacer de noeud en noeud jusqu'à sa destination
+     * Le Thread du robot dors proportionnellement à la distance à parcourir
      */
     @Override
     public void run(){
@@ -144,6 +144,7 @@ public abstract class Robot extends Observable implements Runnable {
             e.printStackTrace();
         }
         System.out.println("fin incendie");
+        this.node.setSupported(false);
         this.setBusy(false);
     }
 

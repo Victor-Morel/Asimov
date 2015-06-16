@@ -2,6 +2,7 @@ package model.robot;
 
 import model.graph.Graph;
 import model.graph.Node;
+import utils.EuclidianDistance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +16,13 @@ public class Manager implements Runnable {
     private List<Robot> bots;
     private Graph graph;
     public HashMap<Node, Pair<Robot, Integer>> bestBotForFire = new HashMap<>(); //key idFireNode, value : idBot/distance
+    private Boolean allRobotsBusy;
 
     public Manager() {
         this.bots = new ArrayList<>();
         this.bestBotForFire = new HashMap<>();
         this.graph = new Graph();
+        this.allRobotsBusy = false;
     }
 
     /**
@@ -68,8 +71,6 @@ public class Manager implements Runnable {
         } catch (NullPointerException e) {
            System.out.print("Caught the NullPointerException");
         }
-
-
     }
 
     public synchronized void clearList(Node inFlames, Robot bot) {
@@ -81,9 +82,39 @@ public class Manager implements Runnable {
         }
     }
 
+    public Robot bestRobot(Node inFlames) {
+        int bestDistance = Integer.MAX_VALUE;
+        Robot bestRobot = null;
+        for(Robot bot : bots) {
+            if(bot.isBusy()) {
+                continue;
+            }
+            if(bot.getDistance(inFlames) < bestDistance) {
+                bestRobot = bot;
+                bestDistance = bestRobot.getDistance(inFlames);
+            }
+        }
+        return bestRobot;
+    }
+
     //à appeler pour que le manager gère les robots
     public void decide() {
-        chooseRobot();
+        //chooseRobot();
+        for (Node inFlames : graph.getAllFireNodes()) {
+            if(inFlames.isSupported()) {
+                continue;
+            }
+            Robot r = bestRobot(inFlames);
+            if(null == r) {
+                allRobotsBusy = true;
+                break;
+            }
+            allRobotsBusy = false;
+            r.setExtinction(inFlames, r.getDistance(inFlames));
+            new Thread(r).start();
+            r.setBusy(true);
+            inFlames.setSupported(true);
+        }
     }
 
     @Override
