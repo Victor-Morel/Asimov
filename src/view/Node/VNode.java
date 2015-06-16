@@ -30,6 +30,8 @@ public class VNode implements Observer {
         this.sheetDisplay = sheetDisplay;
         this.node = node;
         this.node.addObserver(this);
+        setColorBorder();
+        setColorInside();
     }
 
     /**
@@ -40,6 +42,8 @@ public class VNode implements Observer {
      */
     @Override
     public void update(Observable arg0, Object arg1) {
+        setColorBorder();
+        setColorInside();
         sheetDisplay.repaint();
     }
 
@@ -49,12 +53,11 @@ public class VNode implements Observer {
      * @param graph
      */
     public void drawNode(Graphics graph) {
-        setColorInside();
+
         graph.setColor(colorInside);
         g2d = (Graphics2D) graph;
         g2d.fillOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
 
-        setColorBorder();
         graph.setColor(colorBorder);
         ((Graphics2D) graph).setStroke(new BasicStroke(2));
         graph.drawOval((int) node.getX() - rayon, (int) node.getY() - rayon, 2 * rayon, 2 * rayon);
