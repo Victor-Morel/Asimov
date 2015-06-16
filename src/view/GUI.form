@@ -64,6 +64,15 @@
                   <text value="Feu"/>
                 </properties>
               </component>
+              <vspacer id="52eda">
+                <constraints/>
+              </vspacer>
+              <component id="4166e" class="javax.swing.JButton" binding="igniteNode">
+                <constraints/>
+                <properties>
+                  <text value="Enflammer"/>
+                </properties>
+              </component>
               <vspacer id="ff0da">
                 <constraints/>
               </vspacer>

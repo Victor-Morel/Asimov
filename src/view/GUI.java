@@ -31,6 +31,7 @@ public class GUI extends JFrame {
 	private SheetDisplay sheetDisplay;
 	private JLabel JLabelEdge;
 	private JLabel JLabelNode;
+	private JButton igniteNode;
 
 	/**
 	 * Controlleur de la souris
@@ -85,6 +86,7 @@ public class GUI extends JFrame {
 
 		addNodeFire.addActionListener(controlAction.getControlNode());
 		addNode.addActionListener(controlAction.getControlNode());
+		igniteNode.addActionListener(controlAction.getControlNode());
 
 		addEdgeEscarpe.addActionListener(controlAction.getControlEdge());
 		addEdgePlat.addActionListener(controlAction.getControlEdge());
@@ -106,6 +108,7 @@ public class GUI extends JFrame {
 
 
 		addNodeFire.setForeground(Color.RED);
+		igniteNode.setForeground(Color.RED);
 
 		addEdgePlat.setForeground(Color.black);
 		addEdgeInonde.setForeground(new Color(0, 29,255));
