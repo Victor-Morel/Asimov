@@ -55,26 +55,27 @@ public class Manager implements Runnable {
     }
 
     public synchronized void chooseRobot() {//décide quel robot fait quoi
-        for (Node inFlames : graph.getAllFireNodes()) {
-            getBestDistance();
-            try {
+        try {
+            for (Node inFlames : graph.getAllFireNodes()) {
+                getBestDistance();
                 if ((!bestBotForFire.isEmpty()) && (!bestBotForFire.get(inFlames).getFirst().isBusy())) {
                     setAction(bestBotForFire.get(inFlames).getFirst(), inFlames, bestBotForFire.get(inFlames).getSecond());
                     bestBotForFire.get(inFlames).getFirst().setBusy(true);
                     inFlames.setSupported(true);
                     clearList(inFlames, bestBotForFire.get(inFlames).getFirst());
                 }
-            }catch (NullPointerException e) {
-                System.out.print("Caught the NullPointerException");
             }
-
+        } catch (NullPointerException e) {
+            System.out.print("Caught the NullPointerException");
         }
+
+
     }
 
-    public synchronized void clearList(Node inFlames, Robot bot){
+    public synchronized void clearList(Node inFlames, Robot bot) {
         bestBotForFire.remove(inFlames);
-        for (Node fire : graph.getAllFireNodes()){
-            if ((bestBotForFire.get(fire) != null)&&(bot==bestBotForFire.get(fire).getFirst())){
+        for (Node fire : graph.getAllFireNodes()) {
+            if ((bestBotForFire.get(fire) != null) && (bot == bestBotForFire.get(fire).getFirst())) {
                 bestBotForFire.remove(fire);
             }
         }
@@ -96,7 +97,7 @@ public class Manager implements Runnable {
 
     public void setGraph(Graph graph) {
         this.graph = graph;
-        for(Robot r : this.bots) {
+        for (Robot r : this.bots) {
             r.generateSubGraph(graph);
         }
     }
