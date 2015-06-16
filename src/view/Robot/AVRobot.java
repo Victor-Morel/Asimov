@@ -25,7 +25,8 @@ public class AVRobot implements Observer {
      */
     public AVRobot(SheetDisplay sheetDisplay, Robot robot) {
         this.sheetDisplay = sheetDisplay;
-        setT(robot);
+        this.robot =robot;
+        this.robot.addObserver(this);
     }
 
 
@@ -48,10 +49,6 @@ public class AVRobot implements Observer {
 
     }
 
-    public void setT(Robot robot) {
-        this.robot = robot;
-
-    }
 
 
 }

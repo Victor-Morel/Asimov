@@ -130,7 +130,6 @@ public class Node extends Observable {
         this.intensity = intensity;
         setChanged();
         notifyObservers();
-
     }
 
     /**

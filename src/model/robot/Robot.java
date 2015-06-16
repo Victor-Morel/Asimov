@@ -29,8 +29,6 @@ public abstract class Robot extends Observable implements Runnable {
 
     public void setNode(Node node) {
         this.node = node;
-        setChanged();
-        notifyObservers();
     }
 
     public Graph getPath() {
@@ -110,7 +108,11 @@ public abstract class Robot extends Observable implements Runnable {
                     this.node = path.getEdges(node).get(0).getDestination();
                 }
                 path.removeEdge(path.getEdges(previousNode).get(0));
+
                 //FORCER LA VUE A RAFRAICHIR L'AFFICHAGE ICI
+                setChanged();
+                notifyObservers();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
