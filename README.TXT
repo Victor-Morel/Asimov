@@ -15,4 +15,4 @@ Pour ajouter la javadoc, charger le fichier javadoc.jar.
 Pour ajouter les libs ajouter les fichiers junit-4.12 et hamcrest-all-1.3.
 
 Pour lancer les tests, exécuter les fichiers de tests inclus dans les packages de test.model :
-Se placer sur le fichier de tests, clic droit “Run testMonFichier”.
+Se placer sur le fichier de tests choisi, clic droit “Run testMonFichier”.
