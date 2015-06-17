@@ -5,6 +5,7 @@ import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
 import model.robot.CaterpillarRobot;
+import model.robot.LeggedRobot;
 import model.robot.ResearchType;
 import model.robot.Robot;
 import org.junit.Assert;
@@ -90,9 +91,8 @@ public class LeggedRobotTest extends RobotTest {
             }
         }
 
-        Robot r = new CaterpillarRobot(n1, ResearchType.ASTAR);
+        Robot r = new LeggedRobot(n1, ResearchType.ASTAR);
         r.generateSubGraph(g);
-
         Assert.assertTrue(r.getGraph().equals(subGraph));
     }
 }

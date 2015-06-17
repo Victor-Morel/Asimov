@@ -261,12 +261,12 @@ public class Graph {
             case 1:
                 return true;
             case 2:
-                if ((e.getType() == TypeEdge.PLAT) || (e.getType() == TypeEdge.INONDE)) {
+                if ((e.getType().equals(TypeEdge.PLAT)) || (e.getType().equals(TypeEdge.INONDE))) {
                     return true;
                 }
                 break;
             case 3:
-                if ((e.getType() == TypeEdge.PLAT) || (e.getType() == TypeEdge.ESCARPE)) {
+                if ((e.getType().equals(TypeEdge.PLAT)) || (e.getType().equals(TypeEdge.ESCARPE))) {
                     return true;
                 }
                 break;

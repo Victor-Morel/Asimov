@@ -152,7 +152,9 @@ public class Node extends Observable {
         if (getClass() != obj.getClass())
             return false;
         Node other = (Node) obj;
-        return uniqueID == other.uniqueID;
+        if(uniqueID == other.uniqueID)
+            return true;
+        return x == other.getX() && y == other.y && intensity == other.intensity && supported == other.supported;
     }
 
     public double getX() {
