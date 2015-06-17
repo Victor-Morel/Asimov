@@ -4,7 +4,6 @@ import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Node;
 import model.graph.TypeEdge;
-import model.robot.CaterpillarRobot;
 import model.robot.LeggedRobot;
 import model.robot.ResearchType;
 import model.robot.Robot;
